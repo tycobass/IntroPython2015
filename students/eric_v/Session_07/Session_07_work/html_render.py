@@ -11,16 +11,16 @@ class Element:
     def append_text(self, content):
         self.content_input.append(content)
 
-    def render(self, f, ind=""):
+    def render(self, file_output, ind=""):
         start_tag = "<{}>".format(self.tag)
-        f.write(start_tag)
+        file_output.write(start_tag)
         for text_line in self.content_input:
             try:
-                text_line.render(f)
+                text_line.render(file_output)
             except AttributeError:
-                f.write(str(text_line))
+                file_output.write(str(text_line))
         end_tag = "</{}>".format(self.tag)
-        f.write(end_tag)
+        file_output.write(end_tag)
 
 
 class Body(Element):
