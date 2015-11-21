@@ -1,15 +1,9 @@
-#!/usr/bin/env python3
 
-"""
-test code for the html rendering tool
-"""
-import pytest
+
 from io import StringIO
 
 import html_render as hr
-from html_render import Element, Body, P
 
-import html_render as hr
 
 def test_init():
     hr.Element()
