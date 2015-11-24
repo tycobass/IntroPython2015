@@ -25,8 +25,29 @@ class Element():
         end_tag = "</{}>".format(self.tag)        
         f.write(end_tag)        
 
+class Html(Element):
+    tag = 'html'
+    def __init__(self, content = None):
+                
+        self.content = []
+        if content is not None:
+            self.content.append(content)
+
 class Body(Element):
     tag = 'body'
 
 class P(Element):
     tag = 'p'
+
+class Head(Element):
+    tag = 'head'
+
+class Title(Element):
+    tag = 'title'
+
+class OneLineTag(Element):
+    #def render_one_line:
+     #   pass
+    pass
+
+
