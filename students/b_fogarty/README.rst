@@ -1,2 +1,1 @@
-# Python code for UWPCE-Python Cert clall
-gitignore
+# Python code of UWPCE-PythonCert class
