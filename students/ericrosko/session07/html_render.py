@@ -11,17 +11,16 @@ class Element:
 
     def __init__(self, *args, **kwargs):
         self.content = []
-        if args is not None:
-            for i in args:
-                self.content.append(i)
 
-        if kwargs is not None and isinstance(kwargs, dict):
-            for n in kwargs:
-                if len(self.attributes) > 0:
-                    self.attributes += ", "
-                else:
-                    self.attributes = " "   # start with a space
-                self.attributes += "{}=\"{}\"".format(n, kwargs[n])
+        for i in args:
+            self.content.append(i)
+
+        for n in kwargs:
+            if len(self.attributes) > 0:
+                self.attributes += ", "
+            else:
+                self.attributes = " "   # start with a space
+            self.attributes += "{}=\"{}\"".format(n, kwargs[n])
 
     def render(self, f, ind=""):
         start_tag = "{}<{}{}>{}".format(ind, self.tag, self.attributes, '')
@@ -60,18 +59,15 @@ class Html(Element):
     def __init__(self, *args, **kwargs):
         self.content = []
 
-        if args is not None:
-            for i in args:
-                self.content.append(i)
+        for i in args:
+            self.content.append(i)
 
-        if kwargs is not None and isinstance(kwargs, dict):
-
-            for n in kwargs:
-                if len(self.attributes) > 0:
-                    self.attributes += ", "
-                else:
-                    self.attributes = " "  # start with a space
-                self.attributes += "{}=\"{}\"".format(n, kwargs[n])
+        for n in kwargs:
+            if len(self.attributes) > 0:
+                self.attributes += ", "
+            else:
+                self.attributes = " "  # start with a space
+            self.attributes += "{}=\"{}\"".format(n, kwargs[n])
 
     def render(self, f, ind=""):
         # this line below is the different between the Element's method
@@ -170,18 +166,16 @@ class Ul(Element):
 
     def __init__(self, *args, **kwargs):
         self.content = []
-        if args is not None:
 
-            for i in args:
-                self.content.append(i)
+        for i in args:
+            self.content.append(i)
 
-        if kwargs is not None and isinstance(kwargs, dict):
-            for n in kwargs:
-                if len(self.attributes) > 0:
-                    self.attributes += " "
-                else:
-                    self.attributes = " "  # start with a space
-                self.attributes += "{}=\"{}\"".format(n, kwargs[n])
+        for n in kwargs:
+            if len(self.attributes) > 0:
+                self.attributes += " "
+            else:
+                self.attributes = " "  # start with a space
+            self.attributes += "{}=\"{}\"".format(n, kwargs[n])
 
 
 class Li(Element):
