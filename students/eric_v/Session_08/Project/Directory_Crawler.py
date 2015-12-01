@@ -12,19 +12,19 @@ def hashfile(path, blocksize = 65536):
     afile.close()
     return hasher.hexdigest()
 
-def findDup(parentFolder):
-    # Dups in format {hash:[names]}
-    dups = {}
+def file_hash_values(parentFolder):
+    #list_of_file has the format {file hash:[filename with path]}
+    list_of_files = {}
     for dirName, subdirs, fileList in os.walk(parentFolder):
         print('\n','Scanning - %s...' % dirName, '\n')
         for filename in fileList:
-            # Get the path to the file
-            path = os.path.join(dirName, filename)
+            # Assign path to file and filename to filename_path
+            filename_path = os.path.join(dirName, filename)
             # Calculate hash
-            file_hash = hashfile(path)
+            file_hash = hashfile(filename_path)
             # Add or append the file path
-            if file_hash in dups:
-                dups[file_hash].append(path)
+            if file_hash in list_of_files:
+                list_of_files[file_hash].append(filename_path)
             else:
-                dups[file_hash] = [path]
-    return dups
+                list_of_files[file_hash] = [filename_path]
+    return list_of_files

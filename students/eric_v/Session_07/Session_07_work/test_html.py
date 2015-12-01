@@ -56,38 +56,98 @@ def test_render():
     assert "that" in text
 
 
+def test_head():
+    class_location = hr.Head("my_head")
+    f = StringIO()
+    class_location.render(f)
+    f.seek(0)
+    text = f.read().strip()
+    assert text.startswith("<head>")
+    assert text.endswith("</head>")
+    assert "my_head" in text
+
+
 def test_body():
-    class_location = hr.Body("this")
+    class_location = hr.Body("rabbits ate my lunch")
     f = StringIO()
     class_location.render(f)
     f.seek(0)
     text = f.read().strip()
     assert text.startswith("<body>")
     assert text.endswith("</body>")
-    assert "this" in text
+    assert "rabbits" in text
 
 
 def test_p():
-    class_location = hr.P("this")
+    class_location = hr.P("another paragraph")
     f = StringIO()
     class_location.render(f)
     f.seek(0)
     text = f.read().strip()
     assert text.startswith("<p>")
     assert text.endswith("</p>")
-    assert "this" in text
+    assert "paragraph" in text
 
 
-def test_nest():
+def test_head_section():
     class_location = hr.Element()
-    p = hr.P("a paragraph of text")
-    class_location.append_text(p)
-    p = hr.P("another paragraph of text")
-    class_location.append_text(p)
-
+    head = hr.Head("a header section")
+    class_location.append_text(head)
+    title = hr.Title("a title section")
+    class_location.append_text(title)
     f = StringIO()
     class_location.render(f)
     f.seek(0)
     text = f.read().strip()
     print(text)
 
+
+
+def test_nest_b():
+    class_location = hr.Element()
+    p = hr.P("a paragraph of text")
+    class_location.append_text(p)
+    p = hr.P("another paragraph of text")
+    class_location.append_text(p)
+    f = StringIO()
+    class_location.render(f)
+    f.seek(0)
+    text = f.read().strip()
+    print(text)
+
+
+def test_indent():
+    p = hr.P('a little text')
+    f = StringIO()
+    p.render(f)
+    f.seek(0)
+    text = f.read()
+    assert text == """<p>
+    a little text
+</p>
+"""
+
+
+def test_indent():
+    p = hr.P('a little text - 4 spaces')
+    f = StringIO()
+    p.render(f)
+    f.seek(0)
+    text = f.read()
+    assert text == """<p>
+    a little text
+</p>
+"""
+
+
+def test_additional_indent():
+    p = hr.P('a little text - 8 spaces')
+    p.indent = 8
+    f = StringIO()
+    p.render(f)
+    f.seek(0)
+    text = f.read()
+    assert text == """<p>
+        a little text
+</p>
+"""
