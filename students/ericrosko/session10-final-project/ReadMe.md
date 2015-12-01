@@ -17,7 +17,7 @@ Running the script in your Xcode project folder should give you a list of any mi
 The best way to copy an asset into Xcode is to have Xcode open, then you either drag and drop or select a folder, right click, and choose the Add Files... option.  With Xcode open, you can be sure that the asset is also being included (written) in your Xcode project file.  This is important because if the file is not in the project file, it can't get copied during the build process into your application.
 
 Here's the dialog box in Xcode 7:
-![Copying a file into Xcode](copying-file-to-Xcode.png)
+![Copying a file into Xcode](copying-file-to-xcode.png)
 
 There is a lot going on in the dialog box.  It is asking if it should copy a file into the Xcode project folder if it does not already exist.  This is really the option to always use.  If the file is already in the project, then no harm done it doesn't do anything, and if it is outside it copies it over.
 
