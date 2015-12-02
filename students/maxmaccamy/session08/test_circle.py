@@ -27,13 +27,11 @@ def test_diameter_set():
 
 def test_area():
     r = 2
-    area = (math.pi * (r ** 2))
     c = Circle(r)
-    assert (area == c.area)
+    assert (areaOfCircle(r) == c.area)
 
 def test_from_diameter():
-    c = Circle(2)
-    c.from_diameter(6)
+    c = Circle.from_diameter(6)
     assert (3 == c.radius)
     assert (6 == c.diameter)
 
@@ -43,7 +41,40 @@ def test_str():
 
 def test_repr():
     c = Circle(2)
-    assert False
+    assert 'Circle(2)' == eval(repr(c))
+
+def test_add():
+    c1 = Circle(2)
+    c2 = Circle(4)
+    newCircle = c1 + c2
+    assert (6 == newCircle.radius)
+    assert (12 == newCircle.diameter)
+
+def test_mul():
+    c = Circle(2)
+    c *= 2
+    assert (4 == c.radius)
+    c = 2 * c
+    assert (8 == c.radius)
+    assert(areaOfCircle(c.radius) == c.area)
+
+def test_eq():
+    c1 = Circle(1)
+    c2 = Circle(1)
+    c3 = Circle(2)
+    assert (c1 == c2)
+    assert not (c1 == c3)
+
+def test_gt():
+    c1 = Circle(1)
+    c2 = Circle(1)
+    c3 = Circle(2)
+    assert not (c1 > c2)
+    assert (c3 > c1)
+
+def areaOfCircle(r):
+    return (math.pi * (r ** 2))
+
 
 
 
