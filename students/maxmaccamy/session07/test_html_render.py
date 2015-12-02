@@ -84,13 +84,18 @@ def test_html():
 
 
 def test_next():
+    #Instantiate our test objects.
     e = hr.Element()
+    b = hr.Body()
     p = hr.P("a paragraph of text")
-    e.append(p)
+    b.append(p)
     p = hr.P("another paragraph of text")
-    e.append(p)
+    b.append(p)
+
     f = StringIO()
+    e.append(b)
     e.render(f)
+
     f.seek(0)
     text = f.read().strip()
 

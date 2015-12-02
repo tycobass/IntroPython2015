@@ -2,7 +2,7 @@ __author__ = 'Max'
 
 class Element:
     tag = "html"
-    indent = ""
+    indent = "    "
 
     def __init__(self, content = None):
         self.content = []
@@ -13,17 +13,17 @@ class Element:
         self.content.append(newContent)
 
     def render(self, file_out, ind = ""):
-        file_out.write("<{}>\n".format(self.tag))
+        file_out.write("{}<{}>\n".format(ind, self.tag))
         for el in self.content:
             try:
-                el.render(file_out)
+                el.render(file_out, Element.indent)
             except(AttributeError):
-                file_out.write(str(el) + "\n")
-        file_out.write("</{}>\n".format(self.tag))
+                self.indent += ind
+                file_out.write("{}{}\n".format(self.indent, str(el)))
+        file_out.write("{}</{}>\n".format(ind, self.tag))
 
 class Html(Element):
     tag = 'html'
-
     def __init__(self, content = None):
         self.content = []
         if (content is not None):
