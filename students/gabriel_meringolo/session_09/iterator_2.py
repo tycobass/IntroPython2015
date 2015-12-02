@@ -13,26 +13,19 @@ class IterateMe_1(object):
     ( like range(4) )
     """
     def __init__(self, start, stop, step=1):
-        self.start = start
+        self.current = start - step
         self.stop = stop
         self.step = step
 
-    #def __iter__(self):
-    #    return self
+    def __iter__(self):
+        return self
 
-    def __getitem__(self, position):
-        current = self.start + position * self.step
-        if current > self.stop:
-            return IndexError
-        return current
-
-
-    #def __next__(self):
-    #    self.current += self.step
-    #    if self.current < self.stop:
-    #        return self.current
-    #    else:
-    #        raise StopIteration
+    def __next__(self):
+        self.current += self.step
+        if self.current < self.stop:
+            return self.current
+        else:
+            raise StopIteration
 
 if __name__ == "__main__":
 
