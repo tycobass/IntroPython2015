@@ -10,7 +10,7 @@ someone else, then it will be missing any files not inside the project folder.  
 elsewhere, the missing files will show up in red text.
 
 ### Usage
-Running the script in your Xcode project folder should give you a list of any missing assets, and also any assets that exist in the project but are not referenced in the project file.
+Running the script in your Xcode project folder should give you a list of any missing assets, and also any assets that exist in the project but are not referenced in the project (.xcodeproj) package file.
 
 ### Xcode File Copy Dialog Box
 
