@@ -1,7 +1,18 @@
 #!/usr/bin/env python
 
+'''
+
+Name:       asset_checker.py
+Author:     Eric Rosko
+
+Implementation Details: It is interesting to note that the Xcode framework
+libc++.dylib returns false for both os.path.isfile and os.path.isdir.  This is
+why in the search_tree method I first check for isfile and then for isdir,
+when it seems like just one would have been enough.
+'''
+
 import os
-from os.path import isfile
+from os.path import isfile, isdir
 import re
 import sys
 
@@ -10,7 +21,12 @@ __author__ = 'Eric Rosko'
 
 class AssetChecker():
 
-    ignored_directories = ['__pycache__', '.cache']
+    # add any directory names here that you know will not need to be
+    # searched for files.  The will be ignored.
+    ignored_directories = ['__pycache__', '.cache', '.git']
+
+    # the final list of results are stored in sets, which eliminates
+    # any duplicates since sets cannot have the same element twice
     manifest_set = {}
     project_set = {}
 
@@ -29,15 +45,24 @@ class AssetChecker():
     def search_tree(self, path, files, extensions):
         assert isinstance(extensions, list)
 
-        for name in os.listdir(path):
-            fullpath = os.path.join(path, name)
+        try:
+            for name in os.listdir(path):
+                file_name_parts = name.split('.')
+                fullpath = os.path.join(path, name)
 
-            if isfile(fullpath):
-                if name.split('.')[1] in extensions:
-                    files.append(name)
-            else:
-                if name not in self.ignored_directories:
-                    self.search_tree(fullpath, files, extensions)
+                if isfile(fullpath):
+                    if len(file_name_parts) > 1 and \
+                     file_name_parts[-1] in extensions:
+                        files.append(name)
+                elif isdir(fullpath):
+                    if name not in self.ignored_directories:
+                        self.search_tree(fullpath, files, extensions)
+        except NotADirectoryError as e:
+            print("Not a directory: {}".format(e))
+            raise e
+
+        except Exception as e:
+            raise e
 
     def get_current_directory(self):
         return os.getcwd()
@@ -54,11 +79,14 @@ class AssetChecker():
 
         for name in os.listdir(start_path):
             fullpath = os.path.join(start_path, name)
-
-            if not isfile(fullpath) and name not in self.ignored_directories:
+            # print("Fullpath: ", fullpath)
+            if os.path.isdir(fullpath) and \
+               name not in self.ignored_directories:
                 if fullpath.endswith('xcodeproj'):
                     files.append(fullpath)
                 else:
+                    assert os.path.isdir(fullpath), "Expected Dir!"
+                    # print("DIR: ", fullpath)
                     self.find_project_file(fullpath, files)
 
     def parse_project_file(self, path, results):
@@ -121,12 +149,14 @@ class AssetChecker():
         regexes = []
 
         for ext in self.searchable_extensions:
-            regexes.append(re.compile("[A-Za-z0-9_-]+.{}".format(ext)))
+            # special thanks to http://www.regexpal.com !
+            regexes.append(re.compile("[A-Za-z0-9@\._-]+\.{}".format(ext)))
 
         return regexes
 
     def perform_asset_audit(self):
         temp = []
+
         self.find_project_file(self.starting_search_path, temp)
 
         return_string = "\nFound Xcode Project: {}\n".format(
@@ -154,8 +184,8 @@ class AssetChecker():
 
         if all:
             return_string += \
-            "In Manifest: {}\n\nIn Project Folder: {}\n" \
-            "".format(self.manifest_set, self.project_set)
+                "In Manifest: {}\n\nIn Project Folder: {}\n" \
+                "".format(self.manifest_set, self.project_set)
 
         orphan_assets_inside_folder = \
             [x for x in self.project_set if x not in self.manifest_set]
