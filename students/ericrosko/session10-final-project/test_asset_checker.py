@@ -13,6 +13,13 @@ to open or validate that they are in a one valid format or another.
 icon.png is in the first child folder up from the project file.  it exists
 on disk but is not referenced in the project file.
 
+Requirements:
+    You must have py.test installed from http://pytest.org
+    python3 -m pip install pytest
+
+Usage:
+    py.test -v test-asset-checker.py
+
 """
 
 import os

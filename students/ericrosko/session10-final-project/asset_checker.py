@@ -230,7 +230,7 @@ if __name__ == '__main__':
 
     total = len(sys.argv)
     cmdargs = str(sys.argv)
-    print("total: {}".format(total))
+    # print("total: {}".format(total))
     # print("cmdargs", cmdargs)
     # print(type(list(sys.argv[1])))
     show_all_files = False
