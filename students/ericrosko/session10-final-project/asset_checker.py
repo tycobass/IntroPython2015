@@ -59,7 +59,7 @@ class AssetChecker():
 
                 if isfile(fullpath):
                     if len(file_name_parts) > 1 and \
-                     file_name_parts[-1] in extensions:
+                            file_name_parts[-1] in extensions:
                         files.append(name)
                 elif isdir(fullpath):
                     if name not in self.ignored_directories:
@@ -230,6 +230,7 @@ if __name__ == '__main__':
 
     total = len(sys.argv)
     cmdargs = str(sys.argv)
+    print("total: {}".format(total))
     # print("cmdargs", cmdargs)
     # print(type(list(sys.argv[1])))
     show_all_files = False
@@ -240,21 +241,44 @@ if __name__ == '__main__':
         print("./asset_checker.py /Users/username/your-project-folder")
         print("./asset_checker.py all")
         print("./asset_checker.py ./")
+        print("./asset_checker.py --ext jpg png ico")
+        print("./asset_checker.py --ext jpg all")
         print("""
   Description:
   You can pass the path to your project.  This will default to only
   showing the problems it finds.  If you pass 'all' as a
   parameter you will also see all files it finds followed by
   any problems listed at the bottom.
+
+  You can also provide your own extension by editing the script or adding them
+  after an --ext argument.  You can put 'all' at the end of the list of
+  extensions if you want to print out all the items it finds, not just
+  the missing or orphaned files.
+
+  I recommended sticking with the usage examples.  If you try to mix and
+  match in any possible way it will not work.
               """)
         sys.exit()
+
+    extensions = []
 
     if total == 2 and str(sys.argv[1]) == 'all':
         show_all_files = True
     elif total == 2 and os.path.isdir(sys.argv[1]):
         ac = AssetChecker(str(sys.argv[1]))
+    elif total == 3 and str(sys.argv[1]) == '--ext' \
+            and str(sys.argv[2]) == 'all':
+        sys.exit("Bad parameter sequence.  " +
+                 "Try \'./asset-checker.py help\' to see examples.")
+    elif total >= 3 and str(sys.argv[1]) == '--ext':
 
-    print("Searching for these assets: {}.".format(ac.searchable_extensions))
+        for i in range(2, len(sys.argv)):
+            if str(sys.argv[i]) == 'all':
+                show_all_files = True
+            else:
+                extensions.append(sys.argv[i])
+        ac = AssetChecker(extensions)
+
     ac.show_all_output = show_all_files
     ac.perform_asset_audit()
     results = ac.output_results()
