@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 
 '''
-
 Name:       asset_checker.py
 Author:     Eric Rosko
+Date:       Dec 2015
+Written with Python 3.4.3
+Parses project file in Xcode 7.1.1
+
+Prerequisites: Xcode 7.1.1, Python 3.4.3
 
 Implementation Details: It is interesting to note that the Xcode framework
 libc++.dylib returns false for both os.path.isfile and os.path.isdir.  This is
@@ -32,11 +36,14 @@ class AssetChecker():
 
     def __init__(self, *args, **kwargs):
         self.starting_search_path = os.getcwd()
-        self.searchable_extensions = ['m4a', 'jpg', 'png']
-
+        self.searchable_extensions = ['m4a', 'jpg', 'png', 'ico']
+        self.show_all_output = False
         for item in args:
             if isinstance(item, str):
-                self.starting_search_path = item
+                if os.path.isdir(item):
+                    self.starting_search_path = item
+                elif item == 'all':
+                    self.show_all_output = True
             elif isinstance(item, list):
                 self.searchable_extensions = item
             else:
@@ -66,9 +73,6 @@ class AssetChecker():
 
     def get_current_directory(self):
         return os.getcwd()
-
-    def search_project_file_for_assets(self, path, files, extensions):
-        pass
 
     def find_project_file(self, start_path, files):
         '''
@@ -159,8 +163,7 @@ class AssetChecker():
 
         self.find_project_file(self.starting_search_path, temp)
 
-        return_string = "\nFound Xcode Project: {}\n".format(
-            os.path.basename(temp[0]))
+        print("\nFound Xcode Project: {}\n".format(os.path.basename(temp[0])))
         assets_in_manifest = []
 
         self.parse_project_file(temp[0], assets_in_manifest)
@@ -176,15 +179,14 @@ class AssetChecker():
         # remove duplicates
         self.project_set = set(assets_in_project_folders)
 
-        return return_string
-
-    def output_results(self, all=False):
+    def output_results(self):
 
         return_string = ''
 
-        if all:
+        if self.show_all_output:
             return_string += \
-                "In Manifest: {}\n\nIn Project Folder: {}\n" \
+                "Files referenced in the Xcode project manifest: {}\n\n" \
+                "Files found inside the project: {}\n" \
                 "".format(self.manifest_set, self.project_set)
 
         orphan_assets_inside_folder = \
@@ -200,14 +202,19 @@ class AssetChecker():
         if len(orphan_assets_inside_folder) > 0:
             return_string += \
                 "\nFiles existing in the project folder not " \
-                "actually included in the project:\n{}\n \
+                "referenced by the project:\n{}\n \
                 ".format(orphan_assets_inside_folder)
+        else:
+            return_string += "\nNo un-included files found inside the " \
+                "project's folder.\n"
 
         if len(missing_files_not_in_folder) > 0:
             return_string += \
-                "\nFiles outside of the project folder " \
+                "\nFiles missing from the the project folder but " \
                 "referenced in the project file:\n{}\n\n \
                 ".format(missing_files_not_in_folder)
+        else:
+            return_string += "\nNo files missing from the project's folder.\n"
 
         return return_string
 
@@ -216,23 +223,39 @@ if __name__ == '__main__':
     print('*********************************************************')
     print('*         AssetChecker - for Xcode projects!            *')
     print('*********************************************************')
-    print('* Add \'all\' to show all files: ./asset_checker.py all   *')
+    print('* Help   : ./asset_checker help                         *')
     print('* Example: ./asset-checker.py all                       *')
+    print('* Example: ./asset-checker.py                           *')
     print('*********************************************************')
 
     total = len(sys.argv)
     cmdargs = str(sys.argv)
-
+    # print("cmdargs", cmdargs)
+    # print(type(list(sys.argv[1])))
     show_all_files = False
+    ac = AssetChecker()
+
+    if total == 2 and sys.argv[1] == 'help':
+        print("Usage:")
+        print("./asset_checker.py /Users/username/your-project-folder")
+        print("./asset_checker.py all")
+        print("./asset_checker.py ./")
+        print("""
+  Description:
+  You can pass the path to your project.  This will default to only
+  showing the problems it finds.  If you pass 'all' as a
+  parameter you will also see all files it finds followed by
+  any problems listed at the bottom.
+              """)
+        sys.exit()
+
     if total == 2 and str(sys.argv[1]) == 'all':
         show_all_files = True
-    elif total == 2:
-        sys.exit("\nUnknown paramter:{}".format(cmdargs))
+    elif total == 2 and os.path.isdir(sys.argv[1]):
+        ac = AssetChecker(str(sys.argv[1]))
 
-    elif total > 2:
-        sys.exit("Unknown paramters:{}".format(cmdargs))
-
-    ac = AssetChecker()
+    print("Searching for these assets: {}.".format(ac.searchable_extensions))
+    ac.show_all_output = show_all_files
     ac.perform_asset_audit()
-    results = ac.output_results(show_all_files)
+    results = ac.output_results()
     print(results)

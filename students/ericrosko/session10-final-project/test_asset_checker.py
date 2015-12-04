@@ -265,3 +265,10 @@ def test_find_files_in_project_file_with_multiple_dots_in_filename():
 
     print(results)
     assert results == ['filename.with.dots.gif']
+
+
+def test_passing_parameter_with_extensions():
+    # searchable_extensions = ['gif']
+    a_asset_checker = asset_checker.AssetChecker(['gif'])
+
+    assert a_asset_checker.searchable_extensions == ['gif']
