@@ -1,3 +1,6 @@
+from trapz import trapz, frange, quadratic
+
+
 def trapz(fun, a, b, number_of_increments):
     cumulative_increment_area = 0
     for increment in range(number_of_increments):

@@ -1,0 +1,119 @@
+.al_reset{
+	border-width: 0;
+	border-style: none;
+	margin: 0;
+}
+
+.al_overlay{
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999900;
+	background-color: black;
+	opacity: 0.4;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+	filter: alpha(opacity=40);
+}
+
+.al_box{
+	position: absolute;
+	z-index: 999910;
+	display: none;
+	overflow: visible;
+
+	border-width: 6px;
+	border-style: solid;
+	border-radius:  9px;
+	background: #0a0a0a; /* Old browsers */
+	background: -moz-linear-gradient(top,  #0a0a0a 0%, #282727 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0a0a0a), color-stop(100%,#282727)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #0a0a0a 0%,#282727 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #0a0a0a 0%,#282727 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #0a0a0a 0%,#282727 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #0a0a0a 0%,#282727 100%); /* W3C */
+}
+
+.al_frame{
+	position: absolute;
+	z-index: 999920;
+	display: none;
+	overflow: hidden;
+	border-radius: 6px;
+}
+
+.al_mask{
+	position: absolute;
+	z-index: 999930;
+	display: none;
+	cursor: pointer;
+	background-image: url('/img/e.gif');
+}
+
+.al_link{
+	position: relative;
+	top: -27px;
+	z-index: 999940;
+	display: block;
+	height: 20px;
+	width: 20px;
+	cursor: pointer;
+	float: right;
+	background-repeat:no-repeat;
+	margin: 0px 2px 0px 1px;
+}
+
+.al_close{
+	background-image: url('/img/b.png');
+	background-position: 0px 0px;
+}
+
+.al_close:hover{
+	background-image: url('/img/b.png');
+	background-position: -20px 0px;
+}
+
+.al_max{
+	background-image: url('/img/b.png');
+	background-position: 0px -20px;
+}
+
+.al_max:hover{
+	background-image: url('/img/b.png');
+	background-position: -20px -20px;
+}
+
+.as_frame{
+	overflow: hidden;
+}
+
+.al_ia_mask {
+	overflow: hidden;
+	position: relative;
+	border: 1px solid black;
+	box-sizing: border-box;
+	z-index: 999;
+}
+
+.al_ia_layer {
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	z-index: 5;
+}
+
+.al_ia_corner  {
+	position: absolute;
+	display: block;
+	width: 60px;
+	height: 60px;
+	top: 0px;
+	right: 0px;
+	z-index:  3;
+	background-image: url('/img/c.gif');
+}

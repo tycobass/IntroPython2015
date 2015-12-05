@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/QAPage"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>python - Finding duplicate files and removing them - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Finding duplicate files and removing them">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="well, I am not a Programming guru in python but manage to write some of them :)
+The one I am writing is finding and removing the duplicate files from the folder.
+I have multiple copies of mp3 files...">
+    <meta property="og:url" content="http://stackoverflow.com/questions/748675/finding-duplicate-files-and-removing-them">
+    <link rel="canonical" href="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/finding-duplicate-files-and-removing-them.htm">
+
+    
+    
+    <script src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/ados" async="" type="text/javascript"></script><script src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/quant.js" async=""></script><script src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/beacon.js" async=""></script><script src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/analytics.js" async=""></script><script src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/ados.js" async="" type="text/javascript"></script><script src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/jquery.js"></script>
+    <script src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question 'Finding duplicate files and removing them'" href="http://stackoverflow.com/feeds/question/748675">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/748675/finding-duplicate-files-and-removing-them">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/748675/finding-duplicate-files-and-removing-them">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/748675/finding-duplicate-files-and-removing-them">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:748675});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '748675');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1448736750,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"c7ac8b48fd02804fd812e69845212348","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"5ac4b14f5a62","js/moderator.en.js":"90fa41951f31","js/full-anon.en.js":"49d7ff3f7760","js/full.en.js":"8b0e2536ec57","js/wmd.en.js":"80fae2014a93","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"70c964553337","js/help.en.js":"f58b9bbdda52","js/tageditor.en.js":"f33517cbd4f8","js/tageditornew.en.js":"f3fcdb1f5ade","js/inline-tag-editing.en.js":"c8fe23f81191","js/revisions.en.js":"6aca57a6c709","js/review.en.js":"d51e8323a3c5","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"09973f28b129","js/explore-qlist.en.js":"415c9ef1f829","js/events.en.js":"39a9d5929fd4","js/keyboard-shortcuts.en.js":"363601f71b02","js/external-editor.en.js":"cf58cc6630ef","js/external-editor.en.js":"cf58cc6630ef","js/snippet-javascript.en.js":"a39adff9cc0c","js/snippet-javascript-codemirror.en.js":"7ca44625000c"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/full-anon.js" async=""></script><script src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/snippet-javascript.js" async=""></script><script src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/post-validation.js" async=""></script><script src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/prettify-full.js" async=""></script><script src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/adFeedback.js" type="text/javascript"></script><link href="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/adFeedback.css" rel="stylesheet"></head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f748675%2ffinding-duplicate-files-and-removing-them" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f748675%2ffinding-duplicate-files-and-removing-them" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 150 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f748675%2ffinding-duplicate-files-and-removing-them" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f748675%2ffinding-duplicate-files-and-removing-them" class="login-link">log in</a>
+
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=anon-topbar">stack overflow careers</a>
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" placeholder="search" tabindex="1" autocomplete="off" maxlength="240" type="text">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                                                                        <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+			<!--googleoff: all-->
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+                <a href="http://stackoverflow.com/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f748675%2ffinding-duplicate-files-and-removing-them" id="tell-me-more" class="button">Sign up</a>
+            <span id="close"><a title="click to dismiss">×</a></span>
+        </span>
+        <div id="blurb">
+            Stack Overflow is a community of 4.7 million programmers, 
+just like you, helping each other. Join them; it only takes a minute:
+        </div>        
+    </div>
+    <script>
+        StackExchange.ready(function() {
+            var clickSource = $("body").attr("class") + '-mini';
+            var location = 0;
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+                location = 4;
+            }
+
+            $('#tell-me-more').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+                });
+            });
+            $('#herobox-mini #close').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: "close", location: location }, true);
+                });
+                $.cookie("hero", "none", { path: "/", expires: 365 });
+                var $hero = $("#herobox-mini");
+                $hero.slideUp('fast', function () { $hero.remove(); });
+                return false;
+            });
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/748675/finding-duplicate-files-and-removing-them" class="question-hyperlink">Finding duplicate files and removing them</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="748675" id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1601338049",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1601338049">
+            <iframe scrolling="no" id="ados_frame_adzerk1601338049_831105" frameborder="0" height="90" width="728"></iframe><img src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/i_002.gif" style="position:absolute;" border="0" height="0px" width="0px"><div class="adzerk-vote-controls" style="display: none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input value="12" name="downvoteReason" type="radio">Uninteresting</label></li><li><label><input value="13" name="downvoteReason" type="radio">Misleading</label></li><li><label><input value="14" name="downvoteReason" type="radio">Offensive</label></li><li><label><input value="15" name="downvoteReason" type="radio">Repetitive</label></li><li><label><input value="16" name="downvoteReason" type="radio">Other</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="748675" type="hidden">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">18</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>22</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>well, I am not a Programming guru in python but manage to write some 
+of them :)
+The one I am writing is finding and removing the duplicate files from 
+the folder.
+I have multiple copies of mp3 files, and same is the case with other 
+files. So if anyone can help solving this problem then I will be 
+thankful. I am using sh1 algorithm.</p>
+
+<p>Thanking you all in advance :)</p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/python" class="post-tag js-gps-track" title="show questions tagged 'python'" rel="tag">python</a> <a href="http://stackoverflow.com/questions/tagged/duplicates" class="post-tag js-gps-track" title="show questions tagged 'duplicates'" rel="tag">duplicates</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/748675" title="short permalink to this question" class="short-link" id="link-post-748675">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/748675/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2009-04-14 17:48:21Z" class="relativetime">Apr 14 '09 at 17:48</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/89971/sanorita"><div class="gravatar-wrapper-32"><img src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/8c827a9f181427edddf7f91c0ac229b6.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/89971/sanorita">sanorita</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">143</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="6 bronze badges"><span class="badge3"></span><span class="badgecount">6</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-748675" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-748675" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								5 Answers
+                                <span style="display:none;" itemprop="answerCount">5</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/748675/finding-duplicate-files-and-removing-them?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">active</a>
+        <a href="http://stackoverflow.com/questions/748675/finding-duplicate-files-and-removing-them?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/748675/finding-duplicate-files-and-removing-them?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="748908"></a>
+<div id="answer-748908" class="answer" data-answerid="748908" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="748908" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">28</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<h1>Recursive folders version:</h1>
+
+<p>This version uses the file size and a hash of the contents to find duplicates.
+You can pass it multiple paths, it will scan all paths recursively and report all duplicates found.</p>
+
+<pre style="" class="lang-py prettyprint prettyprinted"><code><span class="kwd">import</span><span class="pln"> sys
+</span><span class="kwd">import</span><span class="pln"> os
+</span><span class="kwd">import</span><span class="pln"> hashlib
+
+</span><span class="kwd">def</span><span class="pln"> chunk_reader</span><span class="pun">(</span><span class="pln">fobj</span><span class="pun">,</span><span class="pln"> chunk_size</span><span class="pun">=</span><span class="lit">1024</span><span class="pun">):</span><span class="pln">
+    </span><span class="str">"""Generator that reads a file in chunks of bytes"""</span><span class="pln">
+    </span><span class="kwd">while</span><span class="pln"> </span><span class="kwd">True</span><span class="pun">:</span><span class="pln">
+        chunk </span><span class="pun">=</span><span class="pln"> fobj</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="pln">chunk_size</span><span class="pun">)</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="kwd">not</span><span class="pln"> chunk</span><span class="pun">:</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln">
+        </span><span class="kwd">yield</span><span class="pln"> chunk
+
+</span><span class="kwd">def</span><span class="pln"> check_for_duplicates</span><span class="pun">(</span><span class="pln">paths</span><span class="pun">,</span><span class="pln"> hash</span><span class="pun">=</span><span class="pln">hashlib</span><span class="pun">.</span><span class="pln">sha1</span><span class="pun">):</span><span class="pln">
+    hashes </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{}</span><span class="pln">
+    </span><span class="kwd">for</span><span class="pln"> path </span><span class="kwd">in</span><span class="pln"> paths</span><span class="pun">:</span><span class="pln">
+        </span><span class="kwd">for</span><span class="pln"> dirpath</span><span class="pun">,</span><span class="pln"> dirnames</span><span class="pun">,</span><span class="pln"> filenames </span><span class="kwd">in</span><span class="pln"> os</span><span class="pun">.</span><span class="pln">walk</span><span class="pun">(</span><span class="pln">path</span><span class="pun">):</span><span class="pln">
+            </span><span class="kwd">for</span><span class="pln"> filename </span><span class="kwd">in</span><span class="pln"> filenames</span><span class="pun">:</span><span class="pln">
+                full_path </span><span class="pun">=</span><span class="pln"> os</span><span class="pun">.</span><span class="pln">path</span><span class="pun">.</span><span class="pln">join</span><span class="pun">(</span><span class="pln">dirpath</span><span class="pun">,</span><span class="pln"> filename</span><span class="pun">)</span><span class="pln">
+                hashobj </span><span class="pun">=</span><span class="pln"> hash</span><span class="pun">()</span><span class="pln">
+                </span><span class="kwd">for</span><span class="pln"> chunk </span><span class="kwd">in</span><span class="pln"> chunk_reader</span><span class="pun">(</span><span class="pln">open</span><span class="pun">(</span><span class="pln">full_path</span><span class="pun">,</span><span class="pln"> </span><span class="str">'rb'</span><span class="pun">)):</span><span class="pln">
+                    hashobj</span><span class="pun">.</span><span class="pln">update</span><span class="pun">(</span><span class="pln">chunk</span><span class="pun">)</span><span class="pln">
+                file_id </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">hashobj</span><span class="pun">.</span><span class="pln">digest</span><span class="pun">(),</span><span class="pln"> os</span><span class="pun">.</span><span class="pln">path</span><span class="pun">.</span><span class="pln">getsize</span><span class="pun">(</span><span class="pln">full_path</span><span class="pun">))</span><span class="pln">
+                duplicate </span><span class="pun">=</span><span class="pln"> hashes</span><span class="pun">.</span><span class="pln">get</span><span class="pun">(</span><span class="pln">file_id</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">None</span><span class="pun">)</span><span class="pln">
+                </span><span class="kwd">if</span><span class="pln"> duplicate</span><span class="pun">:</span><span class="pln">
+                    </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Duplicate found: %s and %s"</span><span class="pln"> </span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="pln">full_path</span><span class="pun">,</span><span class="pln"> duplicate</span><span class="pun">)</span><span class="pln">
+                </span><span class="kwd">else</span><span class="pun">:</span><span class="pln">
+                    hashes</span><span class="pun">[</span><span class="pln">file_id</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> full_path
+
+</span><span class="kwd">if</span><span class="pln"> sys</span><span class="pun">.</span><span class="pln">argv</span><span class="pun">[</span><span class="lit">1</span><span class="pun">:]:</span><span class="pln">
+    check_for_duplicates</span><span class="pun">(</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">argv</span><span class="pun">[</span><span class="lit">1</span><span class="pun">:])</span><span class="pln">
+</span><span class="kwd">else</span><span class="pun">:</span><span class="pln">
+    </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"Please pass the paths to check as parameters to the script"</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/748908" title="short permalink to this answer" class="short-link" id="link-post-748908">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/748908/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/748908/revisions" title="show all edits to this post">edited <span title="2009-04-15 18:43:47Z" class="relativetime">Apr 15 '09 at 18:43</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2009-04-14 19:00:37Z" class="relativetime">Apr 14 '09 at 19:00</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/17160/nosklo"><div class="gravatar-wrapper-32"><img src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/81cb50f5fe868629a680c16a56781f01.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/17160/nosklo">nosklo</a><br>
+        <span class="reputation-score" title="reputation score 94532" dir="ltr">94.5k</span><span title="27 gold badges"><span class="badge1"></span><span class="badgecount">27</span></span><span title="191 silver badges"><span class="badge2"></span><span class="badgecount">191</span></span><span title="213 bronze badges"><span class="badge3"></span><span class="badgecount">213</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-748908" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-7686052" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">That's iterative surely?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/462604/jakob-bowyer" title="14903 reputation" class="comment-user">Jakob Bowyer</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment7686052_748908"><span title="2011-06-29 22:45:11Z" class="relativetime-clean">Jun 29 '11 at 22:45</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-8262914" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Jakob Bowyer: Sure, the implementation is iterative. By "Recursive folders" I mean that it recurses the entire folder tree.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/17160/nosklo" title="94532 reputation" class="comment-user">nosklo</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment8262914_748908"><span title="2011-08-03 21:54:33Z" class="relativetime-clean">Aug 3 '11 at 21:54</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-748908" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk156278175",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk156278175"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjozMjI1MTQsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMTk1NzkyLCJkaSI6ImNhZDdiMGY5ZDM0MzRmOWJhNGY4NTAxNWIxODFkYzBiIiwiZG0iOjEsImZjIjoxMjY5MTUxLCJmbCI6ODY0MjI1LCJpcCI6IjUwLjEzMi4zMy4xNzQiLCJrdyI6InB5dGhvbixkdXBsaWNhdGVzIiwibnciOjIyLCJwYyI6MCwiZWMiOjAsInByIjoxNjA0LCJydCI6MSwicmYiOiJodHRwOi8vci5zZWFyY2gueWFob28uY29tL195bHQ9QXdyVGNjcTY5VmxXQ19jQTF2MG5uSWxRO195bHU9WDNvRE1UQnlOV1U0Y0doMUJHTnZiRzhEWjNFeEJIQnZjd014QkhaMGFXUURCSE5sWXdOell3LS0vUlY9Mi9SRT0xNDQ4NzY0OTg3L1JPPTEwL1JVPWh0dHA6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvNzQ4Njc1L2ZpbmRpbmctZHVwbGljYXRlLWZpbGVzLWFuZC1yZW1vdmluZy10aGVtL1JLPTAvUlM9NlE4T3FBU291Zl95d3did3J0S2VTWlFDMzV3LSIsInN0Ijo4Mjc3LCJ1ayI6InVlMS04NDRjYTZhYjdhNTU0ZTEyOGVmMjA2Y2VmMGU3ZTAxYSIsInpuIjo0NCwidHMiOjE0NDg3MzY3NTE4NzksImJmIjp0cnVlLCJwbiI6ImFkemVyazE1NjI3ODE3NSIsInVyIjoiaHR0cDovL2NhcmVlcnMuc3RhY2tvdmVyZmxvdy5jb20vam9icy9yZW1vdGU_dXRtX3NvdXJjZT1zdGFja292ZXJmbG93LmNvbSZ1dG1fbWVkaXVtPWFkJnV0bV9jYW1wYWlnbj1jYW5kaWRhdGVzLXdmaCZ1dG1fY29udGVudD1sYi13Zmgta2lkLXdvcmstb24td29yayJ9&amp;s=FkdHAEDP6DNZEdercgUSZ0lvq4g" rel="nofollow" target="_blank" title=""><img src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/72156ae7d17b4328808246c02701d7b0.png" title="" alt="" border="0" height="90" width="728"></a><img src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/i.gif" style="position:absolute;" border="0" height="0px" width="0px"><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input value="12" name="downvoteReason" type="radio">Uninteresting</label></li><li><label><input value="13" name="downvoteReason" type="radio">Misleading</label></li><li><label><input value="14" name="downvoteReason" type="radio">Offensive</label></li><li><label><input value="15" name="downvoteReason" type="radio">Repetitive</label></li><li><label><input value="16" name="downvoteReason" type="radio">Other</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div></div>
+  
+<a name="748879"></a>
+<div id="answer-748879" class="answer" data-answerid="748879" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="748879" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">12</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<pre style="" class="lang-py prettyprint prettyprinted"><code><span class="kwd">def</span><span class="pln"> remove_duplicates</span><span class="pun">(</span><span class="pln">dir</span><span class="pun">):</span><span class="pln">
+    unique </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[]</span><span class="pln">
+    </span><span class="kwd">for</span><span class="pln"> filename </span><span class="kwd">in</span><span class="pln"> os</span><span class="pun">.</span><span class="pln">listdir</span><span class="pun">(</span><span class="pln">dir</span><span class="pun">):</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> os</span><span class="pun">.</span><span class="pln">path</span><span class="pun">.</span><span class="pln">isfile</span><span class="pun">(</span><span class="pln">filename</span><span class="pun">):</span><span class="pln">
+            filehash </span><span class="pun">=</span><span class="pln"> md5</span><span class="pun">.</span><span class="pln">md5</span><span class="pun">(</span><span class="pln">file</span><span class="pun">(</span><span class="pln">filename</span><span class="pun">).</span><span class="pln">read</span><span class="pun">()).</span><span class="pln">hexdigest</span><span class="pun">()</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> filehash </span><span class="kwd">not</span><span class="pln"> </span><span class="kwd">in</span><span class="pln"> unique</span><span class="pun">:</span><span class="pln"> 
+            unique</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="pln">filehash</span><span class="pun">)</span><span class="pln">
+        </span><span class="kwd">else</span><span class="pun">:</span><span class="pln"> 
+            os</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">(</span><span class="pln">filename</span><span class="pun">)</span></code></pre>
+
+<p>//edit:</p>
+
+<p>for mp3 you may be also interested in this topic <a href="http://stackoverflow.com/questions/476227/detect-duplicate-mp3-files-with-different-bitrates-and-or-different-id3-tags">Detect duplicate MP3 files with different bitrates and/or different ID3 tags?</a></p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/748879" title="short permalink to this answer" class="short-link" id="link-post-748879">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/748879/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/748879/revisions" title="show all edits to this post">edited <span title="2012-08-03 00:52:39Z" class="relativetime">Aug 3 '12 at 0:52</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1531063/zorlak"><div class="gravatar-wrapper-32"><img src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/3c72c823b78f71f16d9206a26b352187.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1531063/zorlak">zorlak</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,146</span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="13 bronze badges"><span class="badge3"></span><span class="badgecount">13</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2009-04-14 18:51:46Z" class="relativetime">Apr 14 '09 at 18:51</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/55724/zalew"><div class="gravatar-wrapper-32"><img src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/96e1ce97c0c73b9dda0c6f5a7500fe05.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/55724/zalew">zalew</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">5,029</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="16 silver badges"><span class="badge2"></span><span class="badgecount">16</span></span><span title="29 bronze badges"><span class="badge3"></span><span class="badgecount">29</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-748879" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-560249" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">of course you can replace the md5 hashing with sha1</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/55724/zalew" title="5029 reputation" class="comment-user">zalew</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment560249_748879"><span title="2009-04-14 18:57:39Z" class="relativetime-clean">Apr 14 '09 at 18:57</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-560354" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">For performance, you should 
+probably change unique to be a set (though it probably won't be a big 
+factor unless there are lots of small files). Also, your code will fail 
+if there is a directory in the dir. Check os.path.isfile() before you 
+process them.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/9493/brian" title="59019 reputation" class="comment-user">Brian</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment560354_748879"><span title="2009-04-14 19:31:47Z" class="relativetime-clean">Apr 14 '09 at 19:31</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-560480" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">yep, this code it's more like a basis. I added isfile as you suggested.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/55724/zalew" title="5029 reputation" class="comment-user">zalew</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment560480_748879"><span title="2009-04-14 20:07:01Z" class="relativetime-clean">Apr 14 '09 at 20:07</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-748879" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="748687"></a>
+<div id="answer-748687" class="answer" data-answerid="748687" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="748687" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">8</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I wrote one in Python some time ago -- you're welcome to use it.</p>
+
+<pre style="" class="lang-py prettyprint prettyprinted"><code><span class="kwd">import</span><span class="pln"> sys
+</span><span class="kwd">import</span><span class="pln"> os
+</span><span class="kwd">import</span><span class="pln"> hashlib
+
+check_path </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">lambda</span><span class="pln"> filepath</span><span class="pun">,</span><span class="pln"> hashes</span><span class="pun">,</span><span class="pln"> p </span><span class="pun">=</span><span class="pln"> sys</span><span class="pun">.</span><span class="pln">stdout</span><span class="pun">.</span><span class="pln">write</span><span class="pun">:</span><span class="pln">
+        </span><span class="pun">(</span><span class="kwd">lambda</span><span class="pln"> hash </span><span class="pun">=</span><span class="pln"> hashlib</span><span class="pun">.</span><span class="pln">sha1 </span><span class="pun">(</span><span class="pln">file </span><span class="pun">(</span><span class="pln">filepath</span><span class="pun">).</span><span class="pln">read </span><span class="pun">()).</span><span class="pln">hexdigest </span><span class="pun">():</span><span class="pln">
+                </span><span class="pun">((</span><span class="pln">hash </span><span class="kwd">in</span><span class="pln"> hashes</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">and</span><span class="pln"> </span><span class="pun">(</span><span class="pln">p </span><span class="pun">(</span><span class="str">'DUPLICATE FILE\n'</span><span class="pln">
+                                          </span><span class="str">'   %s\n'</span><span class="pln">
+                                          </span><span class="str">'of %s\n'</span><span class="pln"> </span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="pln">filepath</span><span class="pun">,</span><span class="pln"> hashes</span><span class="pun">[</span><span class="pln">hash</span><span class="pun">])))</span><span class="pln">
+                 </span><span class="kwd">or</span><span class="pln"> hashes</span><span class="pun">.</span><span class="pln">setdefault </span><span class="pun">(</span><span class="pln">hash</span><span class="pun">,</span><span class="pln"> filepath</span><span class="pun">)))())</span><span class="pln">
+
+scan </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">lambda</span><span class="pln"> dirpath</span><span class="pun">,</span><span class="pln"> hashes </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{}:</span><span class="pln"> 
+                map </span><span class="pun">(</span><span class="kwd">lambda</span><span class="pln"> </span><span class="pun">(</span><span class="pln">root</span><span class="pun">,</span><span class="pln"> dirs</span><span class="pun">,</span><span class="pln"> files</span><span class="pun">):</span><span class="pln">
+                        map </span><span class="pun">(</span><span class="kwd">lambda</span><span class="pln"> filename</span><span class="pun">:</span><span class="pln"> check_path </span><span class="pun">(</span><span class="pln">os</span><span class="pun">.</span><span class="pln">path</span><span class="pun">.</span><span class="pln">join </span><span class="pun">(</span><span class="pln">root</span><span class="pun">,</span><span class="pln"> filename</span><span class="pun">),</span><span class="pln"> hashes</span><span class="pun">),</span><span class="pln"> files</span><span class="pun">),</span><span class="pln"> os</span><span class="pun">.</span><span class="pln">walk </span><span class="pun">(</span><span class="pln">dirpath</span><span class="pun">)))</span><span class="pln">
+
+</span><span class="pun">((</span><span class="pln">len </span><span class="pun">(</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">argv</span><span class="pun">)</span><span class="pln"> </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">and</span><span class="pln"> scan </span><span class="pun">(</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">argv</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]))</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/748687" title="short permalink to this answer" class="short-link" id="link-post-748687">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/748687/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/748687/revisions" title="show all edits to this post">edited <span title="2011-07-20 17:46:26Z" class="relativetime">Jul 20 '11 at 17:46</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info">
+    <div class="user-details">
+        <span class="community-wiki" title="This post is community owned as of Apr 14 '09 at 17:50. Votes do not generate reputation, and it can be edited by users with 100 rep">
+            community wiki
+        </span>
+    </div><br>
+    <div class="user-details">
+        <a id="history-748687" href="http://stackoverflow.com/posts/748687/revisions" title="show revision history for this post">
+        2 revs, 2 users 87%<br></a><a href="http://stackoverflow.com/users/3560">John Millikin</a>
+
+        
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-748687" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="4" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-559995" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">+1 Ok, that's pretty neat.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/38971/altcognito" title="27465 reputation" class="comment-user">altCognito</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment559995_748687"><span title="2009-04-14 17:56:37Z" class="relativetime-clean">Apr 14 '09 at 17:56</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-560047" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I can't follow what's happening there.  If you get a chance, could you maybe explain a little of what's going on?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/64206/tgray" title="4671 reputation" class="comment-user">tgray</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment560047_748687"><span title="2009-04-14 18:11:53Z" class="relativetime-clean">Apr 14 '09 at 18:11</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-560139" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">-1: unreadable code</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/17160/nosklo" title="94532 reputation" class="comment-user">nosklo</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment560139_748687"><span title="2009-04-14 18:32:36Z" class="relativetime-clean">Apr 14 '09 at 18:32</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-560240" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">-1: Lambdas (ToT)</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/10661/s-lott" title="238174 reputation" class="comment-user">S.Lott</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment560240_748687"><span title="2009-04-14 18:54:32Z" class="relativetime-clean">Apr 14 '09 at 18:54</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-560504" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Anon -- I posted this just to
+ be silly. It's a rather difficult-to-read solution to an easy problem. 
+The original question could probably be solved in a few lines of 
+idiomatic Python, if the original poster bothered to spend a few minutes
+ of quality time with Google.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/3560/john-millikin" title="108892 reputation" class="comment-user">John Millikin</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment560504_748687"><span title="2009-04-14 20:12:49Z" class="relativetime-clean">Apr 14 '09 at 20:12</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-748687" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>4</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="13046184"></a>
+<div id="answer-13046184" class="answer" data-answerid="13046184" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="13046184" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<h2>Faster algorithm</h2>
+
+<p>In case many files of 'big size' should be analyzed (images, mp3, pdf
+ documents), it would be interesting/faster to have the following 
+comparison algorithm:</p>
+
+<ol>
+<li><p>a first fast hash is performed on the first N bytes of the file 
+(say 1KB). This hash would say if files are different without doubt, but
+ will not say if two files are exactly the same (accuracy of the hash, 
+limited data read from disk)</p></li>
+<li><p>a second, slower, hash, which is more accurate and performed on 
+the whole content of the file, if a collision occurs in the first stage</p></li>
+</ol>
+
+<p>Here is an implementation of this algorithm:</p>
+
+<pre style="" class="lang-py prettyprint prettyprinted"><code><span class="kwd">import</span><span class="pln"> hashlib
+</span><span class="kwd">def</span><span class="pln"> </span><span class="typ">Checksum</span><span class="pun">(</span><span class="pln">current_file_name</span><span class="pun">,</span><span class="pln"> check_type </span><span class="pun">=</span><span class="pln"> </span><span class="str">'sha512'</span><span class="pun">,</span><span class="pln"> first_block </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">False</span><span class="pun">):</span><span class="pln">
+  </span><span class="str">"""Computes the hash for the given file. If first_block is True,
+  only the first block of size size_block is hashed."""</span><span class="pln">
+  size_block </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1024</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">1024</span><span class="pln"> </span><span class="com"># The first N bytes (1KB)</span><span class="pln">
+
+  d </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="str">'sha1'</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> hashlib</span><span class="pun">.</span><span class="pln">sha1</span><span class="pun">,</span><span class="pln"> </span><span class="str">'md5'</span><span class="pun">:</span><span class="pln"> hashlib</span><span class="pun">.</span><span class="pln">md5</span><span class="pun">,</span><span class="pln"> </span><span class="str">'sha512'</span><span class="pun">:</span><span class="pln"> hashlib</span><span class="pun">.</span><span class="pln">sha512</span><span class="pun">}</span><span class="pln">
+
+  </span><span class="kwd">if</span><span class="pun">(</span><span class="kwd">not</span><span class="pln"> d</span><span class="pun">.</span><span class="pln">has_key</span><span class="pun">(</span><span class="pln">check_type</span><span class="pun">)):</span><span class="pln">
+    </span><span class="kwd">raise</span><span class="pln"> </span><span class="typ">Exception</span><span class="pun">(</span><span class="str">"Unknown checksum method"</span><span class="pun">)</span><span class="pln">
+
+  file_size </span><span class="pun">=</span><span class="pln"> os</span><span class="pun">.</span><span class="pln">stat</span><span class="pun">(</span><span class="pln">current_file_name</span><span class="pun">)[</span><span class="pln">stat</span><span class="pun">.</span><span class="pln">ST_SIZE</span><span class="pun">]</span><span class="pln">
+  </span><span class="kwd">with</span><span class="pln"> file</span><span class="pun">(</span><span class="pln">current_file_name</span><span class="pun">,</span><span class="pln"> </span><span class="str">'rb'</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">as</span><span class="pln"> f</span><span class="pun">:</span><span class="pln">
+    key </span><span class="pun">=</span><span class="pln"> d</span><span class="pun">[</span><span class="pln">check_type</span><span class="pun">].</span><span class="pln">__call__</span><span class="pun">()</span><span class="pln">
+    </span><span class="kwd">while</span><span class="pln"> </span><span class="kwd">True</span><span class="pun">:</span><span class="pln">
+      s </span><span class="pun">=</span><span class="pln"> f</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="pln">size_block</span><span class="pun">)</span><span class="pln">
+      key</span><span class="pun">.</span><span class="pln">update</span><span class="pun">(</span><span class="pln">s</span><span class="pun">)</span><span class="pln">
+      file_size </span><span class="pun">-=</span><span class="pln"> size_block
+      </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">len</span><span class="pun">(</span><span class="pln">s</span><span class="pun">)</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln"> size_block </span><span class="kwd">or</span><span class="pln"> first_block</span><span class="pun">):</span><span class="pln">
+        </span><span class="kwd">break</span><span class="pln">
+  </span><span class="kwd">return</span><span class="pln"> key</span><span class="pun">.</span><span class="pln">hexdigest</span><span class="pun">().</span><span class="pln">upper</span><span class="pun">()</span><span class="pln">
+
+</span><span class="kwd">def</span><span class="pln"> find_duplicates</span><span class="pun">(</span><span class="pln">files</span><span class="pun">):</span><span class="pln">
+  </span><span class="str">"""Find duplicates among a set of files.
+  The implementation uses two types of hashes:
+  - A small and fast one one the first block of the file (first 1KB), 
+  - and in case of collision a complete hash on the file. The complete hash 
+  is not computed twice.
+  It flushes the files that seems to have the same content 
+  (according to the hash method) at the end.
+  """</span><span class="pln">
+
+  </span><span class="kwd">print</span><span class="pln"> </span><span class="str">'Analyzing'</span><span class="pun">,</span><span class="pln"> len</span><span class="pun">(</span><span class="pln">files</span><span class="pun">),</span><span class="pln"> </span><span class="str">'files'</span><span class="pln">
+
+  </span><span class="com"># this dictionary will receive small hashes</span><span class="pln">
+  d </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{}</span><span class="pln">
+  </span><span class="com"># this dictionary will receive full hashes. It is filled</span><span class="pln">
+  </span><span class="com"># only in case of collision on the small hash (contains at least two </span><span class="pln">
+  </span><span class="com"># elements)</span><span class="pln">
+  duplicates </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{}</span><span class="pln">
+
+  </span><span class="kwd">for</span><span class="pln"> f </span><span class="kwd">in</span><span class="pln"> files</span><span class="pun">:</span><span class="pln">
+
+    </span><span class="com"># small hash to be fast</span><span class="pln">
+    check </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Checksum</span><span class="pun">(</span><span class="pln">f</span><span class="pun">,</span><span class="pln"> first_block </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">True</span><span class="pun">,</span><span class="pln"> check_type </span><span class="pun">=</span><span class="pln"> </span><span class="str">'sha1'</span><span class="pun">)</span><span class="pln">
+
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="kwd">not</span><span class="pln"> d</span><span class="pun">.</span><span class="pln">has_key</span><span class="pun">(</span><span class="pln">check</span><span class="pun">)):</span><span class="pln">
+      </span><span class="com"># d[check] is a list of files that have the same small hash</span><span class="pln">
+      d</span><span class="pun">[</span><span class="pln">check</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[(</span><span class="pln">f</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">None</span><span class="pun">)]</span><span class="pln">
+    </span><span class="kwd">else</span><span class="pun">:</span><span class="pln">
+      l </span><span class="pun">=</span><span class="pln"> d</span><span class="pun">[</span><span class="pln">check</span><span class="pun">]</span><span class="pln">
+      l</span><span class="pun">.</span><span class="pln">append</span><span class="pun">((</span><span class="pln">f</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">None</span><span class="pun">))</span><span class="pln">
+
+      </span><span class="kwd">for</span><span class="pln"> index</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="pln">ff</span><span class="pun">,</span><span class="pln"> checkfull</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">in</span><span class="pln"> enumerate</span><span class="pun">(</span><span class="pln">l</span><span class="pun">):</span><span class="pln">
+
+        </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">checkfull </span><span class="kwd">is</span><span class="pln"> </span><span class="kwd">None</span><span class="pun">):</span><span class="pln">
+          </span><span class="com"># computes the full hash in case of collision</span><span class="pln">
+          checkfull </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Checksum</span><span class="pun">(</span><span class="pln">ff</span><span class="pun">,</span><span class="pln"> first_block </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">False</span><span class="pun">)</span><span class="pln">
+          l</span><span class="pun">[</span><span class="pln">index</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">ff</span><span class="pun">,</span><span class="pln"> checkfull</span><span class="pun">)</span><span class="pln">
+
+          </span><span class="com"># for each new full hash computed, check if their is </span><span class="pln">
+          </span><span class="com"># a collision in the duplicate dictionary. </span><span class="pln">
+          </span><span class="kwd">if</span><span class="pun">(</span><span class="kwd">not</span><span class="pln"> duplicates</span><span class="pun">.</span><span class="pln">has_key</span><span class="pun">(</span><span class="pln">checkfull</span><span class="pun">)):</span><span class="pln">
+            duplicates</span><span class="pun">[</span><span class="pln">checkfull</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="pln">ff</span><span class="pun">]</span><span class="pln">
+          </span><span class="kwd">else</span><span class="pun">:</span><span class="pln">
+            duplicates</span><span class="pun">[</span><span class="pln">checkfull</span><span class="pun">].</span><span class="pln">append</span><span class="pun">(</span><span class="pln">ff</span><span class="pun">)</span><span class="pln">
+
+  </span><span class="com"># prints the detected duplicates</span><span class="pln">
+  </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">len</span><span class="pun">(</span><span class="pln">duplicates</span><span class="pun">)</span><span class="pln"> </span><span class="pun">!=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">):</span><span class="pln">
+    </span><span class="kwd">print</span><span class="pln">
+    </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"The following files have the same sha512 hash"</span><span class="pln">
+
+    </span><span class="kwd">for</span><span class="pln"> h</span><span class="pun">,</span><span class="pln"> lf </span><span class="kwd">in</span><span class="pln"> duplicates</span><span class="pun">.</span><span class="pln">items</span><span class="pun">():</span><span class="pln">
+      </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">len</span><span class="pun">(</span><span class="pln">lf</span><span class="pun">)==</span><span class="lit">1</span><span class="pun">):</span><span class="pln">
+        </span><span class="kwd">continue</span><span class="pln">
+      </span><span class="kwd">print</span><span class="pln"> </span><span class="str">'Hash value'</span><span class="pun">,</span><span class="pln"> h
+      </span><span class="kwd">for</span><span class="pln"> f </span><span class="kwd">in</span><span class="pln"> lf</span><span class="pun">:</span><span class="pln">
+        </span><span class="kwd">print</span><span class="pln"> </span><span class="str">'\t'</span><span class="pun">,</span><span class="pln"> f</span><span class="pun">.</span><span class="pln">encode</span><span class="pun">(</span><span class="str">'unicode_escape'</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> \
+          type</span><span class="pun">(</span><span class="pln">f</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">is</span><span class="pln"> types</span><span class="pun">.</span><span class="typ">UnicodeType</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> f
+  </span><span class="kwd">return</span><span class="pln"> duplicates</span></code></pre>
+
+<p>The <code>find_duplicates</code> function takes a list of files. This
+ way, it is also possible to compare two directories (for instance, to 
+better synchronize their content.) An example of function creating a 
+list of files, with specified extension, and avoiding entering in some 
+directories, is below:</p>
+
+<pre style="" class="lang-py prettyprint prettyprinted"><code><span class="kwd">def</span><span class="pln"> getFiles</span><span class="pun">(</span><span class="pln">_path</span><span class="pun">,</span><span class="pln"> extensions </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="str">'.png'</span><span class="pun">],</span><span class="pln"> 
+             subdirs </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">False</span><span class="pun">,</span><span class="pln"> avoid_directories </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">None</span><span class="pun">):</span><span class="pln">
+  </span><span class="str">"""Returns the list of files in the path :'_path', 
+     of extension in 'extensions'. 'subdir' indicates if 
+     the search should also be performed in the subdirectories. 
+     If extensions = [] or None, all files are returned.
+     avoid_directories: if set, do not parse subdirectories that 
+     match any element of avoid_directories."""</span><span class="pln">
+
+  l </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[]</span><span class="pln">
+  extensions </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="pln">p</span><span class="pun">.</span><span class="pln">lower</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> p </span><span class="kwd">in</span><span class="pln"> extensions</span><span class="pun">]</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> </span><span class="kwd">not</span><span class="pln"> extensions </span><span class="kwd">is</span><span class="pln"> </span><span class="kwd">None</span><span class="pln"> \
+    </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">None</span><span class="pln">
+  </span><span class="kwd">for</span><span class="pln"> root</span><span class="pun">,</span><span class="pln"> dirs</span><span class="pun">,</span><span class="pln"> files </span><span class="kwd">in</span><span class="pln"> os</span><span class="pun">.</span><span class="pln">walk</span><span class="pun">(</span><span class="pln">_path</span><span class="pun">,</span><span class="pln"> topdown</span><span class="pun">=</span><span class="kwd">True</span><span class="pun">):</span><span class="pln">
+
+    </span><span class="kwd">for</span><span class="pln"> name </span><span class="kwd">in</span><span class="pln"> files</span><span class="pun">:</span><span class="pln">
+      </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">extensions </span><span class="kwd">is</span><span class="pln"> </span><span class="kwd">None</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> len</span><span class="pun">(</span><span class="pln">extensions</span><span class="pun">)</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> \
+         os</span><span class="pun">.</span><span class="pln">path</span><span class="pun">.</span><span class="pln">splitext</span><span class="pun">(</span><span class="pln">name</span><span class="pun">)[</span><span class="lit">1</span><span class="pun">].</span><span class="pln">lower</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">in</span><span class="pln"> extensions</span><span class="pun">):</span><span class="pln">
+        l</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="pln">os</span><span class="pun">.</span><span class="pln">path</span><span class="pun">.</span><span class="pln">join</span><span class="pun">(</span><span class="pln">root</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">))</span><span class="pln">
+
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="kwd">not</span><span class="pln"> subdirs</span><span class="pun">):</span><span class="pln">
+      </span><span class="kwd">while</span><span class="pun">(</span><span class="pln">len</span><span class="pun">(</span><span class="pln">dirs</span><span class="pun">)</span><span class="pln"> </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">0</span><span class="pun">):</span><span class="pln">
+        dirs</span><span class="pun">.</span><span class="pln">pop</span><span class="pun">()</span><span class="pln">
+    </span><span class="kwd">elif</span><span class="pun">(</span><span class="kwd">not</span><span class="pln"> avoid_directories </span><span class="kwd">is</span><span class="pln"> </span><span class="kwd">None</span><span class="pun">):</span><span class="pln">
+      </span><span class="kwd">for</span><span class="pln"> d </span><span class="kwd">in</span><span class="pln"> avoid_directories</span><span class="pun">:</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">d </span><span class="kwd">in</span><span class="pln"> dirs</span><span class="pun">):</span><span class="pln"> dirs</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">(</span><span class="pln">d</span><span class="pun">)</span><span class="pln">
+
+  </span><span class="kwd">return</span><span class="pln"> l    </span></code></pre>
+
+<p>This method is convenient for not parsing <code>.svn</code> paths for instance, which surely will trigger colliding files in <code>find_duplicates</code>. </p>
+
+<p>Feedbacks are welcome.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/13046184" title="short permalink to this answer" class="short-link" id="link-post-13046184">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/13046184/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/13046184/revisions" title="show all edits to this post">edited <span title="2012-10-24 09:21:33Z" class="relativetime">Oct 24 '12 at 9:21</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-10-24 09:14:42Z" class="relativetime">Oct 24 '12 at 9:14</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1617295/raffi"><div class="gravatar-wrapper-32"><img src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/k1SvI.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1617295/raffi">Raffi</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">911</span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="10 bronze badges"><span class="badge3"></span><span class="badgecount">10</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-13046184" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-13046184" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="18553076"></a>
+<div id="answer-18553076" class="answer" data-answerid="18553076" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="18553076" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<pre style="" class="lang-py prettyprint prettyprinted"><code><span class="pln">    </span><span class="kwd">import</span><span class="pln"> hashlib
+    </span><span class="kwd">import</span><span class="pln"> os
+    </span><span class="kwd">import</span><span class="pln"> sys
+    </span><span class="kwd">from</span><span class="pln"> sets </span><span class="kwd">import</span><span class="pln"> </span><span class="typ">Set</span><span class="pln">
+
+    </span><span class="kwd">def</span><span class="pln"> read_chunk</span><span class="pun">(</span><span class="pln">fobj</span><span class="pun">,</span><span class="pln"> chunk_size </span><span class="pun">=</span><span class="pln"> </span><span class="lit">2048</span><span class="pun">):</span><span class="pln">
+        </span><span class="str">""" Files can be huge so read them in chunks of bytes. """</span><span class="pln">
+        </span><span class="kwd">while</span><span class="pln"> </span><span class="kwd">True</span><span class="pun">:</span><span class="pln">
+            chunk </span><span class="pun">=</span><span class="pln"> fobj</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="pln">chunk_size</span><span class="pun">)</span><span class="pln">
+            </span><span class="kwd">if</span><span class="pln"> </span><span class="kwd">not</span><span class="pln"> chunk</span><span class="pun">:</span><span class="pln">
+                </span><span class="kwd">return</span><span class="pln">
+            </span><span class="kwd">yield</span><span class="pln"> chunk
+
+    </span><span class="kwd">def</span><span class="pln"> remove_duplicates</span><span class="pun">(</span><span class="pln">dir</span><span class="pun">,</span><span class="pln"> hashfun </span><span class="pun">=</span><span class="pln"> hashlib</span><span class="pun">.</span><span class="pln">sha512</span><span class="pun">):</span><span class="pln">
+        unique </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Set</span><span class="pun">()</span><span class="pln">
+        </span><span class="kwd">for</span><span class="pln"> filename </span><span class="kwd">in</span><span class="pln"> os</span><span class="pun">.</span><span class="pln">listdir</span><span class="pun">(</span><span class="pln">dir</span><span class="pun">):</span><span class="pln">
+            filepath </span><span class="pun">=</span><span class="pln"> os</span><span class="pun">.</span><span class="pln">path</span><span class="pun">.</span><span class="pln">join</span><span class="pun">(</span><span class="pln">dir</span><span class="pun">,</span><span class="pln"> filename</span><span class="pun">)</span><span class="pln">
+            </span><span class="kwd">if</span><span class="pln"> os</span><span class="pun">.</span><span class="pln">path</span><span class="pun">.</span><span class="pln">isfile</span><span class="pun">(</span><span class="pln">filepath</span><span class="pun">):</span><span class="pln">
+                hashobj </span><span class="pun">=</span><span class="pln"> hashfun</span><span class="pun">()</span><span class="pln">
+                </span><span class="kwd">for</span><span class="pln"> chunk </span><span class="kwd">in</span><span class="pln"> read_chunk</span><span class="pun">(</span><span class="pln">open</span><span class="pun">(</span><span class="pln">filepath</span><span class="pun">,</span><span class="str">'rb'</span><span class="pun">)):</span><span class="pln">
+                    hashobj</span><span class="pun">.</span><span class="pln">update</span><span class="pun">(</span><span class="pln">chunk</span><span class="pun">)</span><span class="pln">
+                    </span><span class="com"># the size of the hashobj is constant</span><span class="pln">
+                    </span><span class="com"># print "hashfun: ", hashfun.__sizeof__()</span><span class="pln">
+                hashfile </span><span class="pun">=</span><span class="pln"> hashobj</span><span class="pun">.</span><span class="pln">hexdigest</span><span class="pun">()</span><span class="pln">
+                </span><span class="kwd">if</span><span class="pln"> hashfile </span><span class="kwd">not</span><span class="pln"> </span><span class="kwd">in</span><span class="pln"> unique</span><span class="pun">:</span><span class="pln">
+                    unique</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">hashfile</span><span class="pun">)</span><span class="pln">
+                </span><span class="kwd">else</span><span class="pun">:</span><span class="pln"> 
+                    os</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">(</span><span class="pln">filepath</span><span class="pun">)</span><span class="pln">
+
+    </span><span class="kwd">try</span><span class="pun">:</span><span class="pln">
+        hashfun </span><span class="pun">=</span><span class="pln"> hashlib</span><span class="pun">.</span><span class="pln">sha256
+        remove_duplicates</span><span class="pun">(</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">argv</span><span class="pun">[</span><span class="lit">1</span><span class="pun">],</span><span class="pln"> hashfun</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">except</span><span class="pln"> </span><span class="typ">IndexError</span><span class="pun">:</span><span class="pln">
+        </span><span class="kwd">print</span><span class="pln"> </span><span class="str">"""Please pass a path to a directory with 
+        duplicate files as a parameter to the script."""</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/18553076" title="short permalink to this answer" class="short-link" id="link-post-18553076">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/18553076/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/18553076/revisions" title="show all edits to this post">edited <span title="2013-09-01 14:15:32Z" class="relativetime">Sep 1 '13 at 14:15</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-08-31 21:40:54Z" class="relativetime">Aug 31 '13 at 21:40</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1245175/adam-cajf"><div class="gravatar-wrapper-32"><img src="python%20-%20Finding%20duplicate%20files%20and%20removing%20them%20-%20Stack%20Overflow_files/9c950bfe9401623a8d991eaeb2b25afb.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1245175/adam-cajf">adam.cajf</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">426</span><span title="4 silver badges"><span class="badge2"></span><span class="badgecount">4</span></span><span title="12 bronze badges"><span class="badge3"></span><span class="badgecount">12</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-18553076" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-18553076" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+				    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="http://stackoverflow.com/users/-1/community">Community</a><span class="mod-flair" title="moderator">♦</span> <span dir="ltr"><span title="2013-02-01 17:59:41Z" class="relativetime">Feb 1 '13 at 17:59</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality answers, posting an answer now requires 10 <a href="http://stackoverflow.com/help/whats-reputation">reputation</a> on this site.
+<br><br>
+Would you like to answer one of these <a href="http://stackoverflow.com/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/python" class="post-tag" title="show questions tagged 'python'" rel="tag">python</a> <a href="http://stackoverflow.com/questions/tagged/duplicates" class="post-tag" title="show questions tagged 'duplicates'" rel="tag">duplicates</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2009-04-14 17:48:21Z"><b>6 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>14549 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/748675/finding-duplicate-files-and-removing-them?lastactivity" class="lastactivity-link" title="2013-09-01 14:15:32Z">2 years ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1056522593",[17,2221]).setZone(45); });
+            </script>
+            
+        <div id="hireme">
+            <script>
+(function(){function f(t,r,f,e){var s=(r.cl||[]).join(" "),o=i.getElementById(t);o&&(s&&(o.className+=" "+s),o.innerHTML=r.cn.replace("&pt=0","&pt="+(e||"0")),o.onmousedown=function(t){var i,s,e,h,c,l;for(console.log(),i=t.target;i.tagName!=="A"&&i!==o;)i=i.parentNode;if(i!=o){for(s=n.enc,e=f,r.an&&(e+="?an="+r.an),h=0;h<i.attributes.length;++h)c=i.attributes[h],l=c.name.match(/^data-(.*)$/),l&&(e+="&"+s(l[1])+"="+s(c.value));e+="&utm="+s(u+r.utm);i.href=e}})}function e(){return[].map.call(n.qsa(".post-taglist .post-tag"),function(n){return n.innerText}).join(";")||null}if(!window.clc){var t=window,i=document,r=i.getElementsByTagName("head")[0],u="&utm_source="+location.hostname+"&utm_medium=ad&utm_campaign=",n={doc:i,head:r,enc:encodeURIComponent,dec:decodeURIComponent,se:t.StackExchange,ts:function(){return(new Date).getTime()},st:setTimeout,ct:clearTimeout,qsa:function(n){return document.querySelectorAll(n)}};n.as=function(n){var t=i.createElement("link");t.type="text/css";t.rel="stylesheet";t.href=n;r.appendChild(t)};n.ls=function(n,t,u){var f=i.createElement("script"),e=!1;f.async=!0;f.src=n;t&&(f.onload=f.onreadystatechange=function(){e||this.readyState&&this.readyState!=="loaded"&&this.readyState!=="complete"||(e=!0,t(f),f.onload=f.onreadystatechange=null,u&&f.parentNode.removeChild(f))});r.appendChild(f)};n.init=function(i){function o(){i.st.forEach(n.as);u.forEach(function(n){f(n,i.cr[n],r,e)});typeof t.clc_after_init=="function"&&t.clc_after_init()}var u=Object.keys(i.cr),r="//"+i.h+i.ct,e=n.cps?n.ts()-n.cps:0;i.an&&(r+="?an="+i.an);o()};n.lo=function(i){var u,f=t.location.hash,s=n.dec,r=n.se,o;i=i||{};switch(f){case"#large":i.l=1;break;case"#abort":i.abort=1;break;default:f.length>0&&f.substr(1).split("&").forEach(function(n){var t=n.split("=",2);this[s(t[0])]=s(t[1])},i)}return o=i.ac||i.accountid||r&&r.options&&r.options.user&&r.options.user.accountId,o&&(i.ac=o),i.tags||(u=e(),u&&(i.tags=u)),i};n.o2q=function(t,i){var r=n.enc;return Object.keys(t).filter(function(n){return i.indexOf(n)!==-1}).map(function(n){return r(n)+"="+r(t[n])}).join("&")};n.load=function(i,r,u){n.ls(i+"?"+n.o2q(r,u),function(){typeof t.clc_loaded=="function"&&t.clc_loaded()});n.cps=n.ts()};n.el=function(t){var i=n.qsa(t);return i.length>0?i[0]:null};n.hc=function(n){return n&&n.innerHTML&&n.innerHTML.replace(/\s+/g,"").length>0};n.wfc=function(t,i,r,u){function c(){n.hc(s)?(f(o),f(e),u(!0)):e=h(c,i)}function l(){f(e);u(!1)}var s=n.el(t),h=n.st,f=n.ct,o,e;if(s!==null)return c(),r&&(o=h(l,r)),function(){e&&f(e);o&&f(o)}};t.clc=n}})();;(function(n){function c(){var n=t.el(f);t.hc(n)||(n.parentNode.removeChild(n),typeof u=="function"&&u())}function l(u){if(!e){e=!0;var f=t.qsa("#"+i.d);f.length!==0&&(u||(i.azt=!0),i.lw=t.ts()-s,i.l||document.getElementById("careersadsdoublehigh")===null||(i.l=1),typeof r.innerWidth=="number"&&(i.bw=r.innerWidth),t.load(n.adurl,i,["d","l","ip","ac","eng","prov","tags","theme","remote","seed","lw","azt","sysadmin","bw"]))}}var r=window,t=r.clc,s=t.ts(),h=t.st,v=t.ct,f="#sidebar [id^='adzerk'].everyonelovesstackoverflow",i=t.lo({d:"hireme"}),e,u,o,a;i.abort||(o=null,u=t.wfc(f,20,o,l),a=h(c,2e3))}).call(null, {"adurl":"//clc.stackoverflow.com/j/p.js"});            </script>
+        </div>
+			  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/1072569?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">13</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/1072569/see-if-two-files-have-the-same-content-in-python?lq=1" class="question-hyperlink">see if two files have the same content in python</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/24022754?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/24022754/is-it-safe-to-use-md5-checksums-to-search-for-duplicate-files-across-multiple-ha?lq=1" class="question-hyperlink">Is it safe to use MD5 checksums to search for duplicate files across multiple hard drives?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/476227?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">12</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/476227/detect-duplicate-mp3-files-with-different-bitrates-and-or-different-id3-tags?lq=1" class="question-hyperlink">Detect duplicate MP3 files with different bitrates and/or different ID3 tags?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/1036996?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">3</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/1036996/interesting-python-system-utilities-you-have-made?lq=1" class="question-hyperlink">Interesting Python system utilities you have made?</a>
+</div>			</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/854128?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">409
+    </div>
+</a><a href="http://stackoverflow.com/questions/854128/find-duplicate-records-in-mysql?rq=1" class="question-hyperlink">Find duplicate records in MySQL</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/2594829?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">414
+    </div>
+</a><a href="http://stackoverflow.com/questions/2594829/finding-duplicate-values-in-a-sql-table?rq=1" class="question-hyperlink">Finding duplicate values in a SQL table</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/3452832?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">7
+    </div>
+</a><a href="http://stackoverflow.com/questions/3452832/remove-duplicate-rows-from-a-large-file-in-python?rq=1" class="question-hyperlink">Remove duplicate rows from a large file in Python</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/7961363?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">239
+    </div>
+</a><a href="http://stackoverflow.com/questions/7961363/python-removing-duplicates-in-lists?rq=1" class="question-hyperlink">Python removing duplicates in lists</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/11378152?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/11378152/optimizing-removing-duplicates-in-large-files-in-python?rq=1" class="question-hyperlink">Optimizing removing duplicates in large files in Python</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/20255421?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/20255421/removing-duplicates-from-big-text-file?rq=1" class="question-hyperlink">Removing duplicates from BIG text file</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/21488186?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/21488186/how-to-remove-one-of-the-two-duplicate-blocks-in-a-file?rq=1" class="question-hyperlink">How to remove one of the two duplicate blocks in a file?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/29947265?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">-1
+    </div>
+</a><a href="http://stackoverflow.com/questions/29947265/how-to-remove-duplicates-from-a-lookup-file-using-python?rq=1" class="question-hyperlink">How to Remove duplicates from a Lookup File using Python?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/31176760?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">-3
+    </div>
+</a><a href="http://stackoverflow.com/questions/31176760/how-do-i-find-duplicates-within-two-columns-in-a-csv-file-then-combine-them-in?rq=1" class="question-hyperlink">How do I find duplicates within two columns in a csv file, then combine them in Python?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/33033348?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/33033348/removing-the-duplicates-from-a-directory-and-saving-them-in-another-directory?rq=1" class="question-hyperlink">removing the duplicates from a directory and saving them in another directory</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/30513/how-deep-can-the-ocean-plausibly-be" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How deep can the ocean plausibly be?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/64870/legen-wait-for-it" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Legen… wait for it…
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/108757/when-qui-gon-flipped-the-dice-in-his-favor-didnt-he-follow-the-dark-side" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When Qui-Gon flipped the dice in his favor, didn't he follow the Dark Side?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-japanese" title="Japanese Language Stack Exchange"></div><a href="http://japanese.stackexchange.com/questions/29515/word-play-easy-peasy-analog" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:257 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Word play: "Easy peasy" analog
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/279788/draw-a-turkey-a-pumpkin-pie-or-any-other-object-traditionally-associated-with" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Draw a turkey, a pumpkin pie, or any other object traditionally associated with Thanksgiving
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/58985/is-it-appropriate-to-ask-journal-review-status-after-not-hearing-back-in-quoted" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it appropriate to ask journal review status after not hearing back in quoted timeline?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/290156/is-there-a-word-phrase-to-describe-an-action-which-leads-to-it-being-pointless" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a word/phrase to describe an action which leads to it being pointless?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/108929/why-didnt-the-weaker-tributes-gang-up-on-the-stronger-ones-in-the-hunger-games" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why didn't the weaker tributes gang up on the stronger ones in The Hunger Games?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/74286/does-the-phrase-a-forward-step-make-any-sense" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does the phrase "a forward step" make any sense?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/64944/count-the-divisors-of-a-number" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Count the divisors of a number
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-gamedev" title="Game Development Stack Exchange"></div><a href="http://gamedev.stackexchange.com/questions/112082/can-i-embed-a-game-in-a-pdf-resume" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:53 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can I embed a game in a Pdf Resume?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/112139/a-simple-javascript-utility-library" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    A simple JavaScript Utility Library
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-serverfault" title="Server Fault"></div><a href="http://serverfault.com/questions/739476/why-is-my-bare-metal-16x-2-93ghz-cores-performing-poorer-than-a-vps-with-4x-2-5g" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:2 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why is my Bare metal 16x 2.93GHz cores performing poorer than a VPS with 4x 2.5GHz cores?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/30585/where-would-a-magic-gland-go-for-full-body-saturation-of-magic" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Where would a "Magic gland" go for full-body saturation of magic?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-buddhism" title="Buddhism Stack Exchange"></div><a href="http://buddhism.stackexchange.com/questions/12802/are-buddhists-happier-people" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:565 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are Buddhists happier people?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-programmers" title="Programmers Stack Exchange"></div><a href="http://programmers.stackexchange.com/questions/303553/is-it-better-to-check-c-0-or-c-48" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:131 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it better to check `c &gt;= '0'` or `c &gt;= 48`?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/30515/is-honesty-always-the-best-policy-what-could-go-wrong-if-a-society-valued-hones" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is Honesty always the best policy? What could go wrong if a society valued honesty over every other virtue?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/65020/output-the-current-time" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Output the Current Time
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="http://stats.stackexchange.com/questions/184029/what-is-elastic-net-regularization-and-how-does-it-solve-the-drawbacks-of-ridge" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is elastic net regularization, and how does it solve the drawbacks of Ridge (L2) and Lasso (L1)?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/58747/is-it-appropriate-to-send-an-email-to-a-professor-at-the-end-of-the-semester-tha" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it appropriate to send an email to a professor at
+ the end of the semester thanking them for their teaching?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/1006079/why-do-i-need-an-smtp-server" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do I need an SMTP server?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div><a href="http://askubuntu.com/questions/703397/what-does-the-in-bash-mean" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What does the "-" in "bash -" mean?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-astronomy" title="Astronomy Stack Exchange"></div><a href="http://astronomy.stackexchange.com/questions/12688/alignment-of-semi-major-axis-of-orbits" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:514 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Alignment of Semi-Major Axis of Orbits
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/64785/when-is-thanksgiving" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When is Thanksgiving?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/748675" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/748675/ivc/8ec7');});
+</script>
+<noscript>
+    <div><img src="/posts/748675/ivc/8ec7" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-py</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2015 Stack Exchange Inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2015.11.27.3036
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('python,duplicates');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|python|duplicates|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+            
+    
+</body></html>

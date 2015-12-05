@@ -1,0 +1,4 @@
+In my household we have multiple computers all backed up to several location with several copies. 
+My project will be a build a file crawling tool that will discover duplicate files in a given file 
+structure and list them for potential deletion.  Eventually, I want to do the same thing with pictures 
+on my storage devices at home.
