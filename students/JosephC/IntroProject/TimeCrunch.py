@@ -14,7 +14,7 @@ then TimeCrunch will find time for you to develop good habits.
 #   Time blocks for minutes in a day; 7am = minute 420, 8am(480), 9am(540), 10am(600), 11am(660), 12pm(720), 1pm(780), 2pm(840), 3pm(900), 4pm(960), 5pm(1020), 6pm(1080), 
 #       7pm(1140), 8pm(1200), 9pm(1260), 10pm(1320)
 #   Automatically ignore times between 10pm and 7am
-calendar = { 'Monday': [range(480, 600), range(700, 750), range(900, 1200)]
+"""calendar = { 'Monday': [range(480, 600), range(700, 750), range(900, 1200)]
              'Tuesday': [range(490, 610), range(550, 575), range(700, 750)]
              'Wednesday': [range(496, 610), range(550, 585), range(706, 756)]
              'Thursday': [range(444, 610), range(550, 575), range(700, 750)]
@@ -22,10 +22,27 @@ calendar = { 'Monday': [range(480, 600), range(700, 750), range(900, 1200)]
              'Saturday': [range(490, 610), range(550, 575), range(700, 750)]
              'Sunday':   [range(490, 610), range(550, 575), range(723, 751)]          
 
-            }
-#   check out date/time module
+            }"""
+
 
 #   create a list of basic workouts, with their duration; sorting depends on the duration of a single set; time will need to be converted
     #   standing leg curls are timed for 10 reps for *both legs*, so half the number for just one leg
 workout = {'chair squats': [.30], 'pushups': [.17], 'full squats': [.20], 'crunches': [.14], 'standing leg curl': [.24], 'arm circles': [.12]}
-#
+
+#   set a variable equal to a list producing a set of times set for 9am, every day for 7 days
+foo=list(rrule(DAILY, count=7,
+           dtstart=parse("20151214T090000"))) #    "2015[year] 12[month 02[day] T123000[time set as 12:30:00:00]"
+
+
+bar = list(rrule(DAILY, count=7,
+           dtstart = parse("20151214T103000")))
+
+baz = list(rrule(DAILY, count=3, 
+           dtstart = parse("20151211T130000")))
+
+
+foo.extend(bar)
+foo.extend(baz)
+
+if i in foo:
+    if i  

@@ -1,0 +1,38 @@
+Notes on TimeCrunch
+
+foo = list(rrule(MINUTELY, interval=15, count=6,
+           dtstart=parse("20151202T123000")))  -->   "2015[year] 12[month 02[day] T123000[time set as 12:30]"
+
+calling 'foo'
+
+PRODUCES:
+
+[datetime.datetime(2015, 12, 2, 12, 30),
+ datetime.datetime(2015, 12, 2, 12, 45),
+ datetime.datetime(2015, 12, 2, 13, 0),
+ datetime.datetime(2015, 12, 2, 13, 15),
+ datetime.datetime(2015, 12, 2, 13, 30),
+ datetime.datetime(2015, 12, 2, 13, 45)]
+
+
+Iterate through the list of times!
+
+for i in foo:
+    if i == datetime(2015, 12, 2, 12, 30):
+        print("fuck yeah")
+    else: print("fuck no")
+
+PRODUCES:
+
+   ....:     
+fuck yeah
+fuck no
+fuck no
+fuck no
+fuck no
+fuck no
+
+
+One idea is to do foo, bar, baz, etc, each producing a different series of iterations though a single week, **combining these lists** [foo.extend(bar)] and then going through them to see if there are gaps of time to work out in .  [g = sorted(foo)]
+
+the lists stored in foo, bar, etc, can be the meetings and work scheduled
