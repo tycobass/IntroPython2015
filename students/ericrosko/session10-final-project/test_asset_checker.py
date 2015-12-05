@@ -10,8 +10,6 @@ valid images in case you are wondering why you can't open them.  This keeps
 the size small and assetchecker is just looking for the files and not trying
 to open or validate that they are in a one valid format or another.
 
-icon.png is in the first child folder up from the project file.  it exists
-on disk but is not referenced in the project file.
 
 Requirements:
     You must have py.test installed from http://pytest.org
@@ -25,31 +23,8 @@ Usage:
 import os
 import asset_checker
 
-# Module scope variables used for testing.  This helps me refactor out
-# repeated values from the test methods to prevent duplication.
 mypath = ''
 ac = None
-
-
-# def setup_module(module):
-#     """
-#     Runs ONCE before all tests run.  Since I'm changing a module-scope
-#     variable it is necessary to bring it into this scope using
-#     the global keyword.  Not really useful for testing.
-#     """
-
-#     global mypath
-#     mypath = "/Users/erosko/Desktop/python/IntroPython2015/" \
-#              "students/ericrosko/session10-final-project/"
-
-
-# def teardown_module(module):
-#     """
-#     Runs ONCE after all the tests in the module run.  Not really useful
-#     for testing
-#     """
-#     global mypath
-#     mypath = 'teardown_module'
 
 
 def setup_function(function):
