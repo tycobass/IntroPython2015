@@ -155,7 +155,7 @@ class AssetChecker():
 
         self.find_project_file(self.search_path, temp)
 
-        print("\nFound Xcode Project: {}".format(os.path.basename(temp[0])))
+        print("Found Xcode Project: {}".format(os.path.basename(temp[0])))
         assets_in_manifest = []
 
         self.parse_project_file(temp[0], assets_in_manifest)
@@ -177,7 +177,7 @@ class AssetChecker():
 
         if self.show_all_output:
             return_string += \
-                "Files referenced in the Xcode project manifest: {}\n\n" \
+                "\nFiles referenced in the Xcode project manifest: {}\n\n" \
                 "Files found inside the project: {}\n" \
                 "".format(self.manifest_set, self.project_set)
 
