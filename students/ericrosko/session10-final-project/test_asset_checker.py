@@ -274,8 +274,24 @@ def test_find_files_in_project_file_with_multiple_dots_in_filename():
     assert results == ['filename.with.dots.gif']
 
 
-def test_passing_parameter_with_extensions():
-    # searchable_extensions = ['gif']
-    a_asset_checker = asset_checker.AssetChecker(['gif'])
-
+def test_init_with_searchable_extensions():
+    a_asset_checker = asset_checker.AssetChecker(searchable_extensions=['gif'])
     assert a_asset_checker.searchable_extensions == ['gif']
+
+
+def test_init_with_search_path():
+    a_asset_checker = asset_checker.AssetChecker(search_path='./home/abc/def')
+    assert a_asset_checker.search_path == './home/abc/def'
+
+
+def test_init_with_show_all_output():
+    a_asset_checker = asset_checker.AssetChecker(show_all_output=True)
+    assert a_asset_checker.show_all_output is True
+
+
+def test_init_with_default_values():
+    a_asset_checker = asset_checker.AssetChecker()
+    assert a_asset_checker.searchable_extensions == \
+        ['m4a', 'jpg', 'png', 'ico']
+    assert a_asset_checker.search_path == os.getcwd()
+    assert a_asset_checker.show_all_output is True

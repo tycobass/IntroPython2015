@@ -4,10 +4,9 @@
 Name:       asset_checker.py
 Author:     Eric Rosko
 Date:       Dec 2015
-Written with Python 3.4.3
-Parses project file in Xcode 7.1.1
+Python ver. 3.4.3
+Xcode ver.  7.1.1
 
-Prerequisites: Xcode 7.1.1, Python 3.4.3
 
 Implementation Details: It is interesting to note that the Xcode framework
 libc++.dylib returns false for both os.path.isfile and os.path.isdir.  This is
@@ -34,20 +33,22 @@ class AssetChecker():
     manifest_set = {}
     project_set = {}
 
-    def __init__(self, *args, **kwargs):
-        self.starting_search_path = os.getcwd()
-        self.searchable_extensions = ['m4a', 'jpg', 'png', 'ico']
-        self.show_all_output = False
-        for item in args:
-            if isinstance(item, str):
-                if os.path.isdir(item):
-                    self.starting_search_path = item
-                elif item == 'all':
-                    self.show_all_output = True
-            elif isinstance(item, list):
-                self.searchable_extensions = item
-            else:
-                raise Exception("Bad Parameter:{}".format(item))
+    def __init__(self, search_path=None, searchable_extensions=None,
+                 show_all_output=None):
+        if search_path is None:
+            self.search_path = os.getcwd()
+        else:
+            self.search_path = search_path
+
+        if searchable_extensions is None:
+            self.searchable_extensions = ['m4a', 'jpg', 'png', 'ico']
+        else:
+            self.searchable_extensions = searchable_extensions
+
+        if show_all_output is None:
+            self.show_all_output = True
+        else:
+            self.show_all_output = show_all_output
 
     def search_tree(self, path, files, extensions):
         assert isinstance(extensions, list)
@@ -64,6 +65,7 @@ class AssetChecker():
                 elif isdir(fullpath):
                     if name not in self.ignored_directories:
                         self.search_tree(fullpath, files, extensions)
+
         except NotADirectoryError as e:
             print("Not a directory: {}".format(e))
             raise e
@@ -79,38 +81,37 @@ class AssetChecker():
         Finds the first file with the .xcodeproj extension and
         returns it
         '''
-        # assert os.path.isdir(start_path) == True
 
         for name in os.listdir(start_path):
             fullpath = os.path.join(start_path, name)
-            # print("Fullpath: ", fullpath)
+
             if os.path.isdir(fullpath) and \
                name not in self.ignored_directories:
                 if fullpath.endswith('xcodeproj'):
                     files.append(fullpath)
                 else:
-                    assert os.path.isdir(fullpath), "Expected Dir!"
-                    # print("DIR: ", fullpath)
                     self.find_project_file(fullpath, files)
 
     def parse_project_file(self, path, results):
         assert os.path.isdir(path), "Expected Xcode package file"
 
         manifest = os.path.join(path, 'project.pbxproj')
-        # print(manifest)
+
         assert os.path.isfile(manifest), "Expected manifest text file"
 
         regexes = self.compiled_regexes()
 
         doParse = False
 
-        # we only want to get data from a small section of the pbxproj
+        # We only want to get data from a small section of the pbxproj
         # file.  This is because in a section below it, the terms image.png
         # and image.jpeg are used except these aren't real files in your
         # project.  To avoid accidentally including these false positives,
-        # at least for now I'm just parsing the section entitled
+        # at least for now I'm just parsing the section entitled:
         # /* Begin PBXBuildFile section */
         # /* End PBXBuildFile section */
+        # If this script every stops working it will probably be because
+        # Apple has changed the format of the project file for this section.
         try:
             with open(manifest, 'r') as f:
 
@@ -120,32 +121,23 @@ class AssetChecker():
                         doParse = False
                     elif "/* Begin PBXBuildFile section */" == line:
                         doParse = True
-                    # print(line)
+
                     if doParse:
                         self.parse_line(line, regexes, results)
-                    # print(results)
 
         except Exception:
             print("file read failure")
 
-        # remove duplicates
-        # results = list(set(results))
-        # print('end of method len is', len(results), results)
-
     def parse_line(self, line, regexes, results):
         assert isinstance(results, list)
-        # p = re.compile('[A-Za-z0-9_-]+\.m4a')
-        # print(type(p))
+
         count = 0
 
         for p in regexes:
-            # print("loop #", count)
             count += 1
             found_items = p.findall(line)
             if len(found_items) > 0:
-                # print("adding")
                 results.extend(found_items)
-                # print("length: ", len(results))
 
     def compiled_regexes(self):
         assert len(self.searchable_extensions) >= 1, "Expected at least " \
@@ -153,7 +145,7 @@ class AssetChecker():
         regexes = []
 
         for ext in self.searchable_extensions:
-            # special thanks to http://www.regexpal.com !
+            # http://www.regexpal.com has a nice online checker :)
             regexes.append(re.compile("[A-Za-z0-9@\._-]+\.{}".format(ext)))
 
         return regexes
@@ -161,9 +153,9 @@ class AssetChecker():
     def perform_asset_audit(self):
         temp = []
 
-        self.find_project_file(self.starting_search_path, temp)
+        self.find_project_file(self.search_path, temp)
 
-        print("\nFound Xcode Project: {}\n".format(os.path.basename(temp[0])))
+        print("\nFound Xcode Project: {}".format(os.path.basename(temp[0])))
         assets_in_manifest = []
 
         self.parse_project_file(temp[0], assets_in_manifest)
@@ -176,12 +168,12 @@ class AssetChecker():
         self.search_tree(folder_to_search, assets_in_project_folders,
                          self.searchable_extensions)
 
-        # remove duplicates
+        # remove duplicates and save as set
         self.project_set = set(assets_in_project_folders)
 
     def output_results(self):
-
-        return_string = ''
+        return_string = "Searching for these extensions:{}\n" \
+            .format(self.searchable_extensions)
 
         if self.show_all_output:
             return_string += \
@@ -221,65 +213,80 @@ class AssetChecker():
 if __name__ == '__main__':
     print('\n')
     print('*********************************************************')
-    print('*         AssetChecker - for Xcode projects!            *')
+    print('**         AssetChecker - for Xcode projects           **')
     print('*********************************************************')
-    print('* Help   : ./asset_checker help                         *')
-    print('* Example: ./asset-checker.py all                       *')
-    print('* Example: ./asset-checker.py                           *')
+    print('**   Usage and description: ./asset_checker --help     **')
     print('*********************************************************')
+    print('')
 
     total = len(sys.argv)
-    cmdargs = str(sys.argv)
+
+    # sys.argv is a list
     # print("total: {}".format(total))
     # print("cmdargs", cmdargs)
-    # print(type(list(sys.argv[1])))
-    show_all_files = False
-    ac = AssetChecker()
+    # print("what type is sys.argv", type(sys.argv))
 
-    if total == 2 and sys.argv[1] == 'help':
-        print("Usage:")
-        print("./asset_checker.py /Users/username/your-project-folder")
-        print("./asset_checker.py all")
-        print("./asset_checker.py ./")
-        print("./asset_checker.py --ext jpg png ico")
-        print("./asset_checker.py --ext jpg all")
-        print("""
+    if total == 2 and sys.argv[1] == '--help':
+        print(""""
+  Usage:
+    ./asset_checker.py <path-to-project folder> <extensions> <output_flag>
+    ./asset_checker.py /Users/username/your-project-folder
+    ./asset_checker.py /Users/username/proj -b
+    ./asset_checker.py --brief
+    ./asset_checker.py --ext jpg png ico
+    ./asset_checker.py /home/user/app --ext jpg png --brief
+    ./asset_checker.py /Users/username/project -e jpg png ico
+
   Description:
-  You can pass the path to your project.  This will default to only
-  showing the problems it finds.  If you pass 'all' as a
-  parameter you will also see all files it finds followed by
-  any problems listed at the bottom.
+  All parameters are optional.  If none are supplied, defaults are used.  If
+  no parameters are given the program defaults to the equivalent of:
+  ./asset-checker.py ./ --ext m4a jpg png ico
 
-  You can also provide your own extension by editing the script or adding them
-  after an --ext argument.  You can put 'all' at the end of the list of
-  extensions if you want to print out all the items it finds, not just
-  the missing or orphaned files.
+  You can pass the path to your project, or you can run the script from
+  inside your Xcode project folder.  It will use the first .xcodeproj file
+  it finds.  You can run it from a folder beneath where your Xcode project
+  lives.
 
-  I recommended sticking with the usage examples.  If you try to mix and
-  match in any possible way it will not work.
+  You can also provide your own extensions by editing this script or adding
+  them after --ext or -e.
+
+  You can put --brief or -b at the end of the list of extensions if you do not
+  want it to print out all the items it found in the project and on disk.
               """)
+
         sys.exit()
 
-    extensions = []
+    searchable_extensions = None
+    show_all_output = None
+    search_path = None
 
-    if total == 2 and str(sys.argv[1]) == 'all':
-        show_all_files = True
-    elif total == 2 and os.path.isdir(sys.argv[1]):
-        ac = AssetChecker(str(sys.argv[1]))
-    elif total == 3 and str(sys.argv[1]) == '--ext' \
-            and str(sys.argv[2]) == 'all':
-        sys.exit("Bad parameter sequence.  " +
-                 "Try \'./asset-checker.py help\' to see examples.")
-    elif total >= 3 and str(sys.argv[1]) == '--ext':
+    index_of_extension = 0
 
-        for i in range(2, len(sys.argv)):
-            if str(sys.argv[i]) == 'all':
-                show_all_files = True
-            else:
-                extensions.append(sys.argv[i])
-        ac = AssetChecker(extensions)
+    for i in range(1, len(sys.argv)):
+        if str(sys.argv[i]) == '--brief' or str(sys.argv[i]) == '-b':
+            show_all_output = False
+        elif i == 1 and os.path.isdir(sys.argv[i]) is True:
+            search_path = str(sys.argv[i])
+        elif str(sys.argv[i]) == '--ext' or str(sys.argv[i]) == '-e':
+            index_of_extension = i
 
-    ac.show_all_output = show_all_files
+    if index_of_extension > 0:
+        searchable_extensions = []
+        for sub_index in range(index_of_extension + 1, len(sys.argv)):
+            if str(sys.argv[sub_index]) == '--brief' or \
+               str(sys.argv[sub_index]) == '-b':
+                break
+            searchable_extensions.append(str(sys.argv[sub_index]))
+
+    # print("{}\n{}\n{}\n".format(search_path, searchable_extensions,
+    #                             show_all_output))
+
+    # sys.exit()
+
+    ac = AssetChecker(search_path=search_path,
+                      searchable_extensions=searchable_extensions,
+                      show_all_output=show_all_output)
+
     ac.perform_asset_audit()
     results = ac.output_results()
     print(results)
