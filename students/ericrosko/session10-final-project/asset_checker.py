@@ -51,7 +51,6 @@ class AssetChecker():
             self.show_all_output = show_all_output
 
     def search_tree(self, path, files, extensions):
-        assert isinstance(extensions, list)
 
         try:
             for name in os.listdir(path):
@@ -68,9 +67,6 @@ class AssetChecker():
 
         except NotADirectoryError as e:
             print("Not a directory: {}".format(e))
-            raise e
-
-        except Exception as e:
             raise e
 
     def get_current_directory(self):
