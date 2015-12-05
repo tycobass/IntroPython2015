@@ -1,3 +1,5 @@
+# still working on this
+
 class SparseArray:
     def __init__(self, sequence):
         self.length = len(sequence)
@@ -16,5 +18,7 @@ class SparseArray:
             return self.sequence[key]
         elif key < self.length:
             return 0
+        elif key >= self.length:
+            raise IndexError
         else:
             raise ValueError

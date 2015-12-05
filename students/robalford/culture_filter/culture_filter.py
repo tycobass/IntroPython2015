@@ -3,9 +3,6 @@ from datetime import date
 import json
 from bs4 import BeautifulSoup
 
-# decide whether to use a class for module level data/functions. right now
-# seems easier to leave at module level and use classes/inheritance for publications
-
 
 class Recommender:
     medium = 'all'
@@ -16,7 +13,6 @@ class Recommender:
             self.recommendations = self.load_data()
         except FileNotFoundError:
             self.recommendations = {}
-
 
     def load_data(self):
         with open(self.filename, 'r') as infile:
