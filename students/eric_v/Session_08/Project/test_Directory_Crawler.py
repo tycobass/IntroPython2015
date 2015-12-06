@@ -11,5 +11,9 @@ def test_hashfile():
 def test_file_hash_values():
     my_found_duplicates = file_hash_values('c:\work_area\Python\Info\Session_03')
     print (my_found_duplicates)
-    'c:\\work_area\\Python\\Info\\Session_03\\list_lab.py' == my_found_duplicates['93c84386766ee905520b0005a7a3e080']
-    #assert false
+    assert 'c:\\work_area\\Python\\Info\\Session_03\\maleroom.py' in my_found_duplicates['1b4ab39302d1fc30f31f22ac8e19d3fc']
+
+def test_file_duplicate_value():
+    my_found_duplicates = file_hash_values('c:\work_area\Python\Info\Session_03')
+    print (my_found_duplicates['93c84386766ee905520b0005a7a3e080'])
+    #assert 'c:\\work_area\\Python\\Info\\Session_03\\list_lab_dup.py' in my_found_duplicates['93c84386766ee905520b0005a7a3e080']
