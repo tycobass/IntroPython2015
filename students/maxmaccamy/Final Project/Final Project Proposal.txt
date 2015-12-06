@@ -1,0 +1,5 @@
+For my final project in For my final project in this class, I would like to make a program that traces low level requirement tags used for my job
+to the location of those tags within our code base. The input to the program will be a CSV type input that contains all of
+the requirement tags that should be traced somewhere into our code base. The outputs will be a report document that shows
+in which file and at which line number the trace tag is located, as well as an error report indicating which trace tags are
+missing so that the user can go in and add the missing tags a at some date.this class, I would like to make a program that traces low level requirement tags used for my job to the location of those tags within our code base. The input to the program will be a CSV type input that contains all of the requirement tags that should be traced somewhere into our code base. The outputs will be a report document that shows in which file and at which line number the trace tag is located, as well as an error report indicating which trace tags are missing so that the user can go in and add the missing tags a at some date.
