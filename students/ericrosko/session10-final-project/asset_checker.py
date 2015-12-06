@@ -123,6 +123,7 @@ class AssetChecker():
 
         except Exception:
             print("file read failure")
+            raise
 
     def parse_line(self, line, regexes, results):
         assert isinstance(results, list)
