@@ -36,3 +36,5 @@ fuck no
 One idea is to do foo, bar, baz, etc, each producing a different series of iterations though a single week, **combining these lists** [foo.extend(bar)] and then going through them to see if there are gaps of time to work out in .  [g = sorted(foo)]
 
 the lists stored in foo, bar, etc, can be the meetings and work scheduled
+
+rather than have a week full of dates, try fitting in the workout times for a day instead
