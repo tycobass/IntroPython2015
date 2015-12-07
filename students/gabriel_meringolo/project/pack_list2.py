@@ -7,10 +7,10 @@ location = dirname(realpath(__file__))
 
 def main_menu(): # main menu
     print(location)
-    menu_choice = input("\nPack List V0.02\n"
+    menu_choice = input("\nPack List V0.03\n"
                         "---------------\n"
                         "1. Use Existing List\n" # works
-                        "2. Create New List\n" # works just creates the .json file with name
+                        "2. Create New List\n" # works just creates the .json file with name and empty json data
                         "3. Exit\n\n>>> ") # works
     if menu_choice == "1":
         use_existing()
@@ -51,7 +51,7 @@ def sub_menu(list_name):
     print("\n" + list_name)
     sub_choice = input("-"*len(list_name)+"\n"
                        "1. View List\n"
-                       "2. Edit List\n"
+                       "2. Edit List\n" # works?
                        "3. Generate Pack List\n"
                        "4. Return To Main Menu\n" # works
                        "5. Exit Program\n\n>>> ") # works
@@ -70,8 +70,8 @@ def sub_menu(list_name):
 
 
 def create_new_list(list_name):
-    with open(join(location, "{}.json".format(list_name)), "w") as f:
-        json.dump(None, f)
+    with open(join(location, "{}.json".format(list_name)), "w+") as f:
+        json.dump({}, f)
     print("\nNew inventory file '{}' created.".format(list_name))
     edit_list(list_name)
 
@@ -86,18 +86,27 @@ def pack_list():
 
 
 def edit_list(list_name):
-    #data = json_loads(list_name)
-    print("Enter 'Q' or 'Quit' anytime to save data and return to main menu")
     while True:
         item = input("Enter new item: ")
-        if item.lower() == "quit" or item.lower() == 'q':
-            main_menu()
         par = input("Set par: ")
-        if par.lower() == "quit" or par.lower() == 'q':
-            main_menu()
         update_json_file(list_name, item, par)
+        if input("\nHit 'ENTER' to input another item,\nor type 'Q' to return to main menu.\n>>> ").lower() == "q":
+            main_menu()
 
-    #pass
+
+
+#def edit_list(list_name):
+#    print("Enter 'Q' or 'Quit' anytime to save data and return to main menu")
+#    while True:
+#        item = input("Enter new item: ")
+#        if item.lower() == "quit" or item.lower() == 'q':
+#            main_menu()
+#        par = input("Set par: ")
+#        if par.lower() == "quit" or par.lower() == 'q':
+#            main_menu()
+#        update_json_file(list_name, item, par)
+#
+#        again = input("'ENTER' to input another item,\n 'Q' to return to main menu\n>>> ")
 
 
 def json_dumps():
@@ -112,19 +121,12 @@ def json_loads(list_name):
 
 
 def update_json_file(list_name, item, par):
-
-    jsonFile = open(join(location, "{}.json".format(list_name)), "r")
-    data = json.load(jsonFile)
-    jsonFile.close()
-
-
-    tmp = data[item]
+    with open(join(location, "{}.json".format(list_name)), "r") as f:
+        data = json.load(f)
     data[item] = par
-    #data["mode"] = "replay"
+    with open(join(location, "{}.json".format(list_name)), "w") as f:
+        json.dump(data, f, indent=4)
 
-    jsonFile = open(join(location, "{}.json".format(list_name)), "w+")
-    jsonFile.write(json.dumps(data))
-    jsonFile.close()
 
 main_menu()
 
