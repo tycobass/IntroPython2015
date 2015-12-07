@@ -15,7 +15,11 @@
 		AB1855261C0BD21000DD67B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB1855241C0BD21000DD67B3 /* LaunchScreen.storyboard */; };
 		AB1855311C0BD21000DD67B3 /* xcassetcheckerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1855301C0BD21000DD67B3 /* xcassetcheckerTests.m */; };
 		AB18553C1C0BD21000DD67B3 /* xcassetcheckerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB18553B1C0BD21000DD67B3 /* xcassetcheckerUITests.m */; };
-		ABC6650E1C0E4F0900C95DC7 /* outside-of-project.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC6650D1C0E4F0900C95DC7 /* outside-of-project.png */; };
+		AB40D4041C10D61D003D9D6D /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = AB40D4011C10D61D003D9D6D /* thumbnail.png */; };
+		AB40D4051C10D61D003D9D6D /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB40D4021C10D61D003D9D6D /* thumbnail@2x.png */; };
+		AB40D4061C10D61D003D9D6D /* thumbnail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB40D4031C10D61D003D9D6D /* thumbnail@3x.png */; };
+		ABC2E9E81C10F088004C7584 /* outside-of-project.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC2E9E71C10F088004C7584 /* outside-of-project.png */; };
+		ABF1F6C11C10F9B00018ABFA /* filename.with.dots.gif in Resources */ = {isa = PBXBuildFile; fileRef = ABF1F6C01C10F9B00018ABFA /* filename.with.dots.gif */; };
 		ABF8A2A41C0BD91A0049B539 /* 001.m4a in Resources */ = {isa = PBXBuildFile; fileRef = ABF8A2A11C0BD91A0049B539 /* 001.m4a */; };
 		ABF8A2A51C0BD91A0049B539 /* 002.m4a in Resources */ = {isa = PBXBuildFile; fileRef = ABF8A2A21C0BD91A0049B539 /* 002.m4a */; };
 		ABF8A2A61C0BD91A0049B539 /* 003.m4a in Resources */ = {isa = PBXBuildFile; fileRef = ABF8A2A31C0BD91A0049B539 /* 003.m4a */; };
@@ -61,7 +65,11 @@
 		AB1855371C0BD21000DD67B3 /* xcassetcheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xcassetcheckerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB18553B1C0BD21000DD67B3 /* xcassetcheckerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xcassetcheckerUITests.m; sourceTree = "<group>"; };
 		AB18553D1C0BD21000DD67B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ABC6650D1C0E4F0900C95DC7 /* outside-of-project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "outside-of-project.png"; path = "../../../../../../../../Downloads/outside-of-project.png"; sourceTree = "<group>"; };
+		AB40D4011C10D61D003D9D6D /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = thumbnail.png; path = cd/thumbnails/thumbnail.png; sourceTree = "<group>"; };
+		AB40D4021C10D61D003D9D6D /* thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thumbnail@2x.png"; path = "cd/thumbnails/thumbnail@2x.png"; sourceTree = "<group>"; };
+		AB40D4031C10D61D003D9D6D /* thumbnail@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thumbnail@3x.png"; path = "cd/thumbnails/thumbnail@3x.png"; sourceTree = "<group>"; };
+		ABC2E9E71C10F088004C7584 /* outside-of-project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "outside-of-project.png"; path = "../../outside-of-project.png"; sourceTree = "<group>"; };
+		ABF1F6C01C10F9B00018ABFA /* filename.with.dots.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = filename.with.dots.gif; path = cd/gifs/filename.with.dots.gif; sourceTree = "<group>"; };
 		ABF8A2A11C0BD91A0049B539 /* 001.m4a */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 001.m4a; path = cd/sounds/001.m4a; sourceTree = "<group>"; };
 		ABF8A2A21C0BD91A0049B539 /* 002.m4a */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 002.m4a; path = cd/sounds/002.m4a; sourceTree = "<group>"; };
 		ABF8A2A31C0BD91A0049B539 /* 003.m4a */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 003.m4a; path = cd/sounds/003.m4a; sourceTree = "<group>"; };
@@ -137,7 +145,7 @@
 		AB1855161C0BD21000DD67B3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				ABC6650D1C0E4F0900C95DC7 /* outside-of-project.png */,
+				ABC2E9E71C10F088004C7584 /* outside-of-project.png */,
 				ABF8A29B1C0BD81C0049B539 /* cd */,
 				AB1855171C0BD21000DD67B3 /* main.m */,
 			);
@@ -162,9 +170,18 @@
 			path = xcassetcheckerUITests;
 			sourceTree = "<group>";
 		};
+		ABF1F6BF1C10F9A00018ABFA /* gifs */ = {
+			isa = PBXGroup;
+			children = (
+				ABF1F6C01C10F9B00018ABFA /* filename.with.dots.gif */,
+			);
+			name = gifs;
+			sourceTree = "<group>";
+		};
 		ABF8A29B1C0BD81C0049B539 /* cd */ = {
 			isa = PBXGroup;
 			children = (
+				ABF1F6BF1C10F9A00018ABFA /* gifs */,
 				ABF8A2A01C0BD8F30049B539 /* sounds */,
 				ABF8A29F1C0BD8D50049B539 /* thumbnails */,
 				ABF8A29E1C0BD8CC0049B539 /* spectrograms */,
@@ -195,6 +212,9 @@
 		ABF8A29F1C0BD8D50049B539 /* thumbnails */ = {
 			isa = PBXGroup;
 			children = (
+				AB40D4011C10D61D003D9D6D /* thumbnail.png */,
+				AB40D4021C10D61D003D9D6D /* thumbnail@2x.png */,
+				AB40D4031C10D61D003D9D6D /* thumbnail@3x.png */,
 				ABF8A2A71C0BD9250049B539 /* 009.png */,
 			);
 			name = thumbnails;
@@ -313,16 +333,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABF1F6C11C10F9B00018ABFA /* filename.with.dots.gif in Resources */,
 				ABF8A2B11C0BD9400049B539 /* 007.jpg in Resources */,
 				ABF8A2A61C0BD91A0049B539 /* 003.m4a in Resources */,
+				AB40D4061C10D61D003D9D6D /* thumbnail@3x.png in Resources */,
 				ABF8A2A41C0BD91A0049B539 /* 001.m4a in Resources */,
 				ABF8A2AC1C0BD9310049B539 /* 004.jpg in Resources */,
 				ABF8A2A81C0BD9250049B539 /* 009.png in Resources */,
 				ABF8A2AE1C0BD9310049B539 /* 006.jpg in Resources */,
+				AB40D4041C10D61D003D9D6D /* thumbnail.png in Resources */,
 				ABF8A2B21C0BD9400049B539 /* 008.jpg in Resources */,
+				AB40D4051C10D61D003D9D6D /* thumbnail@2x.png in Resources */,
 				AB1855261C0BD21000DD67B3 /* LaunchScreen.storyboard in Resources */,
-				ABC6650E1C0E4F0900C95DC7 /* outside-of-project.png in Resources */,
 				ABF8A2A51C0BD91A0049B539 /* 002.m4a in Resources */,
+				ABC2E9E81C10F088004C7584 /* outside-of-project.png in Resources */,
 				ABF8A2AD1C0BD9310049B539 /* 005.jpg in Resources */,
 				AB1855231C0BD21000DD67B3 /* Assets.xcassets in Resources */,
 				AB1855211C0BD21000DD67B3 /* Main.storyboard in Resources */,

@@ -44,25 +44,25 @@ def test_from_diameter():
 
 def test_str():
     c = cl.Circle(4)
-    text = print(c)
+    text = str(c)
     assert "Circle with radius: 4.000000" in text
 
 
 def test_repr():
     c = cl.Circle(4)
     text = repr(c)
-    assert "Circle(4)" in text
+    assert "Circle(4.000000)" in text
 
 
 def test_addition():
     c1 = cl.Circle(2)
     c2 = cl.Circle(4)
-    assert c1 + c2 == "Circle(6)"
+    assert c1 + c2 == cl.Circle(6)
 
 
 def test_multiply():
     c1 = cl.Circle(2)
-    assert c1 * 3 == "Circle(6)"
+    assert c1 * 3 == cl.Circle(6)
 
 
 def test_comparisons():
@@ -77,7 +77,7 @@ def test_comparisons():
 def test_subtraction():
     c1 = cl.Circle(2)
     c2 = cl.Circle(4)
-    assert c2 - c1 == "Circle(2)"
+    assert c2 - c1 == cl.Circle(2)
 
 '''
 FOR REFERENCE: math.isclose(a, b, *, rel_tol=1e-09, abs_tol=0.0)

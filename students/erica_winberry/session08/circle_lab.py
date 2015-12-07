@@ -27,7 +27,7 @@ class Circle:
         return "Circle with radius: {:.6f}".format(self.radius)
 
     def __repr__(self):
-        return "Circle({:.0f})".format(self.radius)
+        return "Circle({:f})".format(self.radius)
 
     def __add__(self, other):
         new_radius = self.radius + other.radius

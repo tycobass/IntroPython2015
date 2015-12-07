@@ -4,37 +4,27 @@
 AssetChecker tests
 
 Please note that these tests rely on the sample xcode project 'xcassetchecker'
-to exist in the same folder as it uses it for the tests.
+to exist in the same folder as it uses it for the tests.  The 'assets' that
+exist, like 009.jpg, were just created using 'touch 009.jpg' so they aren't
+valid images in case you are wondering why you can't open them.  This keeps
+the size small and assetchecker is just looking for the files and not trying
+to open or validate that they are in a one valid format or another.
+
+
+Requirements:
+    You must have py.test installed from http://pytest.org
+    python3 -m pip install pytest
+
+Usage:
+    py.test -v test-asset-checker.py
+
 """
 
 import os
 import asset_checker
 
-# Module scope variables used for testing.  This helps me refactor out
-# repeated values from the test methods to prevent duplication.
 mypath = ''
 ac = None
-
-
-# def setup_module(module):
-#     """
-#     Runs ONCE before all tests run.  Since I'm changing a module-scope
-#     variable it is necessary to bring it into this scope using
-#     the global keyword.  Not really useful for testing.
-#     """
-
-#     global mypath
-#     mypath = "/Users/erosko/Desktop/python/IntroPython2015/" \
-#              "students/ericrosko/session10-final-project/"
-
-
-# def teardown_module(module):
-#     """
-#     Runs ONCE after all the tests in the module run.  Not really useful
-#     for testing
-#     """
-#     global mypath
-#     mypath = 'teardown_module'
 
 
 def setup_function(function):
@@ -43,8 +33,7 @@ def setup_function(function):
     XCUnit or CPPUnit testing.
     """
     global mypath
-    mypath = "/Users/erosko/Desktop/python/IntroPython2015/" \
-             "students/ericrosko/session10-final-project/"
+    mypath = os.getcwd()
     global ac
     ac = asset_checker.AssetChecker()
 
@@ -94,26 +83,35 @@ def test_search_tree_search_all_assets_in_cd_folder():
     ac.search_tree(fullpath, files, ['jpg', 'png', 'm4a'])
     print(files)
 
-    assert len(files) == 9, "Expected 9 assets in cd folder"
+    # note that the cd folder does not contain icon.png
+    assert len(files) == len(['004.jpg', '007.jpg', '008.jpg', '009.png',
+                              '001.m4a', '006.jpg', '005.jpg',
+                              '002.m4a', '003.m4a', 'thumbnail.png',
+                              'thumbnail@2x.png', 'thumbnail@3x.png']), \
+        "Expected 9 assets in cd folder"
 
 
 def test_search_tree_search_all_assets_in_xcassetchecker_project():
     files = []
     fullpath = os.path.join(mypath, 'xcassetchecker')
     ac.search_tree(fullpath, files, ['jpg', 'png', 'm4a'])
-    print(files)
+    print('test_search_tree_search_all_assets_in_xcassetchecker_project',
+          files)
 
-    assert len(files) == 10, "Expected 10 assets in Xcode project folder"
+    print(files)
+    assert len(files) == 13, "Expected 13 assets on disk Xcode project folder"
     assert set(files) == set(['007.jpg', '008.jpg', '001.m4a', '002.m4a',
                               '003.m4a', '004.jpg', '005.jpg', '006.jpg',
-                              '009.png', 'icon.png'])
+                              '009.png', 'icon.png', 'thumbnail.png',
+                              'thumbnail@2x.png', 'thumbnail@3x.png',
+                              'icon.png'])
 
 
 def test_find_project_file():
     fullpath = os.path.join(mypath, 'xcassetchecker')
     files = []
     ac.find_project_file(fullpath, files)
-    assert(len(files) == 1, "Expected only one project file")
+    assert len(files) == 1
     location = files[0]
     print(location)
     name, extension = os.path.splitext(location)
@@ -126,7 +124,7 @@ def test_find_project_file_default_directory():
     fullpath = os.getcwd()  # os.path.join(mypath, 'xcassetchecker')
     files = []
     ac.find_project_file(fullpath, files)
-    assert(len(files) == 1, "Expected only one project file")
+    assert len(files) == 1, "Expected only one project file"
     location = files[0]
     print(location)
 
@@ -171,9 +169,8 @@ def test_parse_project_file():
     ac.searchable_extensions = ['m4a']
 
     results = []
-    package_path = "/Users/erosko/Desktop/python/IntroPython2015/students" \
-        "/ericrosko/session10-final-project/xcassetchecker/" \
-        "xcassetchecker.xcodeproj"
+    package_path = \
+        os.path.join(mypath, 'xcassetchecker/xcassetchecker.xcodeproj')
 
     ac.parse_project_file(package_path, results)
 
@@ -195,12 +192,13 @@ def test_parse_project_file_for_all_extensions():
 
     results = list(set(results))
 
-    assert len(results) == 10
-    print("results: ", results)
+    print(results)
+    assert len(results) == 13, "Expected 13 files in project.pbxproj"
     assert set(results) == set(['009.png', '007.jpg',
                                 'outside-of-project.png', '002.m4a',
                                 '006.jpg', '005.jpg', '008.jpg', '001.m4a',
-                                '003.m4a', '004.jpg'])
+                                '003.m4a', '004.jpg', 'thumbnail.png',
+                                'thumbnail@2x.png', 'thumbnail@3x.png'])
 
 
 def test_perform_asset_audit():
@@ -209,14 +207,66 @@ def test_perform_asset_audit():
 
     assert ac.manifest_set == {'004.jpg', '006.jpg', '005.jpg', '009.png',
                                '007.jpg', '002.m4a', '003.m4a',
-                               'outside-of-project.png', '008.jpg', '001.m4a'}
+                               'outside-of-project.png', '008.jpg', '001.m4a',
+                               'thumbnail.png', 'thumbnail@2x.png',
+                               'thumbnail@3x.png'}
     assert ac.project_set == {'004.jpg', '007.jpg', '008.jpg', '009.png',
                               'icon.png', '001.m4a', '006.jpg', '005.jpg',
-                              '002.m4a', '003.m4a'}
+                              '002.m4a', '003.m4a', 'thumbnail.png',
+                              'thumbnail@2x.png', 'thumbnail@3x.png'}
 
 
 def test_output_results():
     ac.perform_asset_audit()
     results = ac.output_results()
     print(results)
-    assert False
+
+
+def test_find_files_on_disk_with_multiple_dots_in_name():
+    files = []
+    ac.search_tree(os.getcwd(), files, ['gif'])
+    print(files)
+    assert set(files) == {'filename.with.dots.gif'}
+
+
+def test_find_files_in_project_file_with_multiple_dots_in_filename():
+
+    line = "   ABF1F6C01C10F9B00018ABFA /* filename.with.dots.gif */ = " \
+           "{isa = PBXFileReference; lastKnownFileType = xxx; " \
+           "name = filename.with.dots.gif; path = cd/gifs/filename.with." \
+           "dots.gif; sourceTree = \"<group>\"; };"
+
+    ac.searchable_extensions = ['gif']
+    regexes = ac.compiled_regexes()
+
+    results = []
+    ac.parse_line(line, regexes, results)
+
+    # remove duplicates
+    results = list(set(results))
+
+    print(results)
+    assert results == ['filename.with.dots.gif']
+
+
+def test_init_with_searchable_extensions():
+    a_asset_checker = asset_checker.AssetChecker(searchable_extensions=['gif'])
+    assert a_asset_checker.searchable_extensions == ['gif']
+
+
+def test_init_with_search_path():
+    a_asset_checker = asset_checker.AssetChecker(search_path='./home/abc/def')
+    assert a_asset_checker.search_path == './home/abc/def'
+
+
+def test_init_with_show_all_output():
+    a_asset_checker = asset_checker.AssetChecker(show_all_output=True)
+    assert a_asset_checker.show_all_output is True
+
+
+def test_init_with_default_values():
+    a_asset_checker = asset_checker.AssetChecker()
+    assert a_asset_checker.searchable_extensions == \
+        ['m4a', 'jpg', 'png', 'ico']
+    assert a_asset_checker.search_path == os.getcwd()
+    assert a_asset_checker.show_all_output is True
