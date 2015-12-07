@@ -1,0 +1,11 @@
+Potential duplicates found:
+Although the names may differ, the contents are identical
+========================
+		/home/tycobass/IntroPython2015/students/eric_v/Session_08/Project/Directory_crawler_log.txt
+		/home/tycobass/IntroPython2015/students/eric_v/Session_08/Project/Trial_quotationa.txt
+		/home/tycobass/IntroPython2015/students/eric_v/Session_08/Project/Directory_crawler_listing.txt
+		/home/tycobass/IntroPython2015/students/eric_v/Session_08/Project/key_test/key_test.txt
+======================
+		/home/tycobass/IntroPython2015/students/eric_v/Session_08/Project/try_examples.py
+		/home/tycobass/IntroPython2015/students/eric_v/Session_08/Project/try_except_examples.py
+======================
