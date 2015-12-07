@@ -1,19 +1,21 @@
 import json
 from measurement.measures import volume
-from os.path import dirname, realpath
+from os.path import dirname, realpath, join
 from os import listdir
+location = dirname(realpath(__file__))
 
 
 def main_menu(): # main menu
+    print(location)
     menu_choice = input("\nPack List V0.02\n"
                         "---------------\n"
-                        "1. Use Existing List\n"
-                        "2. Create New List\n"
-                        "3. Exit\n\n>>> ")
+                        "1. Use Existing List\n" # works
+                        "2. Create New List\n" # works just creates the .json file with name
+                        "3. Exit\n\n>>> ") # works
     if menu_choice == "1":
         use_existing()
     elif menu_choice == "2":
-        create_new()
+        create_new_list(input("\nEnter new list name: "))
     elif menu_choice == "3":
         exit_pl()
     else:
@@ -24,20 +26,20 @@ def main_menu(): # main menu
 def current_lists(): # displays all . josn files in current dir
         print("\nCurrent Lists:\n"
               "--------------")
-        for files in listdir(dirname(realpath(__file__))):
-            if files.endswith(".json"):
-                print(files.strip(".json"))
+        for files in listdir(location):
+            if files.endswith(".json"): # searches out .json files
+                print(files[:-5]) # removes the .json for ease of reading
 
 
 def use_existing():
     current_lists()
     list_name = input("\nEnter list name: ")
-    if list_name + ".json" in listdir(dirname(realpath(__file__))):
+    if list_name + ".json" in listdir(location): #adds the .json to the name
         sub_menu(list_name)
     else:
         make_choice = input("\n\aList does not exist, create new list? Y/N ")
         if make_choice.lower() == "y":
-            create_new(list_name)
+            create_new_list(list_name)
         elif make_choice.lower() == "n":
             main_menu()
         else:
@@ -45,18 +47,18 @@ def use_existing():
             main_menu()
 
 
-def sub_menu(invlist):
-    print("\n" + invlist)
-    sub_choice = input("-"*len(invlist)+"\n"
+def sub_menu(list_name):
+    print("\n" + list_name)
+    sub_choice = input("-"*len(list_name)+"\n"
                        "1. View List\n"
                        "2. Edit List\n"
                        "3. Generate Pack List\n"
-                       "4. Return To Main Menu\n"
-                       "5. Exit Program\n\n>>> ")
+                       "4. Return To Main Menu\n" # works
+                       "5. Exit Program\n\n>>> ") # works
     if sub_choice == "1":
         pass
     elif sub_choice == "2":
-        pass
+        edit_list(list_name)
     elif sub_choice == "3":
         pack_list()
     elif sub_choice == "4":
@@ -67,21 +69,11 @@ def sub_menu(invlist):
         pass
 
 
-def create_new(list_name=None):
-    new_list = {}
-    if list_name is None:
-        list_name = input("\nEnter new list name\n\n>>> ")
-    #print("\nType 'Quit' anytime to return main menu.")
-    new_item = input("\nEnter item: ")
-    new_par = input("\nEnter par: ")
-    new_list[new_item] = new_par
-    quit_continue = input("\n'Q' to quit and save or 'ENTER' to add item.")
-    if quit_continue.lower() == "q":
-        main_menu()
-    elif quit_continue.lower() != "q":
-        create_new(list_name)
-    print(list_name,"!!!!")
-    #pass
+def create_new_list(list_name):
+    with open(join(location, "{}.json".format(list_name)), "w") as f:
+        json.dump(None, f)
+    print("\nNew inventory file '{}' created.".format(list_name))
+    edit_list(list_name)
 
 
 def exit_pl(): # exits program
@@ -92,6 +84,47 @@ def exit_pl(): # exits program
 def pack_list():
     pass
 
+
+def edit_list(list_name):
+    #data = json_loads(list_name)
+    print("Enter 'Q' or 'Quit' anytime to save data and return to main menu")
+    while True:
+        item = input("Enter new item: ")
+        if item.lower() == "quit" or item.lower() == 'q':
+            main_menu()
+        par = input("Set par: ")
+        if par.lower() == "quit" or par.lower() == 'q':
+            main_menu()
+        update_json_file(list_name, item, par)
+
+    #pass
+
+
+def json_dumps():
+    pass
+
+
+def json_loads(list_name):
+    json_file = open(list_name + ".json", "r")
+    data = json.load(json_file)
+    json_file.close()
+    return data
+
+
+def update_json_file(list_name, item, par):
+
+    jsonFile = open(join(location, "{}.json".format(list_name)), "r")
+    data = json.load(jsonFile)
+    jsonFile.close()
+
+
+    tmp = data[item]
+    data[item] = par
+    #data["mode"] = "replay"
+
+    jsonFile = open(join(location, "{}.json".format(list_name)), "w+")
+    jsonFile.write(json.dumps(data))
+    jsonFile.close()
 
 main_menu()
 
