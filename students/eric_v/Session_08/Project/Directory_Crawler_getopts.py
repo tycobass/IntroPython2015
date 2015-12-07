@@ -46,7 +46,7 @@ def hash_identifier(file_path, blocksize = 65536):
     return hash_calculate.hexdigest()
  
 
-def file_hash_values(top_level_folder):
+def file_hash_values(top_level_folder, filename_listing, log_file):
     """
     Use the os.walk method to traverse the top_level_folder provided by user from
         top to bottom evaluating every file.
@@ -66,6 +66,13 @@ def file_hash_values(top_level_folder):
 
     list_of_files = {}
     counter = 0
+    f_listing = open('filename_listing','w')
+    f_log = open('log_file','w')
+
+
+    filename_listing = arguments[0]
+    log_file = arguments[1]
+
     for dirName, subdirs, fileList in os.walk(top_level_folder):
         print('\n', 'Scanning the top level directory %s...' % dirName)
         if (subdirs):
@@ -73,14 +80,14 @@ def file_hash_values(top_level_folder):
 
         for filename in fileList:
             counter += 1
-            print ('counter value - ', counter)
-
+            print('filename_listing = ', filename_listing)
+            print('log_file = ', log_file)
 
             # Generate the full path to filename that will be hashed, 
             # exception handler addresses the case where filename contains illegal Windows filename characters
             file_path = os.path.join(dirName, filename)
             try:
-                print (counter, ' - pathname to be hashed - ', file_path)
+                print (counter, ' - pathname to be hashed - ', file_path, file=f_listing)
             except UnicodeEncodeError:
                 print ('pathname unprintable')
                 pass
@@ -101,6 +108,8 @@ def file_hash_values(top_level_folder):
             else:
                 list_of_files[file_hash] = [file_path]
 
+    f_log.close() 
+    f_listing.close() 
     return list_of_files
  
  
@@ -139,13 +148,14 @@ def printResults(dictionary1):
 def parse_commandline_arguments ():
     """
     Use getopt to parse the command line arguments.
+    Expected usage: Directory_Crawler.py -f <filename_listing> -l <log_file> directory1 <directory2> <directory3>
     """
 
     filename_listing = 'Directory_crawler_listing.txt'
     log_file = 'Directory_crawler_log.txt'
 
 
-    options, remainder = getopt.getopt(sys.argv[1:], 'f:l:', ['filename_listing=', 
+    options, directories = getopt.getopt(sys.argv[1:], 'f:l:', ['filename_listing=', 
                                                                                     'log_file=', 
                                                                                     ])
 
@@ -166,14 +176,20 @@ def parse_commandline_arguments ():
 # begin processing
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
+
+    arguments = parse_commandline_arguments ()
+    filename_listing = arguments[0]
+    log_file = arguments[1]
+    folders = arguments[2]
+
+    if len(folders) >= 1:
         list_of_files = {}
-        folders = sys.argv[1:]
+        #folders = directories[1:]
         for i in folders:
             # Iterate the folders given
             if os.path.exists(i):
                 # Find the duplicated files and append them to the dups
-                joinDictionaries(list_of_files, file_hash_values(i))
+                joinDictionaries(list_of_files, file_hash_values(i, filename_listing, log_file))
             else:
                 print('\n', '!!!! Error !!!!')
                 print(' %s could not be found, please verify path and try again' % i)

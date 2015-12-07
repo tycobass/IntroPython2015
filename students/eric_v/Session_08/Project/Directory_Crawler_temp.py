@@ -169,6 +169,8 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         list_of_files = {}
         folders = sys.argv[1:]
+        print (folders)
+        sys.exit()
         for i in folders:
             # Iterate the folders given
             if os.path.exists(i):
