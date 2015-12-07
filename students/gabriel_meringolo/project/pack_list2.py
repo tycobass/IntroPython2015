@@ -94,32 +94,6 @@ def edit_list(list_name):
             main_menu()
 
 
-
-#def edit_list(list_name):
-#    print("Enter 'Q' or 'Quit' anytime to save data and return to main menu")
-#    while True:
-#        item = input("Enter new item: ")
-#        if item.lower() == "quit" or item.lower() == 'q':
-#            main_menu()
-#        par = input("Set par: ")
-#        if par.lower() == "quit" or par.lower() == 'q':
-#            main_menu()
-#        update_json_file(list_name, item, par)
-#
-#        again = input("'ENTER' to input another item,\n 'Q' to return to main menu\n>>> ")
-
-
-def json_dumps():
-    pass
-
-
-def json_loads(list_name):
-    json_file = open(list_name + ".json", "r")
-    data = json.load(json_file)
-    json_file.close()
-    return data
-
-
 def update_json_file(list_name, item, par):
     with open(join(location, "{}.json".format(list_name)), "r") as f:
         data = json.load(f)
