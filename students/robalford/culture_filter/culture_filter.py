@@ -95,7 +95,9 @@ class Book(Recommender):
 
 # Web scrapers for various online publications
 
-# a list to store instances of each publication
+# a list to store instances of each publication for batch processing
+# could this be a class level attribute of Publication?
+
 all_publications = []
 
 
@@ -127,11 +129,13 @@ class Publication:
                                                      "last reviewed": str(self.last_updated)}
         self.medium.save_to_file()
 
-    # generic scraper methods that will be useful to all publications
-    # for some pubs, these are all you need, so you can instantiate as
-    # instances of Publication class, rather than inheriting
-    def scrape_target_div(self, html, target_div):
-        return html.target_div.contents[0]
+    # this wont work well because the interface is different for inherited methods
+    # def scrape(self, containing_class, artist_div, work_div):
+    #     reviews = self.html.find_all(class_=containing_class)
+    #     # add conditional code to only add a certain number at a time, as
+    #     # in pitchfork scraper below. (if length more than 10, only add 10)
+    #     for r in reviews:
+    #         self.recommendations.append((r.artist_div.contents[0], r.work_div.contents[0]))
 
 # Instantiate various publications here and append to all_publications
 
