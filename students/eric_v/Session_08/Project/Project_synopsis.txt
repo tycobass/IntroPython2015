@@ -2,3 +2,84 @@ In my household we have multiple computers all backed up to several location wit
 My project will be a build a file crawling tool that will discover duplicate files in a given file 
 structure and list them for potential deletion.  Eventually, I want to do the same thing with pictures 
 on my storage devices at home.
+
+from iter import ??
+my_iter = ??(2,3,4)
+for i in my_iter:
+print (i)
+
+In [1]: from sim
+simple_iterator simplegeneric
+
+In [1]: from simple_iterator import IterateMe_1
+  File "C:\work_area\Python\IntroPython2015\students\eric_v\Session_09\simple_iterator.py", line 21
+    self.current +=
+                    ^
+SyntaxError: invalid syntax
+
+
+In [2]: from simple_iterator import IterateMe_1
+
+In [3]: it = IterateMe_1(2)
+
+In [4]: for i in it:
+   ...:     print(i)
+   ...:
+2
+3
+4
+
+In [5]:
+
+In [18]: def recyclables():
+   ....:     yield 'cans'
+   ....:     yield 'bottles'
+   ....:     yield 'paper'
+   ....:
+
+In [19]: for i in recyclables():
+   ....:     print(i)
+   ....:
+cans
+bottles
+paper
+
+In [20]: test = recyclables()
+
+In [21]: next(test)
+Out[21]: 'cans'
+
+In [22]: next(test)
+Out[22]: 'bottles'
+
+In [23]: next(test)
+Out[23]: 'paper'
+
+In [24]: next(test)
+---------------------------------------------------------------------------
+StopIteration                             Traceback (most recent call last)
+<ipython-input-24-911ea584f8be> in <module>()
+----> 1 next(test)
+
+StopIteration:
+
+In [36]: from yield_example import counter
+
+In [30]: test = counter()
+
+In [48]: for i in test:
+   ....:     print(i)
+   ....:
+counter: starting counter
+counter: yield -2
+-2
+counter: yield -1
+-1
+counter: yield 0
+0
+counter: yield 1
+1
+counter: yield 2
+2
+counter: yield 3
+3
