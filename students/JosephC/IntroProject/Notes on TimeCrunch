@@ -33,6 +33,16 @@ fuck no
 fuck no
 
 
-One idea is to do foo, bar, baz, etc, each producing a different series of iterations though a single week, **combining these lists** [foo.extend(bar)] and then going through them to see if there are gaps of time to work out in .  [g = sorted(foo)]
+One idea is to do foo, bar, baz, etc, each producing a different series of iterations though a single week, **combining these 
+lists** [foo.extend(bar)] and then going through them to see if there are gaps of time to work out in .  [g = sorted(foo)]
 
 the lists stored in foo, bar, etc, can be the meetings and work scheduled
+
+rather than have a week full of dates, try fitting in the workout times for a day instead
+
+foo, bar, and baz all represent different scheduling events.  So, what I need is a way to see if there is a gap in which 
+my defined exercises would fit in into.  How do I test for that?
+
+the below does not work
+  #if workout not in foo:
+    #foo.extend(workout) 
