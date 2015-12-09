@@ -1,6 +1,6 @@
-from urllib.request import urlopen
 from datetime import date
 import json
+import requests
 from bs4 import BeautifulSoup
 
 
@@ -112,8 +112,8 @@ class Publication:
 
     @property
     def html(self):
-        source = urlopen(self.url)
-        html = BeautifulSoup(source.read(), 'html.parser')
+        source = requests.get(self.url)
+        html = BeautifulSoup(source.text, 'html.parser')
         return html
 
     def add_recommendations(self):
@@ -158,7 +158,7 @@ class Pitchfork(Publication):
 
     def scrape(self):
         reviews = self.html.find_all(class_='info')
-        for r in reviews[:5]:
+        for r in reviews[:10]:
             self.recommendations.append((r.h1.contents[0], r.h2.contents[0]))
 
 pitchfork = Pitchfork()
@@ -173,7 +173,7 @@ class PitchforkSongs(Pitchfork):
     # needs its own scrape method, different html structrure
     def scrape(self):
         reviews = self.html.find_all(class_='info')
-        for r in reviews[:5]:
+        for r in reviews[:10]:
             artist = r.find('span', class_='artist').contents[0].strip()
             artist = artist[:-1]
             title = r.find('span', class_='title').contents[0].strip()
@@ -182,6 +182,27 @@ class PitchforkSongs(Pitchfork):
 
 p4k_songs = PitchforkSongs()
 all_publications.append(p4k_songs)
+
+
+class Stereogum(Publication):
+    title = 'Sterogum'
+    url = "http://www.stereogum.com/category/franchises/album-of-the-week/"
+    rank = 3
+    medium = Album()
+
+    def __init__(self, recommendations=None):
+        self.last_updated = date.today()
+        self.recommendations = []
+
+    def scrape(self):
+        reviews = self.html.find_all('h2')
+        for r in reviews[:10]:
+            artist = r.contents[0][20:].strip()
+            album = str(r.contents[1])[4:-5]
+            self.recommendations.append((artist, album))
+
+stereogum = Stereogum()
+all_publications.append(stereogum)
 
 # Run all your scrapers. This may take a while.
 
