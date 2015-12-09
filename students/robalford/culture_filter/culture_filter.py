@@ -204,9 +204,55 @@ class Stereogum(Publication):
 stereogum = Stereogum()
 all_publications.append(stereogum)
 
+
+class PasteMusic(Publication):
+    title = 'Paste Magazine: Music'
+    url = "http://www.pastemagazine.com/music"
+    rank = 3
+    medium = Album()
+
+    def __init__(self, recommendations=None):
+        self.last_updated = date.today()
+        self.recommendations = []
+
+    # couldnt test because website was struggling
+    def scrape(self):
+        reviews = self.html.find_all(class_='nof articles reviews')
+        # there must be a less convoluted way to do this!
+        for i in range(1, len(reviews[0].contents), 2):
+            # if rating is greater than 8, add to recommendations
+            if float(reviews[0].contents[i].contents[5].contents[3].contents[0]) >= 8:
+                artist = str(reviews[0].contents[i].contents[3].contents[0])[:-2]
+                album = str(reviews[0].contents[i].contents[3].contents[1])[3:-4]
+                self.recommendations.append((artist, album))
+
+paste = PasteMusic()
+all_publications.append(paste)
+
+
+class PasteMovies(Publication):
+    title = 'Paste Magazine: Movies'
+    url = "http://www.pastemagazine.com/movies"
+    rank = 3
+    medium = Movie()
+
+    def __init__(self, recommendations=None):
+        self.last_updated = date.today()
+        self.recommendations = []
+
+    def scrape(self):
+        reviews = self.html.find_all(class_='nof articles reviews')
+        # there must be a less convoluted way to do this!
+        for i in range(1, len(reviews[0].contents), 2):
+            # if rating is greater than 8, add to recommendations
+            if float(reviews[0].contents[i].contents[5].contents[3].contents[0]) >= 8:
+                # note subtle differences between this and the music page
+                artist = str(reviews[0].contents[i].contents[3].contents[0])[3:-4]
+                album = ' '  # no director listed here, will need another scraper to get it
+                self.recommendations.append((artist, album))
+
+
 # Run all your scrapers. This may take a while.
-
-
 def scrape_all_and_save():
     for publication in all_publications:
         publication.scrape()
