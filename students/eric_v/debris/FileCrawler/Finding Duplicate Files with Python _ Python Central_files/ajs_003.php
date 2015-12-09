@@ -1,0 +1,5 @@
+var OX_dc4941c8 = '';
+OX_dc4941c8 += "<"+"!-- BEGIN JS TAG - TheEighth - 300*250 - JS - CB - ATF <"+" - DO NOT MODIFY -->\n";
+OX_dc4941c8 += "<"+"SCRIPT SRC=\"http://ib.adnxs.com/ttj?id=5608989&cb=7000911d09\" TYPE=\"text/javascript\"><"+"/SCRIPT>\n";
+OX_dc4941c8 += "<"+"!-- END TAG --><"+"div id=\'beacon_7000911d09\' style=\'position: absolute; left: 0px; top: 0px; visibility: hidden;\'><"+"img src=\'http://ads.egrappler.com/www/delivery/lg.php?bannerid=70&amp;campaignid=17&amp;zoneid=25&amp;OACCAP=10000000&amp;loc=http%3A%2F%2Fpythoncentral.io%2Ffinding-duplicate-files-with-python%2F&amp;referer=http%3A%2F%2Fr.search.yahoo.com%2F_ylt%3DAwrTccq69VlWC_cA0v0nnIlQ%3B_ylu%3DX3oDMTByb2lvbXVuBGNvbG8DZ3ExBHBvcwMxBHZ0aWQDBHNlYwNzcg--%2FRV%3D2%2FRE%3D1448764987%2FRO%3D10%2FRU%3Dhttp%253a%252f%252fpythoncentral.io%252ffinding-duplicate-files-with-python%252f%2FRK%3D0%2FRS%3D7ReYweCQY4CXTsFF9UrRHV9.AUo-&amp;cb=7000911d09\' width=\'0\' height=\'0\' alt=\'\' style=\'width: 0px; height: 0px;\' /><"+"/div>\n";
+document.write(OX_dc4941c8);
