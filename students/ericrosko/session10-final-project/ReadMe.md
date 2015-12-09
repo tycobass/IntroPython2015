@@ -34,7 +34,7 @@ A common way this happens is that an assignment has some included assets, like i
 
 The Xcode project file is just a package, so I can browse into it just like it is possible with a directory.  This makes it possible to parse the part of the project file which contains all file references.  The file is just plain text which makes it easy.
 
+
 # Goals
 * Find any images that are not included in the project folder
 * Find any images that exist in the project but are not needed by the project
-
