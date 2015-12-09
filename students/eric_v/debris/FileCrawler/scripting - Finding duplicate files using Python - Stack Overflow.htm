@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/QAPage"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>scripting - Finding duplicate files using Python - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Finding duplicate files using Python">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="This was a question that appeared in a Python coding competition and was wondering how this can be achieved.
+
+Problem statement: 
+
+You have two directories(with possible subdirectories in it). Your ">
+    <meta property="og:url" content="http://stackoverflow.com/questions/9510865/finding-duplicate-files-using-python">
+    <link rel="canonical" href="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/finding-duplicate-files-using-python_002.htm">
+
+    
+    
+    <script src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/ados" async="" type="text/javascript"></script><script src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/quant.js" async=""></script><script src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/beacon.js" async=""></script><script src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/analytics.js" async=""></script><script src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/ados.js" async="" type="text/javascript"></script><script src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/jquery.js"></script>
+    <script src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question 'Finding duplicate files using Python'" href="http://stackoverflow.com/feeds/question/9510865">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/9510865/finding-duplicate-files-using-python">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/9510865/finding-duplicate-files-using-python">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/9510865/finding-duplicate-files-using-python">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:1,shownCommentCount:1,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:9510865});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '9510865');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1448736798,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"c7ac8b48fd02804fd812e69845212348","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"5ac4b14f5a62","js/moderator.en.js":"90fa41951f31","js/full-anon.en.js":"49d7ff3f7760","js/full.en.js":"8b0e2536ec57","js/wmd.en.js":"80fae2014a93","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"70c964553337","js/help.en.js":"f58b9bbdda52","js/tageditor.en.js":"f33517cbd4f8","js/tageditornew.en.js":"f3fcdb1f5ade","js/inline-tag-editing.en.js":"c8fe23f81191","js/revisions.en.js":"6aca57a6c709","js/review.en.js":"d51e8323a3c5","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"09973f28b129","js/explore-qlist.en.js":"415c9ef1f829","js/events.en.js":"39a9d5929fd4","js/keyboard-shortcuts.en.js":"363601f71b02","js/external-editor.en.js":"cf58cc6630ef","js/external-editor.en.js":"cf58cc6630ef","js/snippet-javascript.en.js":"a39adff9cc0c","js/snippet-javascript-codemirror.en.js":"7ca44625000c"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/full-anon.js" async=""></script><script src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/snippet-javascript.js" async=""></script><script src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/post-validation.js" async=""></script><script src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/prettify-full.js" async=""></script><script src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/external-editor.js" async=""></script><script src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/adFeedback.js" type="text/javascript"></script><link href="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/adFeedback.css" rel="stylesheet"><script src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/p.js" async=""></script><link href="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/jobs.css" rel="stylesheet" type="text/css"></head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f9510865%2ffinding-duplicate-files-using-python" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f9510865%2ffinding-duplicate-files-using-python" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 150 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f9510865%2ffinding-duplicate-files-using-python" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f9510865%2ffinding-duplicate-files-using-python" class="login-link">log in</a>
+
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=anon-topbar">stack overflow careers</a>
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" placeholder="search" tabindex="1" autocomplete="off" maxlength="240" type="text">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                                                                        <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+			<!--googleoff: all-->
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+                <a href="http://stackoverflow.com/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f9510865%2ffinding-duplicate-files-using-python" id="tell-me-more" class="button">Sign up</a>
+            <span id="close"><a title="click to dismiss">×</a></span>
+        </span>
+        <div id="blurb">
+            Stack Overflow is a community of 4.7 million programmers, 
+just like you, helping each other. Join them; it only takes a minute:
+        </div>        
+    </div>
+    <script>
+        StackExchange.ready(function() {
+            var clickSource = $("body").attr("class") + '-mini';
+            var location = 0;
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+                location = 4;
+            }
+
+            $('#tell-me-more').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+                });
+            });
+            $('#herobox-mini #close').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: "close", location: location }, true);
+                });
+                $.cookie("hero", "none", { path: "/", expires: 365 });
+                var $hero = $("#herobox-mini");
+                $hero.slideUp('fast', function () { $hero.remove(); });
+                return false;
+            });
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/9510865/finding-duplicate-files-using-python" class="question-hyperlink">Finding duplicate files using Python</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="9510865" id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1408678508",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1408678508">
+            <iframe scrolling="no" id="ados_frame_adzerk1408678508_909873" frameborder="0" height="90" width="728"></iframe><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/i_004.gif" style="position:absolute;" border="0" height="0px" width="0px"><div class="adzerk-vote-controls" style="display: none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input value="12" name="downvoteReason" type="radio">Uninteresting</label></li><li><label><input value="13" name="downvoteReason" type="radio">Misleading</label></li><li><label><input value="14" name="downvoteReason" type="radio">Offensive</label></li><li><label><input value="15" name="downvoteReason" type="radio">Repetitive</label></li><li><label><input value="16" name="downvoteReason" type="radio">Other</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="9510865" type="hidden">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>1</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>This was a question that appeared in a Python coding competition and was wondering how this can be achieved.</p>
+
+<p>Problem statement: </p>
+
+<p>You have two directories(with possible subdirectories in it). Your 
+script should find out duplicate files by comparing contents of the <em>same filenames</em> in the two root directories</p>
+
+<p>Result:
+FAIL: If contents of atleast one same filename differs</p>
+
+<p>PASS: Otherwise</p>
+
+<p>Here's a sample figure</p>
+
+<pre style="" class="lang-py prettyprint prettyprinted"><code><span class="pln"> </span><span class="pun">/</span><span class="pln">dir1                       </span><span class="pun">/</span><span class="pln">dir2
+       </span><span class="pun">--</span><span class="pln"> file1                   </span><span class="pun">--</span><span class="pln"> file1 
+       </span><span class="pun">--</span><span class="pln"> file2                   </span><span class="pun">--</span><span class="pln"> fileA  
+       </span><span class="pun">--</span><span class="pln"> file3                   </span><span class="pun">--</span><span class="pln"> fileB   
+       </span><span class="pun">--</span><span class="pln"> </span><span class="pun">....</span><span class="pln">
+       </span><span class="pun">--</span><span class="pln"> </span><span class="pun">...</span><span class="pln">
+       </span><span class="pun">---/</span><span class="pln">subDir1
+            </span><span class="pun">--</span><span class="pln">file1
+            </span><span class="pun">--</span><span class="pln">file2
+
+file1 of dir1 contains </span><span class="pun">:-</span><span class="pln"> foo bar
+file1  of dir2 contains </span><span class="pun">:-</span><span class="pln"> foo 
+</span><span class="typ">Result</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="typ">Fail</span><span class="pln">
+
+file1  of dir1 contains </span><span class="pun">:-</span><span class="pln"> foo bar
+file1  of dir2 contains </span><span class="pun">:-</span><span class="pln"> foo bar
+</span><span class="typ">Result</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="typ">Pass</span><span class="pun">.</span></code></pre>
+
+<p>I attempted using hashing by file size, but it was obviously not the way :)</p>
+
+<p>PS: Any scripting language can be used.</p>
+
+<p>Thanks
+Kelly</p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/python" class="post-tag js-gps-track" title="show questions tagged 'python'" rel="tag">python</a> <a href="http://stackoverflow.com/questions/tagged/scripting" class="post-tag js-gps-track" title="show questions tagged 'scripting'" rel="tag">scripting</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/9510865" title="short permalink to this question" class="short-link" id="link-post-9510865">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/9510865/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/9510865/revisions" title="show all edits to this post">edited <span title="2015-01-21 18:27:38Z" class="relativetime">Jan 21 at 18:27</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2555451/icodez"><div class="gravatar-wrapper-32"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/d8F3H.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2555451/icodez">iCodez</a><br>
+        <span class="reputation-score" title="reputation score 69289" dir="ltr">69.3k</span><span title="15 gold badges"><span class="badge1"></span><span class="badgecount">15</span></span><span title="81 silver badges"><span class="badge2"></span><span class="badgecount">81</span></span><span title="102 bronze badges"><span class="badge3"></span><span class="badgecount">102</span></span>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2012-03-01 05:00:44Z" class="relativetime">Mar 1 '12 at 5:00</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/565807/kelly"><div class="gravatar-wrapper-32"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/e34dcfe22d72347872874c76e10599f9.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/565807/kelly">Kelly</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">76</span><span title="3 silver badges"><span class="badge2"></span><span class="badgecount">3</span></span><span title="18 bronze badges"><span class="badge3"></span><span class="badgecount">18</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-9510865" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-12045361" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I was going to explain a method but I think it's better to just refer you to the complete program <a href="http://www.ssokolow.com/scripts/fastdupes.py" rel="nofollow">ssokolow.com/scripts/fastdupes.py</a>
+ (I didn't write it but I use a modified version of it), looking at it 
+would be better than me attempting to explain how it works.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/388787/dan-d" title="27765 reputation" class="comment-user">Dan D.</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment12045361_9510865"><span title="2012-03-01 05:09:57Z" class="relativetime-clean">Mar 1 '12 at 5:09</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-9510865" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								2 Answers
+                                <span style="display:none;" itemprop="answerCount">2</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/9510865/finding-duplicate-files-using-python?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">active</a>
+        <a href="http://stackoverflow.com/questions/9510865/finding-duplicate-files-using-python?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/9510865/finding-duplicate-files-using-python?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="9510947"></a>
+<div id="answer-9510947" class="answer" data-answerid="9510947" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="9510947" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>You can solve this in a tiered manner.</p>
+
+<ol>
+<li>Go through each dir/subdir, compare the size of the files.</li>
+<li>If the file size is different =&gt; fail</li>
+<li>Compute the SHA1 hash of each file if that does not match =&gt; fail</li>
+<li>If SHA1 hashes match do a byte by byte comparision of the contents
+in    the file to be absolutely sure.</li>
+</ol>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/9510947" title="short permalink to this answer" class="short-link" id="link-post-9510947">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/9510947/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-03-01 05:10:00Z" class="relativetime">Mar 1 '12 at 5:10</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/225260/anijhaw"><div class="gravatar-wrapper-32"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/586d5e4913fea4540cb57bb9814d1c57.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/225260/anijhaw">anijhaw</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">3,231</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="18 silver badges"><span class="badge2"></span><span class="badgecount">18</span></span><span title="32 bronze badges"><span class="badge3"></span><span class="badgecount">32</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-9510947" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-12049190" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Can you please provide a pseudo code? I am following the post given here but not able to get the result <a href="http://code.activestate.com/recipes/362459-dupinator-detect-and-delete-duplicate-files/" rel="nofollow">code.activestate.com/recipes/…</a></span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/565807/kelly" title="76 reputation" class="comment-user owner">Kelly</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment12049190_9510947"><span title="2012-03-01 09:43:02Z" class="relativetime-clean">Mar 1 '12 at 9:43</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-9510947" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1765620120",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1765620120"><a href="http://engine.adzerk.net/r?e=eyJhdiI6MTAzMjA4LCJhdCI6NCwiYnQiOjAsImNtIjozMjEzOTEsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMjMzNDAxLCJkaSI6IjZhMjg5MTExZjY4NjRkNGFhNDM3ZWVmN2E5YmUxNGJiIiwiZG0iOjEsImZjIjoxMzE2MDIyLCJmbCI6ODYxMTMwLCJpcCI6IjUwLjEzMi4zMy4xNzQiLCJrdyI6InB5dGhvbixzY3JpcHRpbmciLCJudyI6MjIsInBjIjo0LjY4LCJlYyI6NC42OCwicHIiOjE1NjcsInJ0IjoyLCJyZiI6Imh0dHA6Ly9yLnNlYXJjaC55YWhvby5jb20vX3lsdD1Bd3JUY2NxNjlWbFdDX2NBMlAwbm5JbFE7X3lsdT1YM29ETVRCeU56ZHFielpqQkdOdmJHOERaM0V4QkhCdmN3TXpCSFowYVdRREJITmxZd056WXctLS9SVj0yL1JFPTE0NDg3NjQ5ODcvUk89MTAvUlU9aHR0cDovL3N0YWNrb3ZlcmZsb3cuY29tL3F1ZXN0aW9ucy85NTEwODY1L2ZpbmRpbmctZHVwbGljYXRlLWZpbGVzLXVzaW5nLXB5dGhvbi9SSz0wL1JTPU9FUDc5LlRTSEhjZU1YRFAuXzdmYjduVkU2TS0iLCJzdCI6ODI3NywidWsiOiJ1ZTEtODQ0Y2E2YWI3YTU1NGUxMjhlZjIwNmNlZjBlN2UwMWEiLCJ6biI6NDQsInRzIjoxNDQ4NzM2Nzk5MTc4LCJiZiI6dHJ1ZSwicG4iOiJhZHplcmsxNzY1NjIwMTIwIiwidXIiOiJodHRwczovL2x1Y2lkd29ya3MuY29tL3Jlc291cmNlcy9hc2stdGhlLWV4cGVydHMvIn0&amp;s=NU_lNaZ2VpF6WJQ9EWYDxnUHJYQ" rel="nofollow" target="_blank" title=""><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/7089f200930e4dea86f54703dc1f831b.gif" title="" alt="" border="0" height="90" width="728"></a><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/i_003.gif" style="position:absolute;" border="0" height="0px" width="0px"><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input value="12" name="downvoteReason" type="radio">Uninteresting</label></li><li><label><input value="13" name="downvoteReason" type="radio">Misleading</label></li><li><label><input value="14" name="downvoteReason" type="radio">Offensive</label></li><li><label><input value="15" name="downvoteReason" type="radio">Repetitive</label></li><li><label><input value="16" name="downvoteReason" type="radio">Other</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div></div>
+  
+<a name="9512631"></a>
+<div id="answer-9512631" class="answer" data-answerid="9512631" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="9512631" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Have a look at the <a href="http://docs.python.org/library/filecmp.html" rel="nofollow">filecmp module</a> in the standard library.</p>
+
+<p>Computing hashes is not useful when each file is compared to just one
+ other file. The entire file must be read to compute a hash, and read 
+again to confirm a match. By contrast, a direct comparison can be 
+aborted at first difference. </p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/9512631" title="short permalink to this answer" class="short-link" id="link-post-9512631">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/9512631/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/9512631/revisions" title="show all edits to this post">edited <span title="2012-03-01 19:54:00Z" class="relativetime">Mar 1 '12 at 19:54</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-03-01 08:07:30Z" class="relativetime">Mar 1 '12 at 8:07</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/222914/janne-karila"><div class="gravatar-wrapper-32"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/2dc655b4724b452c875e666f6d88804b.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/222914/janne-karila">Janne Karila</a><br>
+        <span class="reputation-score" title="reputation score 12965" dir="ltr">13k</span><span title="13 silver badges"><span class="badge2"></span><span class="badgecount">13</span></span><span title="33 bronze badges"><span class="badge3"></span><span class="badgecount">33</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-9512631" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-9512631" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="/questions/9510865/answer/submit" method="post" class="post-form">
+						    <input id="post-id" value="9510865" type="hidden">
+                            <input id="qualityBanWarningShown" name="qualityBanWarningShown" value="false" type="hidden">
+                            <input name="referrer" value="http://r.search.yahoo.com/_ylt=AwrTccq69VlWC_cA2P0nnIlQ;_ylu=X3oDMTByNzdqbzZjBGNvbG8DZ3ExBHBvcwMzBHZ0aWQDBHNlYwNzYw--/RV=2/RE=1448764987/RO=10/RU=http%3a%2f%2fstackoverflow.com%2fquestions%2f9510865%2ffinding-duplicate-files-using-python/RK=0/RS=OEP79.TSHHceMXDP._7fb7nVE6M-" type="hidden">
+							<h2 class="space">Your Answer</h2>
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+                // Have to fire editor after snippets, if snippets enabled
+                if (StackExchange.options.snippets.enabled) {
+                    StackExchange.using("snippets", function() {
+                        createEditor();
+                    });
+                }
+                else {
+                    createEditor();
+                }
+            });
+
+            function createEditor() {
+                prepareEditor({
+                    heartbeatType: 'answer',
+                convertImagesToLinks: true,
+                reputationToPostImages: 10,
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: true,
+                    discardSelector: ".discard-answer"
+                    ,immediatelyShowMarkdownHelp:true
+                    });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor js-post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li style="left: 0px;" class="wmd-button" id="wmd-bold-button"><span style="background-position: 0px -20px;"></span></li><li style="left: 25px;" class="wmd-button" id="wmd-italic-button"><span style="background-position: -20px -20px;"></span></li><li style="left: 50px;" class="wmd-spacer" id="wmd-spacer1"><span style="background-position: -40px -20px;"></span></li><li style="left: 75px;" class="wmd-button" id="wmd-link-button"><span style="background-position: -40px -20px;"></span></li><li style="left: 100px;" class="wmd-button" id="wmd-quote-button"><span style="background-position: -60px -20px;"></span></li><li style="left: 125px;" class="wmd-button" id="wmd-code-button"><span style="background-position: -80px -20px;"></span></li><li style="left: 150px;" class="wmd-button" id="wmd-image-button"><span style="background-position: -100px -20px;"></span></li><li style="left: 175px;" class="wmd-spacer" id="wmd-spacer2"><span style="background-position: -120px -20px;"></span></li><li style="left: 200px;" class="wmd-button" id="wmd-olist-button"><span style="background-position: -120px -20px;"></span></li><li style="left: 225px;" class="wmd-button" id="wmd-ulist-button"><span style="background-position: -140px -20px;"></span></li><li style="left: 250px;" class="wmd-button" id="wmd-heading-button"><span style="background-position: -160px -20px;"></span></li><li style="left: 275px;" class="wmd-button" id="wmd-hr-button"><span style="background-position: -180px -20px;"></span></li><li style="left: 300px;" class="wmd-spacer" id="wmd-spacer3"><span style="background-position: -200px -20px;"></span></li><li style="left: 325px;" class="wmd-button" id="wmd-undo-button"><span style="background-position: -200px -20px;"></span></li><li style="left: 350px;" class="wmd-button" id="wmd-redo-button"><span style="background-position: -220px -20px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" value="c7ac8b48fd02804fd812e69845212348" type="hidden">
+        <input id="author" name="author" type="text">
+    </div>
+
+
+
+</div>
+							<div style="position: relative;">
+								
+								            <div class="form-item new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="http://stackoverflow.com/users/login?ssrc=question_page&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f9510865%2ffinding-duplicate-files-using-python%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Email and Password</span></p>
+                        </div>
+                    </div>
+                    <input name="manual-openid" class="manual-openid" type="hidden">
+                    <input name="use-facebook" class="use-facebook" value="false" type="hidden">
+                    <input name="use-google" class="use-google" value="false" type="hidden">
+                    <input class="submit-openid" value="Submit" style="display:none" type="button">
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+                    <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" size="30" maxlength="30" tabindex="105" type="text">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" size="30" maxlength="100" tabindex="106" placeholder="required, but never shown" type="email">
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', 'http%3a%2f%2fstackoverflow.com%2fquestions%2f9510865%2ffinding-duplicate-files-using-python%23new-answer', 'question_page');
+                    }
+                );
+            </script>
+            <noscript>
+                        <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tr>
+                    <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="required, but never shown" />
+                </div>
+            </td>
+        </tr>
+        </table>
+    </div>
+
+            </noscript>
+
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" value="Post Your Answer" tabindex="110" type="submit">
+									<a href="#" class="discard-answer dno">discard</a>
+
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p>
+<input name="legalLinksShown" value="1" type="hidden">								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/python" class="post-tag" title="show questions tagged 'python'" rel="tag">python</a> <a href="http://stackoverflow.com/questions/tagged/scripting" class="post-tag" title="show questions tagged 'scripting'" rel="tag">scripting</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2012-03-01 05:00:44Z"><b>3 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>532 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/9510865/finding-duplicate-files-using-python?lastactivity" class="lastactivity-link" title="2015-01-21 18:27:38Z">10 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1690288508",[17,2221]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1690288508">
+            <iframe scrolling="no" id="ados_frame_adzerk1690288508_812551" frameborder="0" height="250" width="220"></iframe><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/i_002.gif" style="position:absolute;" border="0" height="0px" width="0px"><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input value="12" name="downvoteReason" type="radio">Uninteresting</label></li><li><label><input value="13" name="downvoteReason" type="radio">Misleading</label></li><li><label><input value="14" name="downvoteReason" type="radio">Offensive</label></li><li><label><input value="15" name="downvoteReason" type="radio">Repetitive</label></li><li><label><input value="16" name="downvoteReason" type="radio">Other</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div></div>
+        <div class=" tag-themed python tagthemedpython tagged" id="hireme"><a href="http://careers.stackoverflow.com/jobs/tag/python" target="_blank" data-hf="h" class="top"> <span>Want a <span class="header-tag">python</span> job?</span></a><ul class="jobs"><li><a data-cid="183077" href="http://careers.stackoverflow.com/jobs/97106/senior-back-end-developer-biotech-startup-well-arivale" target="_blank" title="Senior back end developer - BioTech startup (well funded) at Arivale. Click to learn more.">Senior back end developer - BioTech startup (well funded)<br><div class="company">Arivale</div><div class="location" title="Seattle, WA">Seattle, WA</div><span class="post-tag highlight">python</span><span class="post-tag">postgresql</span></a></li><li><a data-cid="187699" href="http://careers.stackoverflow.com/jobs/101760/sr-software-development-engineer-backend-offerup" target="_blank" title="Sr. Software Development Engineer - Backend at OfferUp. Click to learn more.">Sr. Software Development Engineer - Backend<br><div class="company">OfferUp</div><div class="location" title="Bellevue, WA / relocation">Bellevue, WA / relocation</div><span class="post-tag highlight">python</span><span class="post-tag">scalability</span></a></li></ul><img class="impression" src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/i.gif" style="display:none;"></div>
+			<div class="module" id="chat-feature">
+    
+
+    
+<h4><a title="77 users active in 41 rooms the last 60 minutes" href="http://chat.stackoverflow.com/" id="h-chat-link">77 People Chatting</a></h4>
+
+<div class="related" id="ad502-rooms"><div class="ad502-room"><h3 class="ad502-room-h3"><span class="ad502-room-title" title="PHP"><a href="http://chat.stackoverflow.com/rooms/11">PHP</a></span></h3><span title="2015-11-28 12:45:50Z" class="ad502-last-message">6 hours ago - <a href="http://chat.stackoverflow.com/users/924016">Ronni Skansing</a></span><br><div class="ad502-users"><a href="http://chat.stackoverflow.com/users/924016"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/NC0E1.jpg" title="Ronni Skansing: 6 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/4859750"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/642911c8980d95ed66c1a35ac51b1cb9.png" title="whatever: 6 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/747609"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/16223c3aff8f1a7c324d81d877639308.jpg" title="iroegbu: 6 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/5234642"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/etkxb.jpg" title="Hassan Althaf: 6 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/2274710"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/8b4e4cbcc2999245d93b694347528a1b.jpg" title="Sean: 6 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/727208"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/40de750233b3ce8268f235ba0b6a489b.jpg" title="tereško: 6 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/4251625"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/XUshi.jpg" title="Abe: 6 hours ago" height="23" width="23"></a></div></div><div class="ad502-room"><h3 class="ad502-room-h3"><span class="ad502-room-title" title="JavaScript "><a href="http://chat.stackoverflow.com/rooms/17">JavaScript </a></span></h3><span title="2015-11-28 12:36:55Z" class="ad502-last-message">6 hours ago - <a href="http://chat.stackoverflow.com/users/5234642">Hassan Althaf</a></span><br><div class="ad502-users"><a href="http://chat.stackoverflow.com/users/5234642"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/etkxb.jpg" title="Hassan Althaf: 6 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/3183756"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/lG1fE.png" title="crl: 6 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/4659026"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/8f979c90540bc9b5b766ad8f55475c59.png" title="Mahadevan: 6 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/617762"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/348d335cd13298e475eeaefa1841dee6.png" title="Zirak: 6 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/957731"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/tp9dK.jpg" title="ivarni: 6 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/1839506"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/Sej2t.jpg" title="Caprica Six: 6 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/4644826"><img src="scripting%20-%20Finding%20duplicate%20files%20using%20Python%20-%20Stack%20Overflow_files/a023256c2a5ab07e7b68cbbbc86f6d46.png" title="sekhr: 6 hours ago" height="23" width="23"></a></div></div></div>
+<script>
+// <!--
+    StackExchange.ready(
+    function () {
+        var options = {
+            chatUrl: 'http://chat.stackoverflow.com',
+            reloadUrl: '/api/recent-chat',
+            preloadData: {"activeUsers":77,"activeRooms":41,"rooms":[{"name":"PHP","id":11,"lastPost":1448714750,"posts":2150653,"users":[{"name":"Ronni Skansing","id":924016,"emailhash":"!https://i.stack.imgur.com/NC0E1.jpg?s=128\u0026g=1","lastPost":1448714750},{"name":"whatever","id":4859750,"emailhash":"642911c8980d95ed66c1a35ac51b1cb9","lastPost":1448713652},{"name":"iroegbu","id":747609,"emailhash":"16223c3aff8f1a7c324d81d877639308","lastPost":1448713322},{"name":"Hassan Althaf","id":5234642,"emailhash":"!https://i.stack.imgur.com/etkxb.jpg?s=128\u0026g=1","lastPost":1448713274},{"name":"Sean","id":2274710,"emailhash":"8b4e4cbcc2999245d93b694347528a1b","lastPost":1448713249},{"name":"tereško","id":727208,"emailhash":"40de750233b3ce8268f235ba0b6a489b","lastPost":1448712858},{"name":"Abe","id":4251625,"emailhash":"!https://i.stack.imgur.com/XUshi.jpg?s=128\u0026g=1","lastPost":1448712194}],"messages":[{"date":1448714750,"user":"Ronni Skansing","userid":924016}],"singleImage":false,"tags":["php"]},{"name":"JavaScript ","id":17,"lastPost":1448714215,"posts":3027944,"users":[{"name":"Hassan Althaf","id":5234642,"emailhash":"!https://i.stack.imgur.com/etkxb.jpg?s=128\u0026g=1","lastPost":1448714214},{"name":"crl","id":3183756,"emailhash":"!https://i.stack.imgur.com/lG1fE.png?s=128\u0026g=1","lastPost":1448713265},{"name":"Mahadevan","id":4659026,"emailhash":"8f979c90540bc9b5b766ad8f55475c59","lastPost":1448713203},{"name":"Zirak","id":617762,"emailhash":"348d335cd13298e475eeaefa1841dee6","lastPost":1448713194},{"name":"ivarni","id":957731,"emailhash":"!https://i.stack.imgur.com/tp9dK.jpg?s=128\u0026g=1","lastPost":1448713152},{"name":"Caprica Six","id":1839506,"emailhash":"!https://i.stack.imgur.com/Sej2t.jpg?s=128\u0026g=1","lastPost":1448713053},{"name":"sekhr","id":4644826,"emailhash":"a023256c2a5ab07e7b68cbbbc86f6d46","lastPost":1448712962}],"messages":[{"date":1448714215,"user":"Hassan Althaf","userid":5234642}],"singleImage":false,"tags":["ecmascript","es6","javascript","kendalls-mom","nodejs","promises","sometimes-coldfusion"]}]} 
+        };
+
+        StackExchange.chatAd.init(options);
+    });
+// -->
+</script>
+
+</div>  
+    
+            
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/50499?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">209
+    </div>
+</a><a href="http://stackoverflow.com/questions/50499/how-do-i-get-the-path-and-name-of-the-file-that-is-currently-executing?rq=1" class="question-hyperlink">How do I get the path and name of the file that is currently executing?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/82831?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes extra-large">1994
+    </div>
+</a><a href="http://stackoverflow.com/questions/82831/check-whether-a-file-exists-using-python?rq=1" class="question-hyperlink">Check whether a file exists using Python</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/100003?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">2534
+    </div>
+</a><a href="http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python?rq=1" class="question-hyperlink">What is a metaclass in Python?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/176918?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">802
+    </div>
+</a><a href="http://stackoverflow.com/questions/176918/finding-the-index-of-an-item-given-a-list-containing-it-in-python?rq=1" class="question-hyperlink">Finding the index of an item given a list containing it in Python</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/231767?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">4139
+    </div>
+</a><a href="http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python?rq=1" class="question-hyperlink">What does the yield keyword do in Python?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/638975?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">1213
+    </div>
+</a><a href="http://stackoverflow.com/questions/638975/how-do-i-tell-if-a-regular-file-does-not-exist-in-bash?rq=1" class="question-hyperlink">How do I tell if a regular file does not exist in bash?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/1436703?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">1030
+    </div>
+</a><a href="http://stackoverflow.com/questions/1436703/difference-between-str-and-repr-in-python?rq=1" class="question-hyperlink">Difference between __str__ and __repr__ in Python</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/3207219?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes large">976
+    </div>
+</a><a href="http://stackoverflow.com/questions/3207219/how-to-list-all-files-of-a-directory-in-python?rq=1" class="question-hyperlink">How to list all files of a directory in Python</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/3964681?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">486
+    </div>
+</a><a href="http://stackoverflow.com/questions/3964681/find-all-files-in-directory-with-extension-txt-with-python?rq=1" class="question-hyperlink">Find all files in directory with extension .txt with python</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/32405603?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/32405603/python-script-finding-text-in-a-file-and-doing-checks-on-it?rq=1" class="question-hyperlink">Python script finding text in a file and doing checks on it</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-buddhism" title="Buddhism Stack Exchange"></div><a href="http://buddhism.stackexchange.com/questions/12802/are-buddhists-happier-people" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:565 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are Buddhists happier people?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-ux" title="User Experience Stack Exchange"></div><a href="http://ux.stackexchange.com/questions/87440/how-wide-should-input-fields-be" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:102 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How wide should input fields be?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-christianity" title="Christianity Stack Exchange"></div><a href="http://christianity.stackexchange.com/questions/45451/origin-of-the-story-that-james-had-knees-as-hard-as-a-camels-because-of-prayin" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:304 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Origin of the story that James had knees as hard as a camel's, because of praying
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="http://stats.stackexchange.com/questions/184019/when-will-l1-regularization-work-better-than-l2-and-vice-versa" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When will L1 regularization work better than L2 and vice versa?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/289196/word-for-damage-that-isnt-serious-mostly-visual-and-not-hindering-the-function" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Word for damage that isn't serious, mostly visual and not hindering the function of the thing
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/71551/do-weapon-enhancing-spells-let-them-hit-incorporeal-opponents" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Do weapon enhancing spells let them hit incorporeal opponents?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-astronomy" title="Astronomy Stack Exchange"></div><a href="http://astronomy.stackexchange.com/questions/12688/alignment-of-semi-major-axis-of-orbits" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:514 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Alignment of Semi-Major Axis of Orbits
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/65051/sort-the-unique-numbers-in-a-multiplication-table" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Sort the unique numbers in a multiplication table
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/58721/a-student-in-my-course-does-well-on-exams-but-doesnt-do-the-homework-go-easy" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    A student in my course does well on exams, but 
+doesn't do the homework: Go easy on them, or make them "pay the price?"
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/23233/small-fins-on-top-of-wing-surface-of-boeing-aircraft" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Small fins on top of wing surface of Boeing aircraft
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/58955/shirtless-picture-on-the-academic-page-of-a-ph-d-candidate-seeking-postdoc" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Shirtless picture on the academic page of a Ph.D. candidate seeking postdoc
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/290093/what-do-you-call-a-person-who-prevents-their-own-progress" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What do you call a person who prevents their own progress?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/220913/how-to-keep-a-helium-balloon-between-1-to-5-meters-above-ground-without-it-bei" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to keep a helium balloon between 1 to 5 meters above ground? (without it being tied)
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/100687/strange-performance-of-outer" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    strange performance of Outer
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/33971212/obscure-c-operator-overloading" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    obscure c++ operator overloading
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/1006079/why-do-i-need-an-smtp-server" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do I need an SMTP server?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/74286/does-the-phrase-a-forward-step-make-any-sense" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does the phrase "a forward step" make any sense?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-skeptics" title="Skeptics Stack Exchange"></div><a href="http://skeptics.stackexchange.com/questions/30903/do-rusty-nail-wounds-cause-tetanus" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:212 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Do rusty nail wounds cause tetanus?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="http://mathoverflow.net/questions/224725/history-of-mathematical-notation" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    History of Mathematical Notation
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/100650/concise-alternative-to-firstfirstposition-1-heads-false" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Concise alternative to First@First@Position[..., 1,Heads-&gt;False]
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/59128/is-there-a-way-to-prevent-looking-like-a-tourist-in-order-to-not-be-harassed" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a way to prevent "looking like a tourist" in order to not be harassed?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/106382/does-one-need-to-be-a-good-programmer-to-perform-secure-source-code-analysis" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does one need to be a good programmer to perform secure source code analysis?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/33964621/what-does-it-mean-to-poison-a-function-in-c" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What does it mean to "poison a function" in C++?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-gaming" title="Arqade"></div><a href="http://gaming.stackexchange.com/questions/245280/what-does-tryhard-mean-exactly" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:41 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What does tryhard mean exactly?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/9510865" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/9510865/ivc/8ec7');});
+</script>
+<noscript>
+    <div><img src="/posts/9510865/ivc/8ec7" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-py</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2015 Stack Exchange Inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2015.11.27.3036
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('python,scripting');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|python|scripting|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+            
+    
+</body></html>
