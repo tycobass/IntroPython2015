@@ -69,6 +69,10 @@ def test_publication():
     assert p.html is not None
 
 
+def test_publication_add_recommendations():
+    pass
+
+
 # Utility function for testing that scrapers return correctly formatted
 # data
 
@@ -80,24 +84,10 @@ def scraper_test(pub):
     assert type(p.recommendations[0]) == tuple
     assert p.recommendations[0][0] is not None
 
-# Tests for individual publications
+# Test all scrapers by looping through all_publications
 
 
-def test_pitchfork_html():
-    p = cf.Pitchfork()
-    assert p.html is not None
-    scraper_test(p)
-
-
-def test_pitchfork_songs_html():
-    p = cf.PitchforkSongs()
-    assert p.html is not None
-    scraper_test(p)
-
-
-
-
-
-
-
-
+def test_scrapers():
+    for pub in cf.all_publications:
+        assert pub.html is not None
+        scraper_test(pub)

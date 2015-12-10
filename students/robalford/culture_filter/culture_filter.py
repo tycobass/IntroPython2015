@@ -3,6 +3,31 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
+"""
+
+A script that recommends the best new music, movies, books and tv based
+on reviews from a variety of online publications.
+
+"""
+
+# example of recommendations data structure
+
+# albums = {
+#     'grimes: art angels': {
+#         "title": "Art Angels",
+#         "artist": "Grimes",
+#         "rank": 0,
+#         "last reviewed": "2015-11-22"
+#     },
+#     }
+
+"""
+
+The Recommender class saves and loads recommendations, and sorts them
+based on the number of favorable reviews they have received.
+
+"""
+
 
 class Recommender:
     medium = 'all'
@@ -27,7 +52,7 @@ class Recommender:
         for k, v in self.recommendations.items():
             recommendations.append((k, v['rank']))
         ranked_recs = sorted(recommendations, key=lambda x: x[1], reverse=True)
-        readable_recs = ['{}. Rank: {}'.format(rec[0].title(), rec[1]) for rec in ranked_recs]
+        readable_recs = ['{}. Score: {}'.format(rec[0].title(), rec[1]) for rec in ranked_recs]
         return readable_recs
 
 
@@ -55,53 +80,12 @@ class Book(Recommender):
     medium = 'books'
     filename = 'books.txt'
 
-# works in various mediums. hard-coded sample data for albums.
-# albums = {
-#     'grimes: art angels': {
-#         "title": "Art Angels",
-#         "artist": "Grimes",
-#         "rank": 0,
-#         "last reviewed": "2015-11-22"
-#     },
-#     }
-
-# songs = {}
-# tv_shows = {}
-# movies = {}
-# books = {}
-
-# all_recommendations = [albums, songs, tv_shows, movies, books]
-
-
-# def load_data(self, filename):
-#     try:
-#         with open(filename, 'r') as infile:
-#             return json.load(infile)
-#     except FileNotFoundError:
-#         print("You haven't saved any data yet. Let's get started.")
-
-
-# def save_to_file(self, filename, data):
-#     with open(filename, 'w') as outfile:
-#         json.dump(data, outfile)
-
-
-# def get_ranked_recommendations(self, medium):
-#     recommendations = []
-#     for k, v in medium.items():
-#         recommendations.append((k, v['rank']))
-#     ranked_recs = sorted(recommendations, key=lambda x: x[1], reverse=True)
-#     return ranked_recs
-
-# Web scrapers for various online publications
-
-# a list to store instances of each publication for batch processing
-# could this be a class level attribute of Publication?
 
 all_publications = []
 
 
 class Publication:
+    # if this is an abstract class (never instantiated), where should these be defined?
     def __init__(self, title, url, rank, medium, recommendations=None):
         self.title = title
         self.url = url
@@ -116,28 +100,28 @@ class Publication:
         html = BeautifulSoup(source.text, 'html.parser')
         return html
 
+    # call this method to format and add self.recommendations to medium.recommendations
+    # and save to disk
     def add_recommendations(self):
         for r in self.recommendations:
             work = '{}: {}'.format(r[0].lower(), r[1].lower())
-            if work in self.medium.recommendations:
-                self.medium.recommendations[work]['rank'] += self.rank
-                self.medium.recommendations[work]['last reviewed'] = str(self.last_updated)
-            else:
+            if work not in self.medium.recommendations:
                 self.medium.recommendations[work] = {"title": r[1],
                                                      "artist": r[0],
                                                      "rank": self.rank,
-                                                     "last reviewed": str(self.last_updated)}
+                                                     "last reviewed": str(self.last_updated),
+                                                     "reviewed by": []}
+                self.medium.recommendations[work]['reviewed by'].append(self.title)
+            elif self.title in self.medium.recommendations[work]['reviewed by']:
+                pass
+            else:
+                self.medium.recommendations[work]['rank'] += self.rank
+                self.medium.recommendations[work]['last reviewed'] = str(self.last_updated)
+                self.medium.recommendations[work]['reviewed by'].append(self.title)
         self.medium.save_to_file()
 
-    # this wont work well because the interface is different for inherited methods
-    # def scrape(self, containing_class, artist_div, work_div):
-    #     reviews = self.html.find_all(class_=containing_class)
-    #     # add conditional code to only add a certain number at a time, as
-    #     # in pitchfork scraper below. (if length more than 10, only add 10)
-    #     for r in reviews:
-    #         self.recommendations.append((r.artist_div.contents[0], r.work_div.contents[0]))
+    # utility methods for scrapers to inherit here. will add as you write scrapers
 
-# Instantiate various publications here and append to all_publications
 
 # Music publications
 
@@ -154,7 +138,7 @@ class Pitchfork(Publication):
 
     # custom scraper for this pub. other pages on this pub can inherit
     # for different mediums if they have the same page structure
-    # returns a tuple with artist and work and adds to recommendations list
+    # returns a tuple with artist and work and adds to self.recommendations
 
     def scrape(self):
         reviews = self.html.find_all(class_='info')
@@ -173,7 +157,7 @@ class PitchforkSongs(Pitchfork):
     # needs its own scrape method, different html structrure
     def scrape(self):
         reviews = self.html.find_all(class_='info')
-        for r in reviews[:10]:
+        for r in reviews[:5]:
             artist = r.find('span', class_='artist').contents[0].strip()
             artist = artist[:-1]
             title = r.find('span', class_='title').contents[0].strip()
@@ -230,15 +214,10 @@ paste = PasteMusic()
 all_publications.append(paste)
 
 
-class PasteMovies(Publication):
+class PasteMovies(PasteMusic):
     title = 'Paste Magazine: Movies'
     url = "http://www.pastemagazine.com/movies"
-    rank = 3
     medium = Movie()
-
-    def __init__(self, recommendations=None):
-        self.last_updated = date.today()
-        self.recommendations = []
 
     def scrape(self):
         reviews = self.html.find_all(class_='nof articles reviews')
@@ -247,9 +226,53 @@ class PasteMovies(Publication):
             # if rating is greater than 8, add to recommendations
             if float(reviews[0].contents[i].contents[5].contents[3].contents[0]) >= 8:
                 # note subtle differences between this and the music page
-                artist = str(reviews[0].contents[i].contents[3].contents[0])[3:-4]
-                album = ' '  # no director listed here, will need another scraper to get it
-                self.recommendations.append((artist, album))
+                movie = str(reviews[0].contents[i].contents[3].contents[0])[3:-4]
+                # no director listed here, will need another scraper to get it
+                # for now put in an empty string
+                self.recommendations.append((movie, ''))
+
+paste_movies = PasteMovies()
+all_publications.append(paste_movies)
+
+
+class PasteTV(PasteMusic):
+    title = 'Paste Magazine: TV'
+    url = "http://www.pastemagazine.com/tv"
+    medium = Show()
+
+    def scrape(self):
+        reviews = self.html.find_all(class_='nof articles reviews')
+        # there must be a less convoluted way to do this!
+        for i in range(1, len(reviews[0].contents), 2):
+            # if rating is greater than 8, add to recommendations
+            if float(reviews[0].contents[i].contents[5].contents[3].contents[0]) >= 8:
+                # note subtle differences between this and the music page
+                show = str(reviews[0].contents[i].contents[3].contents[0])[3:-4]
+                # no show runner listed here, will need another scraper to get it
+                # for now put in an empty string
+                self.recommendations.append((show, ''))
+
+paste_tv = PasteTV()
+all_publications.append(paste_tv)
+
+
+class PasteBooks(PasteMusic):
+    title = 'Paste Magazine: Books'
+    url = "http://www.pastemagazine.com/books"
+    medium = Book()
+
+    def scrape(self):
+        reviews = self.html.find_all(class_='nof articles reviews')
+        # there must be a less convoluted way to do this!
+        for i in range(1, len(reviews[0].contents), 2):
+            # if rating is greater than 8, add to recommendations
+            if float(reviews[0].contents[i].contents[5].contents[3].contents[0]) >= 8:
+                book = str(reviews[0].contents[i].contents[3].contents[0])[3:-4]
+                author = str(reviews[0].contents[i].contents[3].contents[1][4:])
+                self.recommendations.append((book, author))
+
+paste_books = PasteBooks()
+all_publications.append(paste_books)
 
 
 # Run all your scrapers. This may take a while.
@@ -258,13 +281,40 @@ def scrape_all_and_save():
         publication.scrape()
         publication.add_recommendations()
 
-def get_ew_tv(html):
-    shows = []
-    grades = html.find_all(class_='gi')
-    for show in grades:
-        if show.span.contents[0] == 'B+':
-            shows.append(show.h2.contents[0][:-11])
-    # for some scrapers, you'll need to open links on one page
-    # and then move to processing the info on the next page
-    return shows
+
+# print all recommendations to the console
+def print_all():
+    all_mediums = [Album(), Song(), Movie(), Show(), Book()]
+    for medium in all_mediums:
+        # make a new instance to load the latest data
+        # medium = medium()
+        ranked_recommendations = medium.get_ranked_recommendations()
+        print('Recommended {}:\n'.format(medium.medium))
+        for recommendation in ranked_recommendations:
+            print('{}\n'.format(recommendation))
+
+# if __name__ == '__main__':
+#     while True:
+#         select = input('''Get recommendations for the best new music, movies, books and tv.
+# Type 'new' to get new recommendations. Type 'view' to view current recommendations.''')
+#         if select == 'new':
+#             print('Looking for new recommendations ...')
+#             scrape_all_and_save()
+#             print_all()
+#         elif select == 'view':
+#             print_all()
+#         else:
+#             print('You entered an invalid command.')
+
+
+
+# def get_ew_tv(html):
+#     shows = []
+#     grades = html.find_all(class_='gi')
+#     for show in grades:
+#         if show.span.contents[0] == 'B+':
+#             shows.append(show.h2.contents[0][:-11])
+#     # for some scrapers, you'll need to open links on one page
+#     # and then move to processing the info on the next page
+#     return shows
 
