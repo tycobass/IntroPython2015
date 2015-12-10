@@ -103,6 +103,7 @@ class Publication:
     # call this method to format and add self.recommendations to medium.recommendations
     # and save to disk
     def add_recommendations(self):
+        self.medium.__init__()
         for r in self.recommendations:
             work = '{}: {}'.format(r[0].lower(), r[1].lower())
             if work not in self.medium.recommendations:
@@ -291,20 +292,20 @@ def print_all():
         ranked_recommendations = medium.get_ranked_recommendations()
         print('Recommended {}:\n'.format(medium.medium))
         for recommendation in ranked_recommendations:
-            print('{}\n'.format(recommendation))
+            print('\t{}\n'.format(recommendation))
 
-# if __name__ == '__main__':
-#     while True:
-#         select = input('''Get recommendations for the best new music, movies, books and tv.
-# Type 'new' to get new recommendations. Type 'view' to view current recommendations.''')
-#         if select == 'new':
-#             print('Looking for new recommendations ...')
-#             scrape_all_and_save()
-#             print_all()
-#         elif select == 'view':
-#             print_all()
-#         else:
-#             print('You entered an invalid command.')
+if __name__ == '__main__':
+    while True:
+        select = input('''Get recommendations for the best new music, movies, books and tv.
+Type 'new' to get new recommendations. Type 'view' to view current recommendations.''')
+        if select == 'new':
+            print('Looking for new recommendations ...')
+            scrape_all_and_save()
+            print_all()
+        elif select == 'view':
+            print_all()
+        else:
+            print('You entered an invalid command.')
 
 
 
