@@ -102,6 +102,8 @@ class Publication:
 
     # call this method to format and add self.recommendations to medium.recommendations
     # and save to disk
+
+    # THIS METHOD NEEDS MORE TESTS. Refactor for readability, pythonicity etc.
     def add_recommendations(self):
         self.medium.__init__()
         for r in self.recommendations:
@@ -214,6 +216,8 @@ class PasteMusic(Publication):
 paste = PasteMusic()
 all_publications.append(paste)
 
+# Movie publications
+
 
 class PasteMovies(PasteMusic):
     title = 'Paste Magazine: Movies'
@@ -234,6 +238,8 @@ class PasteMovies(PasteMusic):
 
 paste_movies = PasteMovies()
 all_publications.append(paste_movies)
+
+# TV Publications
 
 
 class PasteTV(PasteMusic):
@@ -256,6 +262,8 @@ class PasteTV(PasteMusic):
 paste_tv = PasteTV()
 all_publications.append(paste_tv)
 
+# Book publications
+
 
 class PasteBooks(PasteMusic):
     title = 'Paste Magazine: Books'
@@ -274,6 +282,8 @@ class PasteBooks(PasteMusic):
 
 paste_books = PasteBooks()
 all_publications.append(paste_books)
+
+# Module level functions
 
 
 # Run all your scrapers. This may take a while.
@@ -294,28 +304,24 @@ def print_all():
         for recommendation in ranked_recommendations:
             print('\t{}\n'.format(recommendation))
 
+
+# very basic command line interface. refactor to use dict
+def select_command():
+    command = input('''Get recommendations for the best new music, movies, books and tv.
+Type 'new' to get new recommendations, 'view' to view current recommendations, or
+'quit' to exit the program.''')
+    return command
+
 if __name__ == '__main__':
-    while True:
-        select = input('''Get recommendations for the best new music, movies, books and tv.
-Type 'new' to get new recommendations. Type 'view' to view current recommendations.''')
-        if select == 'new':
-            print('Looking for new recommendations ...')
+    program_running = True
+    while program_running:
+        command = select_command()
+        if command.lower() == 'new':
             scrape_all_and_save()
             print_all()
-        elif select == 'view':
+        elif command.lower() == 'view':
             print_all()
+        elif command.lower() == 'quit':
+            program_running = False
         else:
-            print('You entered an invalid command.')
-
-
-
-# def get_ew_tv(html):
-#     shows = []
-#     grades = html.find_all(class_='gi')
-#     for show in grades:
-#         if show.span.contents[0] == 'B+':
-#             shows.append(show.h2.contents[0][:-11])
-#     # for some scrapers, you'll need to open links on one page
-#     # and then move to processing the info on the next page
-#     return shows
-
+            print('Invalid command. Please try again.')
