@@ -77,7 +77,8 @@ north_hallway = Location("Hallway (north)", "You are standing at the northern en
 # FIGURE OUT HOW TO MAKE THIS LOCKED UNTIL YOU UNLOCK IT. locker should be a subclass of container.
 your_locker = Container("locker", "your locker", "Your locker is here.")
 your_locker.add_extradesc({"locker", "my locker"}, "It's your locker, you think. It's been a while since you've opened it.")
-your_locker.add_extradesc({"lock"}, "The lock is your basic, tempered steel, 32-digit combination lock. Very hard to pick! (You've tried.)")
+your_locker.add_extradesc({"lock"}, 
+    "The lock is your basic, tempered steel, 32-digit combination lock. Very hard to pick! (You've tried.)")
 
 
 # ----------------------------- Library --------------------------------
