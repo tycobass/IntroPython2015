@@ -1,5 +1,4 @@
 import json
-# from measurement.measures import volume 
 from os.path import dirname, realpath, join
 from os import listdir
 from collections import OrderedDict
@@ -9,8 +8,7 @@ location = dirname(realpath(__file__))
 
 def main_menu():  # main menu
     print(location)
-    menu_choice = input("\nPack List V1.0\n"
-                        "---------------\n"
+    menu_choice = input("\nPack List V1.0\n---------------\n"
                         "1. Use Existing List\n"  # works
                         "2. Create New List\n"  # works just creates the .json file with name and empty json data
                         "3. Exit\n\n>>> ")  # works
@@ -26,8 +24,7 @@ def main_menu():  # main menu
 
 
 def current_lists():  # displays all . json files in current dir
-        print("\nCurrent Lists:\n"
-              "--------------")
+        print("\nCurrent Lists:\n--------------")
         for files in listdir(location):
             if files.endswith(".json"):  # searches out .json files
                 print(files[:-5])  # removes the .json for ease of reading
@@ -72,10 +69,8 @@ def sub_menu(list_name):
 
 
 def view_list(list_name):
-    with open(join(location, "{}.json".format(list_name)), "r") as f:
-        data = json.load(f, object_pairs_hook=OrderedDict)
-    print("\n Item                      Par\n"
-          "-------------------------------")
+    data = read_json(list_name)
+    print("\n Item                      Par\n-------------------------------")
     for i in data:
         print("{:<25} {}".format(i + ":", data[i]))
     input("\nHit 'Enter' to continue.\n")
@@ -83,8 +78,8 @@ def view_list(list_name):
 
 
 def create_new_list(list_name):
-    with open(join(location, "{}.json".format(list_name)), "w+") as f:
-        json.dump({}, f)
+    with open(join(location, "{}.json".format(list_name)), "w") as f:
+        json.dump({}, f)  # creates emtpy json file with '{}' in it
     print("\nNew inventory file '{}' created.".format(list_name))
     edit_list(list_name)
 
@@ -95,8 +90,7 @@ def exit_pl(): # exits program
 
 
 def pack_list(list_name):
-    with open(join(location, "{}.json".format(list_name)), "r") as f:
-        data = json.load(f, object_pairs_hook=OrderedDict)
+    data = read_json(list_name)
     par_check = OrderedDict()
     print("\n")
     for i in data:
@@ -119,18 +113,21 @@ def edit_list(list_name):
         par = input("Set par: ")
         if "/" in par:
             par = str(round(float(Fraction(par)),2))
-        print(par)
         update_json_file(list_name, item, par)
         if input("\nHit 'ENTER' to input another item,\nor type 'Q' to return to menu.\n>>> ").lower() == "q":
             sub_menu(list_name)
 
 
 def update_json_file(list_name, item, par):
-    with open(join(location, "{}.json".format(list_name)), "r") as f:
-        data = json.load(f, object_pairs_hook=OrderedDict)
+    data = read_json(list_name)
     data[item] = par
     with open(join(location, "{}.json".format(list_name)), "w") as f:
         json.dump(data, f, indent=4)
+
+
+def read_json(list_name):
+    with open(join(location, "{}.json".format(list_name)), "r") as f:
+        return json.load(f, object_pairs_hook=OrderedDict)
 
 
 if __name__ == "__main__":
