@@ -135,30 +135,13 @@ class Locker(Boxlike):
         self.opened = opened
         self.combo = combo    # you can optionally set this to any code that a key must match to unlock the door
         if locked and opened:
-            raise ValueError("door cannot be both locked and opened")
+            raise ValueError("locker cannot be both locked and opened")
         self.aliases = {"locker", "my locker", "your locker", "lock"}
         self.add_extradesc({"locker", "my locker"}, "It's your locker, you think. It's been a while since you've opened it. The lock is your basic, tempered steel, 32-digit combination lock. Very hard to pick! (You've tried.)")
         self.init_inventory([english_paper])
 
     def allow_item_move(self, actor, verb="move"):
         raise ActionRefused("You can't {} {}".format(verb, self.title))
-
-    @property
-    def title(self):
-        if self.opened:
-            return self.txt_title_open_filled if self.inventory_size else self.txt_title_open_empty
-        else:
-            return self.txt_title_closed
-
-    @property
-    def description(self):
-        if self.opened:
-            if self.inventory_size:
-                return self.txt_descr_open_filled
-            else:
-                return self.txt_descr_open_empty
-        else:
-            return self.txt_descr_closed
 
     def open(self, actor, item=None):
         if self.opened:
@@ -174,20 +157,6 @@ class Locker(Boxlike):
             raise ActionRefused("It's already closed.")
         self.opened = False
         actor.tell("You closed {}.".format(self.name))
-
-    @property
-    def inventory(self):
-        if self.opened:
-            return super(Boxlike, self).inventory
-        else:
-            raise ActionRefused("You can't peek inside, maybe you should open it first?")
-
-    @property
-    def inventory_size(self):
-        if self.opened:
-            return super(Boxlike, self).inventory_size
-        else:
-            raise ActionRefused("You can't peek inside, maybe you should open it first?")
 
     def handle_verb(self, parsed, actor):
         if parsed.verb == "pick":
@@ -230,7 +199,14 @@ class Locker(Boxlike):
         else:
             raise ActionRefused("You can't take things from {}: you should open it first.".format(self.title))
 
-english_paper = Item("paper", "english paper")
+
+class Readable(Item):
+
+    def read(self, actor, contents=None):
+        contents = '"The inevitability of death is a commonly recurring theme in..." blah, blah, blah, blah. Boring.'
+        actor.tell(contents)
+
+english_paper = Readable("paper", "english paper")
 english_paper.aliases = {"english paper", "paper", "homework"}
 english_paper.add_extradesc({"paper", "english paper", "homework"}, "You paid good money for this!")
 
