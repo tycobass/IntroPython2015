@@ -144,7 +144,6 @@ class Publication:
             html = BeautifulSoup(source.text, 'html.parser')
             return html
 
-    # NEEDS MORE TESTS AND REFACTORING BUT APPEARS TO BE WORKING.
     def add_recommendations(self):
         """Adds publication's current recommendations to medium's permanent
         recommendations data structure and saves to disk. If it's a new
@@ -152,20 +151,24 @@ class Publication:
         structure. If it's already been recommended by another publication:
         increment the 'rank' value, update the 'last reviewed' value and
         add this publication to the 'reviewed by' list. If this publication's
-        recommendation has already been recorder, but was gathered by the
-        scraper, move on to the next recommendation."""
+        recommendation has already been recorded, but was gathered by the
+        scraper again on this pass, move on to the next recommendation."""
         # Call __init__ here to load current recommendations. Is there a better
         # way to handle this?
         self.medium.__init__()
         for r in self.recommendations:
             work = '{}: {}'.format(r[0].lower(), r[1].lower())
             if work not in self.medium.recommendations:
-                self.medium.recommendations[work] = {"title": r[1],
-                                                     "artist": r[0],
-                                                     "rank": self.rank,
-                                                     "last reviewed": str(self.last_updated),
-                                                     "reviewed by": []}
-                self.medium.recommendations[work]['reviewed by'].append(self.title)
+                self.medium.recommendations[work] = {
+                    "title": r[1],
+                    "artist": r[0],
+                    "rank": self.rank,
+                    "last reviewed": str(self.last_updated),
+                    "reviewed by": []
+                }
+                self.medium.recommendations[work]['reviewed by'].append(
+                    self.title
+                )
             elif self.title in self.medium.recommendations[work]['reviewed by']:
                 pass
             else:
@@ -174,10 +177,8 @@ class Publication:
                 self.medium.recommendations[work]['reviewed by'].append(self.title)
         self.medium.save_to_file()
 
-    # utility methods for scrapers to inherit here. will write more as i write more scrapers
-
-    # I'm having trouble implementing this without making it a static method, but
-    # I would really like to reference self, so I can know which scraper is
+    # I'm having trouble implementing this without making it a static method,
+    # but I would really like to reference self, so I can know which scraper is
     # failing.
     @staticmethod
     def catch_scraper_exceptions(scrape):
@@ -206,14 +207,6 @@ class Pitchfork(Publication):
     rank = 3
     medium = Album()
 
-    # def __init__(self, recommendations=None):
-    #     self.last_updated = date.today()
-    #     self.recommendations = []
-
-    # custom scraper for this pub. other pages on this pub can inherit
-    # for different mediums if they have the same page structure
-    # returns a tuple with artist and work and adds to self.recommendations
-
     @Publication.catch_scraper_exceptions
     def scrape(self):
         """A custom web scraper for this publication. Other pages of this
@@ -221,11 +214,11 @@ class Pitchfork(Publication):
         structure. Returns a tuple: ('artist', 'work') and adds to
         recommendations list for this publication."""
         reviews = self.html.find_all(class_='info')
-        for r in reviews[:10]:
+        for r in reviews[:15]:
             self.recommendations.append((r.h1.contents[0], r.h2.contents[0]))
 
 # instantiate and add to all_publications for batch processing. could this be
-# handled within the class itself?
+# better handled within the class itself?
 pitchfork = Pitchfork()
 all_publications.append(pitchfork)
 
@@ -258,10 +251,6 @@ class Stereogum(Publication):
     rank = 2
     medium = Album()
 
-    def __init__(self, recommendations=None):
-        self.last_updated = date.today()
-        self.recommendations = []
-
     @Publication.catch_scraper_exceptions
     def scrape(self):
         """A custom web scraper for this publication."""
@@ -281,10 +270,6 @@ class PasteMusic(Publication):
     url = "http://www.pastemagazine.com/music"
     rank = 1
     medium = Album()
-
-    def __init__(self, recommendations=None):
-        self.last_updated = date.today()
-        self.recommendations = []
 
     @Publication.catch_scraper_exceptions
     def scrape(self):

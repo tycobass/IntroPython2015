@@ -67,14 +67,41 @@ def test_pitchfork_html():
     assert p.html is not None
 
 
-def test_publication_add_recommendations():
-    pass
+def test_pitchfork_add_new_recommendation():
+    a = cf.Album()
+    p = cf.Pitchfork()
+    p.scrape()
+    newest_review = '{}: {}'.format(
+        p.recommendations[0][0].lower(),
+        p.recommendations[0][1].lower()
+    )
+    if newest_review not in a.recommendations:
+        p.add_recommendations()
+    a = cf.Album()
+    assert newest_review in a.recommendations
+
+
+def test_pitchfork_update_exisiting_recommendation():
+    a = cf.Album()
+    p = cf.Pitchfork()
+    p.scrape()
+    newest_review = '{}: {}'.format(
+        p.recommendations[0][0].lower(),
+        p.recommendations[0][1].lower()
+    )
+    if (newest_review in a.recommendations and
+            p.title not in a.recommendations[newest_review]['reviewed by']):
+        p.add_recommendations()
+        a2 = cf.Album()
+        assert newest_review in a2.recommendations[newest_review]['reviewed by']
+        assert (a2.recommendations[newest_review]['rank'] >
+                a.recommendations[newest_review]['rank'])
+    else:
+        return
 
 
 # Utility function for testing that scrapers return correctly formatted
 # data
-
-
 def scraper_test(pub):
     p = pub
     assert p.recommendations == []
@@ -82,12 +109,9 @@ def scraper_test(pub):
     assert type(p.recommendations[0]) == tuple
     assert p.recommendations[0][0] is not None
 
+
 # Test all scrapers by looping through all_publications
-
-
-# This will fail if the html changes for any publications, and as of last test,
-# there was an error in the html for one of my publications, raising an Index
-# Error
+# This will fail if the html changes for any publications
 def test_scrapers():
     for pub in cf.all_publications:
         assert pub.html is not None
