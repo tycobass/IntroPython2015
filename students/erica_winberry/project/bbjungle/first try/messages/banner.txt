@@ -1,0 +1,12 @@
+
+                    BlackBoard Jungle
+
+            A Parsely Microgreen (version 1.2)
+
+               written by Jared A. Sorenson
+
+             python version by Erica Winberry
+
+
+                   [ work in progress ]
+
