@@ -8,8 +8,6 @@ import culture_filter as cf
 
 def test_recommender():
     r = cf.Recommender()
-    assert r.medium == 'all'
-    assert r.filename == 'all_mediums.txt'
     assert type(r.recommendations) == dict
 
 
@@ -58,14 +56,14 @@ def test_album_get_ranked_recommendations():
 
 
 def test_publication():
-    p = cf.Publication('title', 'https://www.python.org/', 'rank', 'medium')
-    assert p.title == 'title'
-    assert p.url == 'https://www.python.org/'
-    assert p.rank == 'rank'
-    assert p.medium == 'medium'
+    p = cf.Publication()
     today = date.today()
     assert p.last_updated == today
     assert p.recommendations == []
+
+
+def test_pitchfork_html():
+    p = cf.Pitchfork()
     assert p.html is not None
 
 
@@ -87,6 +85,9 @@ def scraper_test(pub):
 # Test all scrapers by looping through all_publications
 
 
+# This will fail if the html changes for any publications, and as of last test,
+# there was an error in the html for one of my publications, raising an Index
+# Error
 def test_scrapers():
     for pub in cf.all_publications:
         assert pub.html is not None
