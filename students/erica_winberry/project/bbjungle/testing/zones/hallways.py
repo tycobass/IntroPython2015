@@ -12,9 +12,10 @@ from tale.base import Location, Exit, Item, heartbeat, Door
 from tale.npc import NPC
 from tale.errors import ActionRefused, ParseError, LocationIntegrityError
 import tale.lang
-from tale.items.basic import Boxlike
+from tale.items.basic import Boxlike, Note
 import story
 from tale.player import Player
+import textwrap
 
 
 def init(driver):
@@ -200,13 +201,19 @@ class Locker(Boxlike):
             raise ActionRefused("You can't take things from {}: you should open it first.".format(self.title))
 
 
-class Readable(Item):
+class EnglishPaper(Note):
 
-    def read(self, actor, contents=None):
-        contents = '"The inevitability of death is a commonly recurring theme in..." blah, blah, blah, blah. Boring.'
-        actor.tell(contents)
+    def init(self):
+        super(Note, self).init()
+        self._text = '''
+        "The inevitability of death is a commonly recurring theme in..." blah, blah, blah, blah. Boring! You stop reading.
+        '''
 
-english_paper = Readable("paper", "english paper")
+    def read(self, actor):
+        actor.tell("The {} reads:".format(self.title), end=True)
+        actor.tell(self.text)
+
+english_paper = EnglishPaper("paper", "english paper")
 english_paper.aliases = {"english paper", "paper", "homework"}
 english_paper.add_extradesc({"paper", "english paper", "homework"}, "You paid good money for this!")
 

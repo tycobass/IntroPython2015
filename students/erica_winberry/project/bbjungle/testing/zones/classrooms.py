@@ -13,6 +13,7 @@ from tale.pubsub import Listener
 from tale import mud_context
 from npcs.teachers import Librarian
 from tale.errors import ActionRefused
+from tale.items.basic import Note
 
 
 def init(driver):
@@ -38,17 +39,23 @@ library.add_exits([hallway_door])
 
 english.add_exits([Exit(["w", "west"], "hallways.north_hallway", "The hallway to the west offers the possibility of escape.")])
 
-class Readable(Item):
 
-    def read(self, actor, contents=None):
-        contents = '"Divide by 2" is scrawled in the margin of the book in your handwriting.'
-        actor.tell(contents)
+class ForDummies(Note):
+
+    def init(self):
+        super(Note, self).init()
+        self._text = '''
+        "Divide by 2" is scrawled in the margin of the book in your handwriting.
+        '''
+
+    def read(self, actor):
+        actor.tell(self.text)
 
 cubby = Item("cubby", "study cubby")
 cubby.add_extradesc({"cubby", "study cubby"}, "Your typical wooden study cubby. Generations of students in detention have scratched various messages into the aging wood. ")
 cubby.add_extradesc({"scratches", "messages"}, "The cubby's wooden desk has a series of numbers freshly scratched into it: 16-32-64.")
 
-book = Readable("book", "dog-eared book")
+book = ForDummies("book", "dog-eared book")
 book.add_extradesc({"book"}, "The book's title is Cryptography for Dummies. You remember skimming it during detention yesterday but that was a long time ago.")
 book.aliases = {"library book", "cryptography book", "cryptography for dummies", "dog-eared book"}
 
