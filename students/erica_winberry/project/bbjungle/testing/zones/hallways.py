@@ -203,9 +203,18 @@ class Locker(Boxlike):
                 self.locked = False
                 actor.tell("That's it! Your locker is now unlocked.")
             elif "16-32-64" in parsed.args:
-                actor.tell("The numbers only go up to 32!")
+                raise ActionRefused("The numbers only go up to 32!")
             else:
-                actor.tell("If only you could remember your combination!")
+                raise ActionRefused("If only you could remember your combination!")
+            return True
+        elif parsed.verb == "lock":
+            if self.locked:
+                raise ActionRefused("It's already locked.")
+            elif self.opened:
+                raise ActionRefused("You have to close it first!")
+            else:
+                self.locked = True
+                actor.tell("With a spin of the dial, your locker is locked.")
             return True
         return False
 
@@ -230,6 +239,7 @@ your_locker.verbs = {
     # register some custom verbs. You can redefine existing verbs, so be careful.
     "pick": "Attempt to pick the lock.",
     "unlock": "Use a combination to unlock the locker.",
+    "lock": "Lock the comibnation lock."
 }
 
 north_hallway.init_inventory([your_locker])
