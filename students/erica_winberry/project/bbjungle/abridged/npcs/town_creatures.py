@@ -9,30 +9,41 @@ from __future__ import absolute_import, print_function, division, unicode_litera
 import random
 from tale import lang, mud_context
 from tale.npc import NPC
-from tale.errors import ActionRefused
+from tale.base import heartbeat
 
 
-class MrBushel(NPC):
+@heartbeat
+class VillageIdiot(NPC):
     def init(self):
-        mud_context.driver.defer(2, self.do_idle_action)
-        self.aggressive = True
+        self.beats_before_drool = 4
 
-    def insert(self, item, actor):
-        """NPC have a bit nicer refuse message when giving items to them."""
-        if not self.aggressive or actor is self or actor is not None and "wizard" in actor.privileges:
-            super(NPC, self).insert(item, self)
-        else:
-            if self.aggressive and item is not "english paper":
-                raise ActionRefused("%s doesn't want %s." % (lang.capital(self.title), item.title))
+    def heartbeat(self, ctx):
+        # note: this village idiot NPC uses a heartbeat mechanism to drool at certain moments.
+        # This is less efficient than using a deferred (as the town crier NPC does) because
+        # the driver has to call all heartbeats every tick even though they do nothing yet.
+        # It's here for example sake.
+        self.beats_before_drool -= 1
+        if self.beats_before_drool <= 0:
+            self.beats_before_drool = random.randint(10, 20)
+            target = random.choice(list(self.location.livings))
+            if target is self:
+                self.location.tell("%s drools on %sself." % (lang.capital(self.title), self.objective))
             else:
-                self.aggressive = False
+                title = lang.capital(self.title)
+                self.location.tell("%s drools on %s." % (title, target.title),
+                                   specific_targets=[target], specific_target_msg="%s drools on you." % title)
 
-    def do_idle_action(self, ctx):
-        if random.random() < 0.5:
-            self.tell_others("{Title} clears his throat impatiently." % self.possessive)
-        else:
-            self.tell_others("{Title} snorts in irritation." % self.possessive)
-        ctx.driver.defer(random.randint(5, 15), self.do_idle_action)
+
+class TownCrier(NPC):
+    def init(self):
+        # note: this npc uses the deferred feature to yell stuff at certain moments.
+        # This is the preferred way (it's efficient).
+        mud_context.driver.defer(2, self.do_cry)
+
+    def do_cry(self, ctx):
+        self.tell_others("{Title} yells: welcome everyone!")
+        self.location.message_nearby_locations("Someone nearby is yelling: welcome everyone!")
+        ctx.driver.defer(random.randint(20, 40), self.do_cry)
 
     def notify_action(self, parsed, actor):
         greet = False
@@ -70,6 +81,8 @@ class WalkingRat(NPC):
 
 class Librarian(NPC):
     def init(self):
+        # note: this npc uses the deferred feature to yell stuff at certain moments.
+        # This is the preferred way (it's efficient).
         mud_context.driver.defer(2, self.do_cry)
 
     def do_cry(self, ctx):

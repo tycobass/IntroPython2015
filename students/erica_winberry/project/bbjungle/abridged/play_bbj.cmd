@@ -12,4 +12,3 @@ SET PYTHONPATH=..\..;%PYTHONPATH%
 
 REM start the game
 python -m tale.main --game . %*
-

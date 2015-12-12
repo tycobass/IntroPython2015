@@ -26,13 +26,13 @@ class GameEnd(Location):
     def init(self):
         pass
 
-    def insert(self, obj, actor):
+    def insert(self, actor):
         # Normally you would use notify_player_arrived() to trigger an action.
         # but for the game ending, we require an immediate response.
         # So instead we hook into the direct arrival of something in this location.
-        super(GameEnd, self).insert(obj, actor)
+        super(GameEnd, self).insert()
         try:
-            obj.story_completed()   # player arrived! Great Success!
+            Story.completion_failed1()   # player arrived! Great Success!
         except AttributeError:
             pass
 
@@ -66,8 +66,8 @@ class Hazard(Door):
         if not self.bound:
             raise LocationIntegrityError("door not bound", None, self, None)
         if self.hazard:
-            print("You slip in the puddle of sick and fall, cracking your head on a nearby locker. Everything goes black...\n\n")
-            Player.move(nurses_office, actor)
+            actor.tell("You slip in the puddle of sick and fall, cracking your head on a nearby locker. Everything goes black...\n\n")
+            actor.move(nurses_office, actor)
 
     def cleaned_up(self):
         self.hazard = False

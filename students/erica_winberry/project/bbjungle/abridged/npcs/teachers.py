@@ -10,6 +10,8 @@ import random
 from tale import lang, mud_context
 from tale.npc import NPC
 from tale.errors import ActionRefused
+from story import Story
+from zones.hallways import english_paper
 
 
 class MrBushel(NPC):
@@ -19,20 +21,21 @@ class MrBushel(NPC):
 
     def insert(self, item, actor):
         """NPC have a bit nicer refuse message when giving items to them."""
-        if not self.aggressive or actor is self or actor is not None and "wizard" in actor.privileges:
+        if item is english_paper:
             super(NPC, self).insert(item, self)
+            actor.story_completed()
+            actor.tell_later("""
+Mr. Bushel takes your English paper with a look of surprise. "Well, better late than never, I suppose."
+You take your seat. For the first time in weeks, you won't be in detention all afternoon.""")
         else:
-            if self.aggressive and item is not "english paper":
-                raise ActionRefused("%s doesn't want %s." % (lang.capital(self.title), item.title))
-            else:
-                self.aggressive = False
+            raise ActionRefused("{} doesn't want {}.".format(lang.capital(self.title), item.title))
 
     def do_idle_action(self, ctx):
         if random.random() < 0.5:
-            self.tell_others("{Title} clears his throat impatiently." % self.possessive)
+            self.tell_others("{} clears his throat impatiently.".format(self.title))
         else:
-            self.tell_others("{Title} snorts in irritation." % self.possessive)
-        ctx.driver.defer(random.randint(5, 15), self.do_idle_action)
+            self.tell_others("{} snorts in irritation.".format(self.title))
+        ctx.driver.defer(random.randint(20, 50), self.do_idle_action)
 
     def notify_action(self, parsed, actor):
         greet = False
@@ -44,33 +47,13 @@ class MrBushel(NPC):
         elif parsed.verb == "greet" and self in parsed.who_info:
             greet = True
         if greet:
-            self.tell_others("{Title} says: \"Hello there, %s.\"" % actor.title)
-
-
-class WalkingRat(NPC):
-    def init(self):
-        super(WalkingRat, self).init()
-        mud_context.driver.defer(2, self.do_idle_action)
-        mud_context.driver.defer(4, self.do_random_move)
-        self.aggressive = True
-
-    def do_idle_action(self, ctx):
-        if random.random() < 0.5:
-            self.tell_others("{Title} wiggles %s tail." % self.possessive)
-        else:
-            self.tell_others("{Title} sniffs around and moves %s whiskers." % self.possessive)
-        ctx.driver.defer(random.randint(5, 15), self.do_idle_action)
-
-    def do_random_move(self, ctx):
-        direction = self.select_random_move()
-        if direction:
-            self.move(direction.target, self)
-        ctx.driver.defer(random.randint(10, 20), self.do_random_move)
+            self.tell_others("{} says: \"Mr. Tannen, stop stalling and turn in your homework, please.\"".format(self.title))
 
 
 class Librarian(NPC):
     def init(self):
         mud_context.driver.defer(2, self.do_cry)
+        self.aggressive = True
 
     def do_cry(self, ctx):
         self.tell_others("{Title} mutters to herself as she putters around behind the library counter.")
