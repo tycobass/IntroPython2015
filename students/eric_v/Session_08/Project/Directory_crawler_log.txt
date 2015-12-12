@@ -1,0 +1,13 @@
+Potential duplicates found:
+Although the names may differ, the contents are identical
+========================
+		c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\Directory_Crawler.py
+		c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\Directory_Crawler_getopts.py
+======================
+		c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\try_examples.py
+		c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\try_except_examples.py
+======================
+		c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\Directory_crawler_list.txt
+		c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\Directory_crawler_log.txt
+		c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\key_test\key_test.txt
+======================

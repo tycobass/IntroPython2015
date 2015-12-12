@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 
-from Directory_Crawler import hashfile, file_hash_values
+import Directory_Crawler as dc
 
 
-
-def test_hashfile():
-    my_hash = hashfile("c:\work_area\Python\Info\loop.py", blocksize = 65536)
-    assert my_hash == '40608b9a2d1640de7366edc6db9ed69b'
+def test_hash_identifier():
+    assert dc.hash_identifier('c:\work_area\Python\IntroPython2015\README.rst') == '22f95f67b342722d057a72be249f98a9'
 
 def test_file_hash_values():
-    my_found_duplicates = file_hash_values('c:\work_area\Python\Info\Session_03')
-    print (my_found_duplicates)
-    'c:\\work_area\\Python\\Info\\Session_03\\list_lab.py' == my_found_duplicates['93c84386766ee905520b0005a7a3e080']
-    #assert false
+    top_level_folder = 'C:\work_area\Python\IntroPython2015\students\eric_v\Session_08\Project\key_test'
+    filename_listing = 'Directory_crawler_list.txt'
+    log_file = 'Directory_crawler_log.txt'
+    test_file = 'C:\work_area\Python\IntroPython2015\students\eric_v\Session_08\Project\key_test\key_test.txt'
+    list_of_files = (dc.file_hash_values(top_level_folder, filename_listing, log_file))
+    assert list_of_files['d41d8cd98f00b204e9800998ecf8427e'] ==test_file
+

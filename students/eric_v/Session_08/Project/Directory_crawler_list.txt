@@ -1,0 +1,102 @@
+1  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\circle_class.py
+1  - file_hash ffade940ac51c2ebaccebac0276bf4c7 
+
+2  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\pathfinder.py
+2  - file_hash e9fa43ea8933b4b01ffb0160fbc616f7 
+
+3  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\test_Circle.py
+3  - file_hash 15695b5715294f4482305dbfcf74b63d 
+
+4  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\.cache\v\cache\lastfailed
+4  - file_hash fa36b1846045f32965057bb7c16ac6bb 
+
+5  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\Directory_Crawler.py
+5  - file_hash 7ad0e38507adf698a00ab44de3934449 
+
+6  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\Directory_crawler_list.txt
+6  - file_hash d41d8cd98f00b204e9800998ecf8427e 
+
+7  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\Directory_crawler_log.txt
+7  - file_hash d41d8cd98f00b204e9800998ecf8427e 
+
+8  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\Project_synopsis.txt
+8  - file_hash 3665d9310eb027da51b7db5ea35178f1 
+
+9  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\test_Directory_Crawler.py
+9  - file_hash 1f1e3b36e60a8934e65c93f31e9ffb52 
+
+10  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\.cache\v\cache\lastfailed
+10  - file_hash 90117c6609970bd1d2694786d04703c8 
+
+11  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\Directory_Crawler_getopts.py
+11  - file_hash 7ad0e38507adf698a00ab44de3934449 
+
+12  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\Directory_Crawler_getopts_orig.py
+12  - file_hash 644976febe270f474a0c610c06daac44 
+
+13  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\Directory_Crawler_old.py
+13  - file_hash 9ed17e2e05c607aace3a61e93c7197be 
+
+14  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\Directory_Crawler_orig.py
+14  - file_hash 45470f43092cd26b4aca71295bd73ab8 
+
+15  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\Directory_Crawler_temp.py
+15  - file_hash 04b1b02030f2273c67af4e1497824efc 
+
+16  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\dupFinder_eric.py
+16  - file_hash 6c4e6f9e8ba46c71e750242f91bc2aec 
+
+17  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\dupFinder_orig.py
+17  - file_hash 39652630da36b664899b6cccfa91cf27 
+
+18  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\finder_on_size.py
+18  - file_hash 6fafd7d406f719d8a29abd47d470d4f9 
+
+19  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\finder_on_size_eric.py
+19  - file_hash 29b40161abe550f69719df39b8512835 
+
+20  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\getopt_crawler.py
+20  - file_hash 2141f2708d95e42c817f8a247eb3e8dd 
+
+21  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\getopt_test.py
+21  - file_hash f2b49776e3c33377de49b198d80e7d86 
+
+22  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\Hash_Tester.py
+22  - file_hash 6bc1b28e53532b8ab87a2095b288b5b1 
+
+23  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\switch_test.py
+23  - file_hash a098c352481980258783bab60758f243 
+
+24  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\try_examples.py
+24  - file_hash ac2dd6b3926381f85e124ee8295a1fb9 
+
+25  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\try_except_examples.py
+25  - file_hash ac2dd6b3926381f85e124ee8295a1fb9 
+
+26  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\__pycache__\getopt_test.cpython-34-PYTEST.pyc
+26  - file_hash b5e538ea010ca3ea795daae4d790652f 
+
+27  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\detrius\__pycache__\switch_test.cpython-34-PYTEST.pyc
+27  - file_hash 8078dae83499f283e600bf411b8c9616 
+
+28  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\key_test\frogs.txt
+28  - file_hash 89c2d3ec87f1eebed043526403b95c7c 
+
+29  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\key_test\key_test.txt
+29  - file_hash d41d8cd98f00b204e9800998ecf8427e 
+
+30  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\key_test\rabbits.txt
+30  - file_hash b1d26602cf0cb6696dce47bb970f47d8 
+
+31  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\__pycache__\Directory_Crawler.cpython-34.pyc
+31  - file_hash 2c6c13271029848fb7a4c756969e1883 
+
+32  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\Project\__pycache__\test_Directory_Crawler.cpython-34-PYTEST.pyc
+32  - file_hash 38217280e0a2ab6c336b1c2254d92c5d 
+
+33  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\__pycache__\circle_class.cpython-34.pyc
+33  - file_hash 7a12e5eddedbe75aad09a22e2dd175c3 
+
+34  - pathname to be hashed -  c:/work_area/Python/IntroPython2015/students/eric_v/Session_08\__pycache__\test_Circle.cpython-34-PYTEST.pyc
+34  - file_hash aadb7441b6fdeb57330b4dc1c009fdd5 
+
