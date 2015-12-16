@@ -1,0 +1,36 @@
+Gymnasium:
+make glasses wearable: 
+Wearing the glasses blurs the player's vision, making it difficult to look or examine.
+
+Locker Room:
+make the janitor's cart pushable
+-can't figure out how to move items that aren't alive.
+-can't figure out how to have the player move items.
+
+Hallway south:
+make the puke a hazard to going north
+-tried with a custom door class, tried with custom item. 
+
+Move to Nurse's office without player permission
+-can't figure out how to do this.
+
+Hallway north:
+locker is working properly. hooray!
+[done] english paper is readable
+
+Library:
+Make librarian miopic without glasses
+Add a reaction from her on first entering the room.
+Add a reaction from her if you get sent to detention:
+--differentiate if you gave her the glasses or not.
+[done] make book readable. 
+
+Classroom:
+Make Mr. Bushel crankier.
+Get sent to detention if you don't turn in the paper in 3 turns.
+Move to detention without player permission.
+
+figure out how to get the endgame function to run.
+
+figure out how to let the player set name and gender without race.
+-Gave up on this and made a default character for the player.
