@@ -48,7 +48,14 @@ def find_samesize_in_a_folder(folder):
         for filename in filelist:
             fullpath_filename = os.path.join(dirname, filename)
             absolutepath_filename = os.path.abspath(fullpath_filename)
-            file_size = os.path.getsize(absolutepath_filename)
+            try:
+                file_size = os.path.getsize(absolutepath_filename)
+            except PermissionError:
+                file_size = 0
+                print('Permission Error - continuing')
+            except FileNotFoundError:
+                file_size = 0
+                print('File not found error - continuing')
             if file_size in filesize_store:
                 if absolutepath_filename not in filesize_store[file_size]:  # Avoid false file duplication display in case of very same files (ie. when reference dir is part of dirs)
                      filesize_store[file_size].append(absolutepath_filename)
