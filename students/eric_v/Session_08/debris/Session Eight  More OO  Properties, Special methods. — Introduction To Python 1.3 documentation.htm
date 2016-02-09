@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html style="" class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Session Eight: More OO: Properties, Special methods. — Introduction To Python 1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="Session%20Eight%20%20More%20OO%20%20Properties,%20Special%20methods.%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/theme.css" type="text/css">
+  
+
+  
+
+  
+    <link rel="top" title="Introduction To Python 1.3 documentation" href="http://uwpce-pythoncert.github.io/IntroToPython/index.html">
+        <link rel="next" title="Session Nine: Iterators, Iterables, and Generators" href="http://uwpce-pythoncert.github.io/IntroToPython/session09.html">
+        <link rel="prev" title="Object Oriented Programming" href="http://uwpce-pythoncert.github.io/IntroToPython/session07.html"> 
+
+  
+  <script src="Session%20Eight%20%20More%20OO%20%20Properties,%20Special%20methods.%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/modernizr.js"></script>
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?rev=2.6.0') format('woff'), url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?rev=2.6.0') format('opentype')}
+@font-face {font-family: MathJax_Main; src: url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?rev=2.6.0') format('woff'), url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?rev=2.6.0') format('opentype'); font-weight: bold}
+@font-face {font-family: MathJax_Main; src: url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?rev=2.6.0') format('woff'), url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?rev=2.6.0') format('opentype'); font-style: italic}
+@font-face {font-family: MathJax_Math; src: url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?rev=2.6.0') format('woff'), url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?rev=2.6.0') format('opentype'); font-style: italic}
+@font-face {font-family: MathJax_Caligraphic; src: url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?rev=2.6.0') format('woff'), url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?rev=2.6.0') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?rev=2.6.0') format('woff'), url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?rev=2.6.0') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?rev=2.6.0') format('woff'), url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?rev=2.6.0') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?rev=2.6.0') format('woff'), url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?rev=2.6.0') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?rev=2.6.0') format('woff'), url('https://cdn.mathjax.org/mathjax/2.6-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?rev=2.6.0') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+<body class="wy-body-for-nav" role="document"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px none; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div style="display: none;" id="MathJax_Message"></div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="http://uwpce-pythoncert.github.io/IntroToPython/index.html" class="icon icon-home"> Introduction To Python
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input name="q" placeholder="Search docs" type="text">
+    <input name="check_keywords" value="yes" type="hidden">
+    <input name="area" value="default" type="hidden">
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session01.html">Session One: Introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session02.html">Session Two: gitHub, Functions, Booleans and Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session03.html">Session Three: Sequences, Iteration and String Formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session04.html">Session Four: Dictionaries, Sets, and Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session05.html">Session Five: Exceptions, Testing, Comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session06.html">Session Six: Advanced Argument Passing, lambda, functions as objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session07.html">Object Oriented Programming</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href=""><span class="toctree-expand"></span>Session Eight: More OO: Properties, Special methods.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#review-questions"><span class="toctree-expand"></span>Review/Questions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#review-of-previous-class">Review of Previous Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lightning-talks-today">Lightning Talks Today:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#personal-project">Personal Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#homework-review">Homework review</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#homework-notes">Homework Notes:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#properties"><span class="toctree-expand"></span>Properties</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getter-and-setters">Getter and Setters?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#read-only-attributes">“Read Only” Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deleters">Deleters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#lab"><span class="toctree-expand"></span>LAB</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lightning-talks">Lightning talks:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#static-and-class-methods"><span class="toctree-expand"></span>Static and Class Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#static-methods">Static Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#class-methods">Class Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why">Why?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alternate-constructors">Alternate Constructors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#special-methods"><span class="toctree-expand"></span>Special Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-in-a-name">What’s in a Name?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#protocols">Protocols</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">LAB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#emulating-standard-types"><span class="toctree-expand"></span>Emulating Standard types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#callable-classes">Callable classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#callables">“Callables”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-callable-objects">Custom callable objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-your-own-sequence-type">Writing your own sequence type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-sparse-array">A Sparse array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-sequence-protocol">The Sequence protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id3"><span class="toctree-expand"></span>LAB</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Callables:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sparse-array">Sparse Array:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#homework">Homework</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session09.html">Session Nine: Iterators, Iterables, and Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session10.html">Session Ten: Decorators and Context Managers – Wrap Up</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/index.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/index.html">Supplemental Materials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="http://uwpce-pythoncert.github.io/IntroToPython/index.html">Introduction To Python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="http://uwpce-pythoncert.github.io/IntroToPython/index.html">Docs</a> »</li>
+      
+    <li>Session Eight: More OO: Properties, Special methods.</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="http://uwpce-pythoncert.github.io/IntroToPython/_sources/session08.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="session-eight-more-oo-properties-special-methods">
+<h1>Session Eight: More OO: Properties, Special methods.<a class="headerlink" href="#session-eight-more-oo-properties-special-methods" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="review-questions">
+<h2>Review/Questions<a class="headerlink" href="#review-questions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="review-of-previous-class">
+<h3>Review of Previous Class<a class="headerlink" href="#review-of-previous-class" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Basic OO Concepts<ul>
+<li>Classes</li>
+<li>class vs. instance attributes</li>
+<li>subclassing</li>
+<li>overriding methods / attributes</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="lightning-talks-today">
+<h3>Lightning Talks Today:<a class="headerlink" href="#lightning-talks-today" title="Permalink to this headline">¶</a></h3>
+<p class="medium">Robert Ryan Leslie</p>
+<p class="medium">Ryan Morin</p>
+</div>
+<div class="section" id="personal-project">
+<h3>Personal Project<a class="headerlink" href="#personal-project" title="Permalink to this headline">¶</a></h3>
+<p>The bulk of the homework for the rest of the class will be a personal project:</p>
+<ul class="simple">
+<li>It can be for fun, or something you need for your job.</li>
+<li>It should be large enough to take a few weeks homework time to do.</li>
+<li><strong>It should demostrate that you can do something useful with python.</strong></li>
+<li>It should follow PEP8 (<a class="reference external" href="https://www.python.org/dev/peps/pep-0008">https://www.python.org/dev/peps/pep-0008</a>)</li>
+<li>It should have unit tests!</li>
+<li>Ideally, it will be in version control (gitHub)</li>
+<li>I don’t require any specific python features (i.e. classes): use
+what is appropriate for your project</li>
+<li>Due the Friday after the last class (December 11)</li>
+</ul>
+<div class="line-block">
+<div class="line"><br></div>
+<div class="line-block">
+<div class="line">By next week, send me a project proposal: short and sweet.</div>
+<div class="line"><br></div>
+</div>
+</div>
+</div>
+<div class="section" id="homework-review">
+<h3>Homework review<a class="headerlink" href="#homework-review" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>html renderer</li>
+<li>Test-driven development</li>
+</ul>
+</div>
+<div class="section" id="homework-notes">
+<h3>Homework Notes:<a class="headerlink" href="#homework-notes" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">**kwargs</span></code> will always define a <code class="docutils literal"><span class="pre">kwargs</span></code> dict: it just may be empty.</p>
+<p>And there is no need to check if it’s empty before trying to loop through it.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span> <span class="o">!=</span> <span class="p">{}:</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">atts</span> <span class="o">+=</span> <span class="s">' {}="{}"'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>no need for <code class="docutils literal"><span class="pre">!=</span> <span class="pre">{}</span></code> – an empty dict is “Falsey”</p>
+<p><strong>but</strong> no need for that check at all. If the dict (or ist, or tuple) is
+empty, then the loop is a do-nothing operation:</p>
+<ul class="simple">
+<li>notes on Duck Typing: <a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/html_renderer.html#exercise-html-renderer"><span>HTML Renderer Exercise</span></a> and  code review</li>
+<li>anyone stuck that wants to work through your code?</li>
+</ul>
+</div>
+</div>
+<div class="section" id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<div class="left container">
+<p>One of the strengths of Python is lack of clutter.</p>
+<p>Attributes are simple and concise:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [5]: </span><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+<span class="go">        def __init__(self):</span>
+<span class="go">                self.x = 5</span>
+<span class="gp">In [6]: </span><span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
+<span class="gp">In [7]: </span><span class="n">c</span><span class="o">.</span><span class="n">x</span>
+<span class="gh">Out[7]: </span><span class="go">5</span>
+<span class="gp">In [8]: </span><span class="n">c</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="gp">In [9]: </span><span class="n">c</span><span class="o">.</span><span class="n">x</span>
+<span class="gh">Out[9]: </span><span class="go">8</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getter-and-setters">
+<h3>Getter and Setters?<a class="headerlink" href="#getter-and-setters" title="Permalink to this headline">¶</a></h3>
+<p>But what if you need to add behavior later?</p>
+<ul class="build simple">
+<li>do some calculation</li>
+<li>check data validity</li>
+<li>keep things in sync</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [5]: </span><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+<span class="gp">   ...: </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">   ...: </span>        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">   ...: </span>    <span class="k">def</span> <span class="nf">get_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">   ...: </span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span>
+<span class="gp">   ...: </span>    <span class="k">def</span> <span class="nf">set_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="gp">   ...: </span>        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+<span class="gp">   ...:</span>
+<span class="gp">In [6]: </span><span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
+<span class="gp">In [7]: </span><span class="n">c</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
+<span class="gh">Out[7]: </span><span class="go">5</span>
+<span class="gp">In [8]: </span><span class="n">c</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="gp">In [9]: </span><span class="n">c</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
+<span class="gh">Out[9]: </span><span class="go">8</span>
+</pre></div>
+</div>
+<p>&lt;shudder&gt; This is ugly and verbose – <a class="reference external" href="http://dirtsimple.org/2004/12/python-is-not-java.html">Java</a>?</p>
+</div>
+<div class="section" id="id1">
+<h3>properties<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="go">class C:</span>
+<span class="go">    _x = None</span>
+<span class="go">    @property</span>
+<span class="go">    def x(self):</span>
+<span class="go">        return self._x</span>
+<span class="go">    @x.setter</span>
+<span class="go">    def x(self, value):</span>
+<span class="go">        self._x = value</span>
+
+<span class="gp">In [28]: </span><span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
+<span class="gp">In [30]: </span><span class="n">c</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">In [31]: </span><span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>Now the interface is like simple attribute access!</p>
+<p>What’s up with the “@” symbols?</p>
+<p>Those are “decorations” it’s a syntax for wrapping functions up with something special.</p>
+<p>We’ll cover that in detail in a couple weeks, but for now – just copy the syntax.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@property</span>
+<span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>means: make a property called x with this as the “getter”.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@x.setter</span>
+<span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>means: make the “setter” of the ‘x’ property this new function</p>
+</div>
+<div class="section" id="read-only-attributes">
+<h3>“Read Only” Attributes<a class="headerlink" href="#read-only-attributes" title="Permalink to this headline">¶</a></h3>
+<p>You do not need to define a setter. If you don’t, you get a “read only” attribute:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [11]: </span><span class="k">class</span> <span class="nc">D</span><span class="p">():</span>
+<span class="gp">   ....: </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="gp">   ....: </span>        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">   ....: </span>    <span class="nd">@property</span>
+<span class="gp">   ....: </span>    <span class="k">def</span> <span class="nf">getx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">   ....: </span>    <span class="sd">"""I am read only"""</span>
+<span class="gp">   ....: </span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+<span class="gp">   ....:</span>
+<span class="gp">In [12]: </span><span class="n">d</span> <span class="o">=</span> <span class="n">D</span><span class="p">()</span>
+<span class="gp">In [13]: </span><span class="n">d</span><span class="o">.</span><span class="n">x</span>
+<span class="gh">Out[13]: </span><span class="go">5</span>
+<span class="gp">In [14]: </span><span class="n">d</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-14-c83386d97be3&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">d</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="ne">AttributeError</span>: can't set attribute
+</pre></div>
+</div>
+</div>
+<div class="section" id="deleters">
+<h3>Deleters<a class="headerlink" href="#deleters" title="Permalink to this headline">¶</a></h3>
+<p>If you want to do something special when a property is deleted, you can define
+a deleter is well:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [11]: </span><span class="k">class</span> <span class="nc">D</span><span class="p">():</span>
+<span class="gp">   ....: </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="gp">   ....: </span>        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">   ....: </span>    <span class="nd">@property</span>
+<span class="gp">   ....: </span>    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">   ....: </span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+<span class="gp">   ....: </span>    <span class="nd">@x.deleter</span>
+<span class="gp">   ....: </span>    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">   ....: </span>        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+</pre></div>
+</div>
+<p>If you leave this out, the property can’t be deleted, which is usually
+what you want.</p>
+<p class="centered">[demo: <a class="reference download internal" href="http://uwpce-pythoncert.github.io/IntroToPython/_downloads/properties_example.py"><code class="xref download docutils literal"><span class="pre">properties_example.py</span></code></a>]</p>
+</div>
+</div>
+<div class="section" id="lab">
+<h2>LAB<a class="headerlink" href="#lab" title="Permalink to this headline">¶</a></h2>
+<p>Let’s use some of this to build a nice class to represent a Circle.</p>
+<p>For now, Let’s do steps 1-4 of:</p>
+<p><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/circle_class.html#exercise-circle-class"><span>Circle Class Excercise</span></a></p>
+<div class="section" id="lightning-talks">
+<h3>Lightning talks:<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h3>
+<p class="medium">Robert Ryan Leslie</p>
+<p class="medium">Ryan Morin</p>
+</div>
+</div>
+<div class="section" id="static-and-class-methods">
+<h2>Static and Class Methods<a class="headerlink" href="#static-and-class-methods" title="Permalink to this headline">¶</a></h2>
+<div class="left build container">
+<p>You’ve seen how methods of a class are <em>bound</em> to an instance when it is
+created.</p>
+<p>And you’ve seen how the argument <code class="docutils literal"><span class="pre">self</span></code> is then automatically passed to
+the method when it is called.</p>
+<p>And you’ve seen how you can call <em>unbound</em> methods on a class object so
+long as you pass an instance of that class as the first argument.</p>
+<div class="line-block">
+<div class="line"><br></div>
+</div>
+<p class="centered"><strong>But what if you don’t want or need an instance?</strong></p>
+</div>
+<div class="section" id="static-methods">
+<h3>Static Methods<a class="headerlink" href="#static-methods" title="Permalink to this headline">¶</a></h3>
+<p>A <em>static method</em> is a method that doesn’t get self:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [36]: </span><span class="k">class</span> <span class="nc">StaticAdder</span><span class="p">:</span>
+
+<span class="gp">   ....: </span>    <span class="nd">@staticmethod</span>
+<span class="gp">   ....: </span>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="gp">   ....: </span>        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="gp">   ....:</span>
+
+<span class="gp">In [37]: </span><span class="n">StaticAdder</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gh">Out[37]: </span><span class="go">9</span>
+</pre></div>
+</div>
+<p class="centered">[demo: <a class="reference download internal" href="http://uwpce-pythoncert.github.io/IntroToPython/_downloads/static_method.py"><code class="xref download docutils literal"><span class="pre">static_method.py</span></code></a>]</p>
+<div class="build container">
+<p>Where are static methods useful?</p>
+<p>Usually they aren’t</p>
+<p>99% of the time, it’s better just to write a module-level function</p>
+<p>An example from the Standard Library (tarfile.py):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TarInfo</span><span class="p">:</span>
+    <span class="c"># ...</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_create_payload</span><span class="p">(</span><span class="n">payload</span><span class="p">):</span>
+        <span class="sd">"""Return the string payload filled with zero bytes</span>
+<span class="sd">           up to the next 512 byte border.</span>
+<span class="sd">        """</span>
+        <span class="n">blocks</span><span class="p">,</span> <span class="n">remainder</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span> <span class="n">BLOCKSIZE</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">remainder</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">payload</span> <span class="o">+=</span> <span class="p">(</span><span class="n">BLOCKSIZE</span> <span class="o">-</span> <span class="n">remainder</span><span class="p">)</span> <span class="o">*</span> <span class="n">NUL</span>
+        <span class="k">return</span> <span class="n">payload</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-methods">
+<h3>Class Methods<a class="headerlink" href="#class-methods" title="Permalink to this headline">¶</a></h3>
+<p>A class method gets the class object, rather than an instance, as the first
+argument</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [41]: </span><span class="k">class</span> <span class="nc">Classy</span><span class="p">:</span>
+<span class="gp">   ....: </span>    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="gp">   ....: </span>    <span class="nd">@classmethod</span>
+<span class="gp">   ....: </span>    <span class="k">def</span> <span class="nf">a_class_method</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="gp">   ....: </span>        <span class="k">print</span><span class="p">(</span><span class="s">"in a class method: "</span><span class="p">,</span> <span class="n">cls</span><span class="p">)</span>
+<span class="gp">   ....: </span>        <span class="k">return</span> <span class="n">y</span> <span class="o">**</span> <span class="n">cls</span><span class="o">.</span><span class="n">x</span>
+<span class="gp">   ....:</span>
+<span class="gp">In [42]: </span><span class="n">Classy</span><span class="o">.</span><span class="n">a_class_method</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">in a class method:  &lt;class '__main__.Classy'&gt;</span>
+<span class="gh">Out[42]: </span><span class="go">16</span>
+</pre></div>
+</div>
+<p class="centered">[demo: <a class="reference download internal" href="http://uwpce-pythoncert.github.io/IntroToPython/_downloads/class_method.py"><code class="xref download docutils literal"><span class="pre">class_method.py</span></code></a>]</p>
+</div>
+<div class="section" id="why">
+<h3>Why?<a class="headerlink" href="#why" title="Permalink to this headline">¶</a></h3>
+<div class="build container">
+<p>Unlike static methods, class methods are quite common.</p>
+<p>They have the advantage of being friendly to subclassing.</p>
+<p>Consider this:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [44]: </span><span class="k">class</span> <span class="nc">SubClassy</span><span class="p">(</span><span class="n">Classy</span><span class="p">):</span>
+<span class="gp">   ....: </span>    <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="gp">   ....:</span>
+
+<span class="gp">In [45]: </span><span class="n">SubClassy</span><span class="o">.</span><span class="n">a_class_method</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">in a class method:  &lt;class '__main__.SubClassy'&gt;</span>
+<span class="gh">Out[45]: </span><span class="go">64</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="alternate-constructors">
+<h3>Alternate Constructors<a class="headerlink" href="#alternate-constructors" title="Permalink to this headline">¶</a></h3>
+<p>Because of this friendliness to subclassing, class methods are often used to
+build alternate constructors.</p>
+<p>Consider the case of wanting to build a dictionary with a given iterable of
+keys:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [57]: </span><span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-57-50c56a77d95f&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="ne">TypeError</span>: cannot convert dictionary update sequence element #0 to a sequence
+</pre></div>
+</div>
+<p>The stock constructor for a dictionary won’t work this way. So the dict object
+implements an alternate constructor that <em>can</em>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">fromkeys</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">'''OD.fromkeys(S[, v]) -&gt; New ordered dictionary with keys from S.</span>
+<span class="sd">    If not specified, the value defaults to None.</span>
+<span class="sd">    '''</span>
+    <span class="bp">self</span> <span class="o">=</span> <span class="n">cls</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="bp">self</span>
+</pre></div>
+</div>
+<p>(this is actually from the OrderedDict implementation in <code class="docutils literal"><span class="pre">collections.py</span></code>)</p>
+<p>See also datetime.datetime.now(), etc....</p>
+<p>Properties, Static Methods and Class Methods are powerful features of Python’s
+OO model.</p>
+<p>They are implemented using an underlying structure called <em>descriptors</em></p>
+<p><a class="reference external" href="https://docs.python.org/2/howto/descriptor.html">Here is a low level look</a> at how the descriptor protocol works.</p>
+<p>The cool part is that this mechanism is available to you, the programmer, as
+well.</p>
+<p>For the Circle Lab: use a class method to make an alternate constructor that takes
+the diameter instead.</p>
+</div>
+</div>
+<div class="section" id="special-methods">
+<h2>Special Methods<a class="headerlink" href="#special-methods" title="Permalink to this headline">¶</a></h2>
+<div class="left container">
+<p>Special methods (also called <em>magic</em> methods) are the secret sauce to Python’s Duck typing.</p>
+<p>Defining the appropriate special methods in your classes is how you make your class act like standard classes.</p>
+</div>
+<div class="section" id="what-s-in-a-name">
+<h3>What’s in a Name?<a class="headerlink" href="#what-s-in-a-name" title="Permalink to this headline">¶</a></h3>
+<p>We’ve seen at least one special method so far:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">__init__</span>
+</pre></div>
+</div>
+<p>It’s all in the double underscores...</p>
+<p>Pronounced “dunder” (or “under-under”)</p>
+<p>try: <code class="docutils literal"><span class="pre">dir(2)</span></code>  or <code class="docutils literal"><span class="pre">dir(list)</span></code></p>
+<p>Most classes should at least have these special methods:</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">object.__str__</span></code>:</dt>
+<dd>Called by the str() built-in function and by the print function to compute
+the <em>informal</em> string representation of an object.</dd>
+<dt><code class="docutils literal"><span class="pre">object.__repr__</span></code>:</dt>
+<dd><p class="first">Called by the repr() built-in function to compute the <em>official</em> string representation of an object.</p>
+<p class="last">(ideally: <code class="docutils literal"><span class="pre">eval(</span> <span class="pre">repr(something)</span> <span class="pre">)</span> <span class="pre">==</span> <span class="pre">something</span></code>)</p>
+</dd>
+</dl>
+<p>(demo)</p>
+</div>
+<div class="section" id="protocols">
+<h3>Protocols<a class="headerlink" href="#protocols" title="Permalink to this headline">¶</a></h3>
+<div class="build container">
+<p>The set of special methods needed to emulate a particular type of Python object is called a <em>protocol</em>.</p>
+<p>Your classes can “become” like Python built-in classes by implementing the
+methods in a given protocol.</p>
+<p>Remember, these are more <em>guidelines</em> than laws.  Implement what you need.</p>
+</div>
+<p>Do you want your class to behave like a number? Implement these methods:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nb">object</span><span class="o">.</span><span class="n">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__floordiv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__mod__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__divmod__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__pow__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">[,</span> <span class="n">modulo</span><span class="p">])</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__lshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__rshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__xor__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Want to make a container type? Here’s what you need:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nb">object</span><span class="o">.</span><span class="n">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__reversed__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__getslice__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__setslice__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">__delslice__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Each of these methods supports a common Python operation.</p>
+<p>For example, to make ‘+’ work with a sequence type in a vector-like fashion,
+implement <code class="docutils literal"><span class="pre">__add__</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="sd">"""return the element-wise vector sum of self and v</span>
+<span class="sd">    """</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vector</span><span class="p">([</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="k">for</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">)])</span>
+</pre></div>
+</div>
+<p class="centered">[a more complete example may be seen <a class="reference download internal" href="http://uwpce-pythoncert.github.io/IntroToPython/_downloads/vector.py"><code class="xref download docutils literal"><span class="pre">here</span></code></a>]</p>
+<p>Use special methods when you want your class to act like a “standard” class in
+some way.</p>
+<p>Look up the special methods you need and define them.</p>
+<p>There’s more to read about the details of implementing these methods:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.python.org/3.5/reference/datamodel.html#special-method-names">https://docs.python.org/3.5/reference/datamodel.html#special-method-names</a></li>
+<li><a class="reference external" href="http://www.rafekettler.com/magicmethods.html">http://www.rafekettler.com/magicmethods.html</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>LAB<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Let’s complete our nifty Circle class:</p>
+<p>Steps 5-8 of:</p>
+<p><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/circle_class.html#exercise-circle-class"><span>Circle Class Excercise</span></a></p>
+</div>
+<div class="section" id="emulating-standard-types">
+<h2>Emulating Standard types<a class="headerlink" href="#emulating-standard-types" title="Permalink to this headline">¶</a></h2>
+<p class="medium">Making your classes behave like the built-ins</p>
+<div class="section" id="callable-classes">
+<h3>Callable classes<a class="headerlink" href="#callable-classes" title="Permalink to this headline">¶</a></h3>
+<p>We’ve been using functions a lot:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">my_fun</span><span class="p">(</span><span class="n">something</span><span class="p">):</span>
+    <span class="n">do_something</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">something</span>
+</pre></div>
+</div>
+<p>And then we can call it:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">result</span> <span class="o">=</span> <span class="n">my_fun</span><span class="p">(</span><span class="n">some_arguments</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>But what if we need to store some data to know how to evaluate that function?</p>
+<p>Example: a function that computes a quadratic function:</p>
+<div class="math">
+<span style="color: inherit;" class="MathJax_Preview"></span><div style="text-align: center;" class="MathJax_Display"><span role="presentation" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;mi&gt;y&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;msup&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mi&gt;b&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;/math&gt;" style="position: relative;" tabindex="0" id="MathJax-Element-1-Frame" class="MathJax"><nobr aria-hidden="true"><span style="width: 8.578em; display: inline-block;" role="math" id="MathJax-Span-1" class="math"><span style="display: inline-block; position: relative; width: 7.381em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.325em, 1007.38em, 2.737em, -1000em); top: -2.371em; left: 0em;"><span id="MathJax-Span-2" class="mrow"><span style="font-family: MathJax_Math; font-style: italic;" id="MathJax-Span-3" class="mi">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.006em;"></span></span><span style="font-family: MathJax_Main; padding-left: 0.278em;" id="MathJax-Span-4" class="mo">=</span><span style="font-family: MathJax_Math; font-style: italic; padding-left: 0.278em;" id="MathJax-Span-5" class="mi">a</span><span id="MathJax-Span-6" class="msubsup"><span style="display: inline-block; position: relative; width: 1.001em; height: 0px;"><span style="position: absolute; clip: rect(3.383em, 1000.52em, 4.16em, -1000em); top: -3.987em; left: 0em;"><span style="font-family: MathJax_Math; font-style: italic;" id="MathJax-Span-7" class="mi">x</span><span style="display: inline-block; width: 0px; height: 3.987em;"></span></span><span style="position: absolute; top: -4.4em; left: 0.572em;"><span style="font-size: 70.7%; font-family: MathJax_Main;" id="MathJax-Span-8" class="mn">2</span><span style="display: inline-block; width: 0px; height: 3.987em;"></span></span></span></span><span style="font-family: MathJax_Main; padding-left: 0.222em;" id="MathJax-Span-9" class="mo">+</span><span style="font-family: MathJax_Math; font-style: italic; padding-left: 0.222em;" id="MathJax-Span-10" class="mi">b</span><span style="font-family: MathJax_Math; font-style: italic;" id="MathJax-Span-11" class="mi">x</span><span style="font-family: MathJax_Main; padding-left: 0.222em;" id="MathJax-Span-12" class="mo">+</span><span style="font-family: MathJax_Math; font-style: italic; padding-left: 0.222em;" id="MathJax-Span-13" class="mi">c</span></span><span style="display: inline-block; width: 0px; height: 2.371em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.3em; border-left: 0px solid; width: 0px; height: 1.388em;"></span></span></nobr><span role="presentation" class="MJX_Assistive_MathML MJX_Assistive_MathML_Block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>y</mi><mo>=</mo><mi>a</mi><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>b</mi><mi>x</mi><mo>+</mo><mi>c</mi></math></span></span></div><script id="MathJax-Element-1" type="math/tex; mode=display">y = a x^2 + bx + c</script></div>
+<p>You could pass in a, b and c each time:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">quadratic</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
+</pre></div>
+</div>
+<p>But what if you are using the same a, b, and c numerous times?</p>
+<p>Or what if you need to pass this in to something
+(like map) that requires a function that takes a single argument?</p>
+</div>
+<div class="section" id="callables">
+<h3>“Callables”<a class="headerlink" href="#callables" title="Permalink to this headline">¶</a></h3>
+<p>Various places in python expect a “callable” – something that you can
+call like a function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">a_result</span> <span class="o">=</span> <span class="n">something</span><span class="p">(</span><span class="n">some_arguments</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>“something” in this case is often a function, but can be anything else
+that is “callable”.</p>
+<p>What have we been introduced to recently that is “callable”, but not a
+function object?</p>
+</div>
+<div class="section" id="custom-callable-objects">
+<h3>Custom callable objects<a class="headerlink" href="#custom-callable-objects" title="Permalink to this headline">¶</a></h3>
+<p>The trick is one of Python’s “magic methods”</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">__call__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you define a <code class="docutils literal"><span class="pre">__call__</span></code> method in your class, it will be used when
+code “calls” an instance of your class:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Callable</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">.....</span><span class="p">)</span>
+        <span class="n">some_initilization</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">some_parameters</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then you can do:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">callable_instance</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">(</span><span class="n">some_arguments</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">callable_instance</span><span class="p">(</span><span class="n">some_arguments</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="writing-your-own-sequence-type">
+<h3>Writing your own sequence type<a class="headerlink" href="#writing-your-own-sequence-type" title="Permalink to this headline">¶</a></h3>
+<p>Python has a handful of nifty sequence types built in:</p>
+<blockquote>
+<div><ul class="simple">
+<li>lists</li>
+<li>tuples</li>
+<li>strings</li>
+<li>...</li>
+</ul>
+</div></blockquote>
+<p>But what if you need a sequence that isn’t built in?</p>
+</div>
+<div class="section" id="a-sparse-array">
+<h3>A Sparse array<a class="headerlink" href="#a-sparse-array" title="Permalink to this headline">¶</a></h3>
+<p>Example: Sparse Array</p>
+<p>Sometimes we have data sets that are “sparse” – i.e. most of the values are zero.</p>
+<p>So you may not want to store a huge bunch of zeros.</p>
+<p>But you do want the array to look like a regular old sequence.</p>
+<p>So how do you do that?</p>
+</div>
+<div class="section" id="the-sequence-protocol">
+<h3>The Sequence protocol<a class="headerlink" href="#the-sequence-protocol" title="Permalink to this headline">¶</a></h3>
+<p>You can make your class look like a regular python sequence by defining
+the set of special methods you need:</p>
+<p><a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#emulating-container-types">https://docs.python.org/3/reference/datamodel.html#emulating-container-types</a></p>
+<p>and</p>
+<p><a class="reference external" href="http://www.rafekettler.com/magicmethods.html#sequence">http://www.rafekettler.com/magicmethods.html#sequence</a></p>
+<p>The key ones are:</p>
+<div class="wy-table-responsive"><table class="docutils" border="1">
+<colgroup>
+<col width="45%">
+<col width="55%">
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">__len__</span></code></td>
+<td>for <code class="docutils literal"><span class="pre">len(sequence)</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">__getitem__</span></code></td>
+<td>for  <code class="docutils literal"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">seq[i]</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">__setitem__</span></code></td>
+<td>for <code class="docutils literal"><span class="pre">seq[i]</span> <span class="pre">=</span> <span class="pre">x</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">__delitem__</span></code></td>
+<td>for <code class="docutils literal"><span class="pre">del</span> <span class="pre">seq[i]</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">__contains__</span></code></td>
+<td>for <code class="docutils literal"><span class="pre">x</span> <span class="pre">in</span> <span class="pre">seq</span></code></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>LAB<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p class="medium">Let’s do the previous motivating examples.</p>
+<div class="section" id="id4">
+<h3>Callables:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Write a class for a quadratic equation.</p>
+<ul class="simple">
+<li>The initializer for that class should take the parameters: <code class="docutils literal"><span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">c</span></code></li>
+<li>It should store those parameters as attributes.</li>
+<li>The resulting instance should evaluate the function when called, and return the result:</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_quad</span> <span class="o">=</span> <span class="n">Quadratic</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">my_quad</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sparse-array">
+<h3>Sparse Array:<a class="headerlink" href="#sparse-array" title="Permalink to this headline">¶</a></h3>
+<p>Write a class for a sparse array:</p>
+<p><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/sparse_array.html#exercise-sparse-array"><span>Sparse Array Exercise</span></a></p>
+</div>
+</div>
+<div class="section" id="homework">
+<h2>Homework<a class="headerlink" href="#homework" title="Permalink to this headline">¶</a></h2>
+<p class="left">Complete the Circle class</p>
+<p class="left">Complete the Sparse Array class</p>
+<p class="left">Decide what you are going to do for your project, and send me a simple proposal. Get started if you can.</p>
+<p class="left">Good book:</p>
+<p class="left">Python 3 Object Oriented Programming: <em>Dusty Phillips</em></p>
+<p class="left">(Dusty is a local boy and co-founder of PuPPy)</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="http://uwpce-pythoncert.github.io/IntroToPython/session09.html" class="btn btn-neutral float-right" title="Session Nine: Iterators, Iterables, and Generators" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="http://uwpce-pythoncert.github.io/IntroToPython/session07.html" class="btn btn-neutral" title="Object Oriented Programming" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+        © Copyright 2014, Christopher Barker, Cris Ewing, .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="Session%20Eight%20%20More%20OO%20%20Properties,%20Special%20methods.%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/jquery.js"></script>
+      <script type="text/javascript" src="Session%20Eight%20%20More%20OO%20%20Properties,%20Special%20methods.%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/underscore.js"></script>
+      <script type="text/javascript" src="Session%20Eight%20%20More%20OO%20%20Properties,%20Special%20methods.%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/doctools.js"></script>
+      <script type="text/javascript" src="Session%20Eight%20%20More%20OO%20%20Properties,%20Special%20methods.%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/MathJax.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="Session%20Eight%20%20More%20OO%20%20Properties,%20Special%20methods.%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px none; margin: 0px;"><div style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px none; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-size-adjust: none; font-family: MathJax_Main,sans-serif;" id="MathJax_Font_Test"></div></div></body></html>

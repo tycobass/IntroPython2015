@@ -1,0 +1,9 @@
+1  - pathname to be hashed -  C:\work_area\Python\IntroPython2015\students\eric_v\Session_08\Project\key_test\frogs.txt
+1  - file_hash 89c2d3ec87f1eebed043526403b95c7c 
+
+2  - pathname to be hashed -  C:\work_area\Python\IntroPython2015\students\eric_v\Session_08\Project\key_test\key_test.txt
+2  - file_hash d41d8cd98f00b204e9800998ecf8427e 
+
+3  - pathname to be hashed -  C:\work_area\Python\IntroPython2015\students\eric_v\Session_08\Project\key_test\rabbits.txt
+3  - file_hash b1d26602cf0cb6696dce47bb970f47d8 
+

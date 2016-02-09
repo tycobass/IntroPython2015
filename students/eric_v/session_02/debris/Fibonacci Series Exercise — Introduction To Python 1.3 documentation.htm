@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html style="" class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Fibonacci Series Exercise — Introduction To Python 1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="Fibonacci%20Series%20Exercise%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/theme.css" type="text/css">
+  
+
+  
+
+  
+    <link rel="top" title="Introduction To Python 1.3 documentation" href="http://uwpce-pythoncert.github.io/IntroToPython/index.html">
+        <link rel="up" title="Exercises" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/index.html">
+        <link rel="next" title="Slicing Lab" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/slicing.html">
+        <link rel="prev" title="Fizz Buzz Exercise" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/fizz_buzz.html"> 
+
+  
+  <script src="Fibonacci%20Series%20Exercise%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/modernizr.js"></script>
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+<body class="wy-body-for-nav" role="document"><div style="display: none;" id="MathJax_Message"></div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="http://uwpce-pythoncert.github.io/IntroToPython/index.html" class="icon icon-home"> Introduction To Python
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input name="q" placeholder="Search docs" type="text">
+    <input name="check_keywords" value="yes" type="hidden">
+    <input name="area" value="default" type="hidden">
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session01.html">Session One: Introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session02.html">Session Two: gitHub, Functions, Booleans and Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session03.html">Session Three: Sequences, Iteration and String Formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session04.html">Session Four: Dictionaries, Sets, and Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session05.html">Session Five: Exceptions, Testing, Comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session06.html">Session Six: Advanced Argument Passing, lambda, functions as objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session07.html">Object Oriented Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session08.html">Session Eight: More OO: Properties, Special methods.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session09.html">Session Nine: Iterators, Iterables, and Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session10.html">Session Ten: Decorators and Context Managers – Wrap Up</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/index.html"><span class="toctree-expand"></span>Exercises</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/index.html#contents"><span class="toctree-expand"></span>Contents:</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/index.html#session-2"><span class="toctree-expand"></span>Session 2:</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/grid_printer.html">Grid Printer Exercise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/fizz_buzz.html">Fizz Buzz Exercise</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="">Fibonacci Series Exercise</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/index.html#session-3">Session 3:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/index.html#session-4">Session 4:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/index.html#session-5">Session 5:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/index.html#session-6">Session 6:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/index.html#session-7">Session 7:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/index.html#session-8">Session 8:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/index.html">Supplemental Materials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="http://uwpce-pythoncert.github.io/IntroToPython/index.html">Introduction To Python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="http://uwpce-pythoncert.github.io/IntroToPython/index.html">Docs</a> »</li>
+      
+          <li><a href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/index.html">Exercises</a> »</li>
+      
+    <li>Fibonacci Series Exercise</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="http://uwpce-pythoncert.github.io/IntroToPython/_sources/exercises/fib_and_lucas.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="fibonacci-series-exercise">
+<span id="exercise-fibonacci"></span><h1>Fibonacci Series Exercise<a class="headerlink" href="#fibonacci-series-exercise" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="computing-the-fibonacci-and-lucas-series">
+<h2>Computing the Fibonacci and Lucas Series<a class="headerlink" href="#computing-the-fibonacci-and-lucas-series" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="goal">
+<h3>Goal:<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Fibbonaci_Series">Fibonacci Series</a> is a numeric series starting with the integers 0 and 1.</p>
+<p>In this series, the next integer is determined by summing the previous two.</p>
+<p>This gives us:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>We will write a function that computes this series – then generalize it.</p>
+</div>
+<div class="section" id="step-1">
+<h3>Step 1<a class="headerlink" href="#step-1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Create a new module <code class="docutils literal"><span class="pre">series.py</span></code> in the <code class="docutils literal"><span class="pre">session02</span></code> folder in your student folder.<ul>
+<li>In it, add a function called <code class="docutils literal"><span class="pre">fibonacci</span></code>.</li>
+<li>The function should have one parameter <code class="docutils literal"><span class="pre">n</span></code>.</li>
+<li>The function should return the <code class="docutils literal"><span class="pre">nth</span></code> value in the fibonacci series.</li>
+</ul>
+</li>
+<li>Ensure that your function has a well-formed <code class="docutils literal"><span class="pre">docstring</span></code></li>
+</ul>
+<p>Note that the fibinacci series is naturally recusive – the value is
+defined by previous values:</p>
+<p>fib(n) = fib(n-2) + fib(n-1)</p>
+</div>
+<div class="section" id="lucas-numbers">
+<h3>Lucas Numbers<a class="headerlink" href="#lucas-numbers" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Lucas_number">Lucas Numbers</a> are a related series of integers that start with the
+values 2 and 1 rather than 0 and 1. The resulting series looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>In your <code class="docutils literal"><span class="pre">series.py</span></code> module, add a new function <code class="docutils literal"><span class="pre">lucas</span></code> that returns the
+<code class="docutils literal"><span class="pre">nth</span></code> value in the <em>lucas numbers</em> series.</p>
+<p>Ensure that your function has a well-formed <code class="docutils literal"><span class="pre">docstring</span></code></p>
+</div>
+<div class="section" id="generalizing">
+<h3>Generalizing<a class="headerlink" href="#generalizing" title="Permalink to this headline">¶</a></h3>
+<p>Both the <em>fibonacci series</em> and the <em>lucas numbers</em> are based on an identical
+formula.</p>
+<p>Add a third function called <code class="docutils literal"><span class="pre">sum_series</span></code> with one required parameter and two
+optional parameters. The required parameter will determine which element in the
+series to print. The two optional parameters will have default values of 0 and
+1 and will determine the first two values for the series to be produced.</p>
+<p>Calling this function with no optional parameters will produce numbers from the
+<em>fibonacci series</em>.  Calling it with the optional arguments 2 and 1 will
+produce values from the <em>lucas numbers</em>. Other values for the optional
+parameters will produce other series.</p>
+<p>Ensure that your function has a well-formed <code class="docutils literal"><span class="pre">docstring</span></code></p>
+</div>
+<div class="section" id="tests">
+<h3>Tests...<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h3>
+<p>Add a block of code to the end of your <code class="docutils literal"><span class="pre">series.py</span></code>
+module. Use the block to write a series of <code class="docutils literal"><span class="pre">assert</span></code> statements that
+demonstrate that your three functions work properly.</p>
+<p>Use comments in this block to inform the observer what your tests do.</p>
+<p>Add your new module to your git clone and commit frequently while working on
+your implementation. Include good commit messages that explain concisely both
+<em>what</em> you are doing and <em>why</em>.</p>
+<p>When you are finished, push your changes to your fork of the class repository
+in GitHub and make a pull request.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/slicing.html" class="btn btn-neutral float-right" title="Slicing Lab" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/fizz_buzz.html" class="btn btn-neutral" title="Fizz Buzz Exercise" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+        © Copyright 2014, Christopher Barker, Cris Ewing, .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="Fibonacci%20Series%20Exercise%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/jquery.js"></script>
+      <script type="text/javascript" src="Fibonacci%20Series%20Exercise%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/underscore.js"></script>
+      <script type="text/javascript" src="Fibonacci%20Series%20Exercise%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/doctools.js"></script>
+      <script type="text/javascript" src="Fibonacci%20Series%20Exercise%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/MathJax.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="Fibonacci%20Series%20Exercise%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+
+</body></html>

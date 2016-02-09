@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html style="" class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Turning Sublime Text Into a Lightweight Python IDE — Introduction To Python 1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="Turning%20Sublime%20Text%20Into%20a%20Lightweight%20Python%20IDE%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/theme.css" type="text/css">
+  
+
+  
+
+  
+    <link rel="top" title="Introduction To Python 1.3 documentation" href="http://uwpce-pythoncert.github.io/IntroToPython/index.html">
+        <link rel="up" title="Supplemental Materials" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/index.html">
+        <link rel="next" title="Shell Customizations for Python Development" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/shell.html">
+        <link rel="prev" title="Working with Virtualenv" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/virtualenv.html"> 
+
+  
+  <script src="Turning%20Sublime%20Text%20Into%20a%20Lightweight%20Python%20IDE%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/modernizr.js"></script>
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+<body class="wy-body-for-nav" role="document"><div style="display: none;" id="MathJax_Message"></div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="http://uwpce-pythoncert.github.io/IntroToPython/index.html" class="icon icon-home"> Introduction To Python
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input name="q" placeholder="Search docs" type="text">
+    <input name="check_keywords" value="yes" type="hidden">
+    <input name="area" value="default" type="hidden">
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session01.html">Session One: Introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session02.html">Session Two: gitHub, Functions, Booleans and Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session03.html">Session Three: Sequences, Iteration and String Formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session04.html">Session Four: Dictionaries, Sets, and Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session05.html">Session Five: Exceptions, Testing, Comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session06.html">Session Six: Advanced Argument Passing, lambda, functions as objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session07.html">Object Oriented Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session08.html">Session Eight: More OO: Properties, Special methods.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session09.html">Session Nine: Iterators, Iterables, and Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session10.html">Session Ten: Decorators and Context Managers – Wrap Up</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/index.html">Exercises</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/index.html"><span class="toctree-expand"></span>Supplemental Materials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/python_learning_resources.html">Useful Python Learning Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/python_for_mac.html">Setting up your Mac for Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/python_for_windows.html">Setting up Windows for Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/python_for_linux.html">Setting Up Python For Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/virtualenv.html">Working with Virtualenv</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href=""><span class="toctree-expand"></span>Turning Sublime Text Into a Lightweight Python IDE</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#which-version">Which Version?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-settings">Basic Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extending-the-editor">Extending the Editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#useful-plugins"><span class="toctree-expand"></span>Useful Plugins</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autocompletion">Autocompletion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-linting">Code Linting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#white-space-management">White Space Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#follow-along">Follow-Along</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/shell.html">Shell Customizations for Python Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/git_overview.html">git Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/install_nano_win.html">Installing Nano on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/unicode.html">Unicode in Python 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/packaging.html">Packages and Packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/packaging.html#distributing">Distributing</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="http://uwpce-pythoncert.github.io/IntroToPython/index.html">Introduction To Python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="http://uwpce-pythoncert.github.io/IntroToPython/index.html">Docs</a> »</li>
+      
+          <li><a href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/index.html">Supplemental Materials</a> »</li>
+      
+    <li>Turning Sublime Text Into a Lightweight Python IDE</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="http://uwpce-pythoncert.github.io/IntroToPython/_sources/supplements/sublime_as_ide.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="turning-sublime-text-into-a-lightweight-python-ide">
+<span id="sublime-as-ide"></span><h1>Turning Sublime Text Into a Lightweight Python IDE<a class="headerlink" href="#turning-sublime-text-into-a-lightweight-python-ide" title="Permalink to this headline">¶</a></h1>
+<p>A solid text editor is a developer’s best friend. You use it constantly and it
+becomes like a second pair of hands. The keyboard commands you use daily
+become so engrained in your muscle memory that you stop thinking about them
+entirely.</p>
+<p>With Sublime Text, it’s possible to turn your text editor into the functional
+equivalent of a Python IDE.  The best part is you don’t have to install an IDE
+to do it.</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>Here are <em>my</em> requirements for an ‘IDE’:</p>
+<ul class="simple">
+<li>It should provide excellent, configurable syntax colorization.</li>
+<li>It should allow for robust tab completion.</li>
+<li>It should offer the ability to jump to the definition of symbols in other
+files.</li>
+<li>It should perform automatic code linting to help avoid silly mistakes.</li>
+<li>It should be able to interact with a Python interpreter such that when
+debugging, the editor will follow along with the debugger.</li>
+</ul>
+</div>
+<div class="section" id="which-version">
+<h2>Which Version?<a class="headerlink" href="#which-version" title="Permalink to this headline">¶</a></h2>
+<p>While Version 3 is still considered “beta”, it is the one everyone is putting
+their effort into, and some of the plugins I recommend are not available for
+version 2.</p>
+</div>
+<div class="section" id="basic-settings">
+<h2>Basic Settings<a class="headerlink" href="#basic-settings" title="Permalink to this headline">¶</a></h2>
+<p>All configuration in Sublime Text is done via <a class="reference external" href="http://www.json.org/">JSON</a>. It’s simple to learn. go
+and read that link then return here.</p>
+<p>There are a number of <a class="reference external" href="http://www.sublimetext.com/docs/3/settings.html">different levels of configuration</a> in Sublime Text. You
+will most often work on settings at the user level.</p>
+<p>Open <code class="docutils literal"><span class="pre">Preferences</span></code> -&gt; <code class="docutils literal"><span class="pre">Settings</span> <span class="pre">-</span> <span class="pre">Default</span></code> to see all the default settings
+and choose which to override.</p>
+<p>Create your own set of preferences by opening <code class="docutils literal"><span class="pre">Preferences</span></code> -&gt; <code class="docutils literal"><span class="pre">Settings</span> <span class="pre">-</span>
+<span class="pre">User</span></code>. This will create an empty file, you can then copy the settings you want
+to override from the default set into your personal settings.</p>
+<p>Here’s a reasonable set of preliminary settings (theme, color scheme and font
+are quite personal, find ones that suit you.):</p>
+<div class="highlight-json"><div class="highlight"><pre>source
+
+{
+    "color_scheme": "Packages/User/Cobalt (SL).tmTheme",
+    "theme": "Soda Light 3.sublime-theme",
+    // A font face that helps distinguish between 0 (the number) and 'O' (the letter)
+    // among other problem characters. YOu also want a "fixed width font"
+    // Monaco is a nice option that comes with all Macs.
+    // Not sure what's best on Windows.
+    "font_face": "Monaco",
+    // getting older. I wonder if comfy font size increases as a linear
+    //  function of age?
+    "font_size": 15,
+    "ignored_packages":
+    [
+        // I'm not a vi user, so this is of no use to me.
+        "Vintage"
+    ],
+    "rulers":
+    [
+        // set text rulers so I can judge line length for pep8
+        72, // docstrings
+        79, // optimum code line length
+        100  // maximum allowable length
+    ],
+    "word_wrap": false, // I hate auto-wrapped text.
+    "wrap_width": 79 // This is used by a plugin elsewhere
+    "tab_size": 4,
+    "translate_tabs_to_spaces": true,
+    "use_tab_stops": true,
+    "draw_white_space": "all", // I like so see spaces and tabs -- makes it easier to debug
+}
+</pre></div>
+</div>
+<p>Especially important is the setting <code class="docutils literal"><span class="pre">translate_tabs_to_spaces</span></code>, which ensures
+that any time you hit a tab key, the single <code class="docutils literal"><span class="pre">\t</span></code> character is replaced by four
+<code class="docutils literal"><span class="pre">\s</span></code> characters.  In Python this is <strong>vital</strong>!</p>
+</div>
+<div class="section" id="extending-the-editor">
+<h2>Extending the Editor<a class="headerlink" href="#extending-the-editor" title="Permalink to this headline">¶</a></h2>
+<p>Most of the requirements above go beyond basic editor function. Use Plugins.</p>
+<p>Sublime Text comes with a great system for <a class="reference external" href="https://sublime.wbond.net/">Package Control</a>. It handles
+installing and uninstalling plugins, and even updates installed plugins for
+you. You can also manually install plugins that haven’t made it to the big-time
+yet, including <a class="reference external" href="http://docs.sublimetext.info/en/latest/extensibility/plugins.html">ones you write yourself</a>. Happily, the plugin system is
+Python!</p>
+<p>To install a plugin using Package Control, open the <code class="docutils literal"><span class="pre">command</span> <span class="pre">palette</span></code> with
+<code class="docutils literal"><span class="pre">shift-super-P</span></code> (<code class="docutils literal"><span class="pre">ctrl-shift-P</span></code> on Windows/Linux). The <code class="docutils literal"><span class="pre">super</span></code> key is
+<code class="docutils literal"><span class="pre">command</span></code> or <code class="docutils literal"><span class="pre">⌘</span></code> on OS X. When the palette opens, typing <code class="docutils literal"><span class="pre">install</span></code> will
+bring up the <code class="docutils literal"><span class="pre">Package</span> <span class="pre">Control:</span> <span class="pre">Install</span> <span class="pre">Package</span></code> command. Hit <code class="docutils literal"><span class="pre">enter</span></code> to
+select it.</p>
+<a class="reference internal image-reference" href="http://uwpce-pythoncert.github.io/IntroToPython/_images/pc_menu.png"><img alt="The package control command in the command palette." class="align-center" src="Turning%20Sublime%20Text%20Into%20a%20Lightweight%20Python%20IDE%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/pc_menu.png" style="width: 600px;"></a>
+<p>After you select the command, Sublime Text fetches an updated list of packages
+from the network. It might take a second or two for the list to appear. When it
+does, start to type the name of the package you want. Sublime Text filters the
+list and shows you what you want to see. To install a plugin, select it with
+the mouse, or use arrow keys to navigate the list and hit <code class="docutils literal"><span class="pre">enter</span></code> when your
+plugin is highlighted.</p>
+<a class="reference internal image-reference" href="http://uwpce-pythoncert.github.io/IntroToPython/_images/plugin_list.png"><img alt="../_images/plugin_list.png" class="align-center" src="Turning%20Sublime%20Text%20Into%20a%20Lightweight%20Python%20IDE%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/plugin_list.png" style="width: 600px;"></a>
+</div>
+<div class="section" id="useful-plugins">
+<h2>Useful Plugins<a class="headerlink" href="#useful-plugins" title="Permalink to this headline">¶</a></h2>
+<p>Here are the plugins I’ve installed to achieve the requirements above.</p>
+<div class="section" id="autocompletion">
+<h3>Autocompletion<a class="headerlink" href="#autocompletion" title="Permalink to this headline">¶</a></h3>
+<p>By default, Sublime Text will index symbols in open files and projects, but
+that doesn’t cover installed python packages that may be part of a non-standard
+run environment.</p>
+<p>There are two to choose from:</p>
+<ol class="arabic simple">
+<li><a class="reference external" href="https://sublime.wbond.net/packages/SublimeCodeIntel">SublimeCodeIntel</a> offers strong support for multiple languages through
+it’s own plugin system.  It is a bit heavy and requires building an index.</li>
+<li><a class="reference external" href="https://sublime.wbond.net/packages/Jedi%20-%20Python%20autocompletion">SublimeJedi</a> only supports Python, but is faster and keeps an index on its
+own.</li>
+</ol>
+<p>I’ve installed <code class="docutils literal"><span class="pre">SublimeJedi</span></code>, and used the following settings <em>per project</em> to
+ensure that all relevant code is found:</p>
+<div class="highlight-json"><div class="highlight"><pre>{
+    "folders":
+    [
+        // ...
+    ],
+
+    "settings": {
+        // ...
+        "python_interpreter_path": "/Users/cewing/pythons/python-2.7/bin/python",
+
+        "python_package_paths": [
+            "/path/to/project/buildout/parts/omelette"
+        ]
+    }
+}
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">python_interpreter_path</span></code> allows me to indicate which Python executable
+should be introspected for symbol definitions.</p>
+<p>The <code class="docutils literal"><span class="pre">python_package_paths</span></code> setting allows designating additional paths that
+will be searched for Python packages containing symbols.</p>
+<a class="reference internal image-reference" href="http://uwpce-pythoncert.github.io/IntroToPython/_images/tab_completion.png"><img alt="Tab completion provided by SublimeJedi" class="align-center" src="Turning%20Sublime%20Text%20Into%20a%20Lightweight%20Python%20IDE%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/tab_completion.png" style="width: 600px;"></a>
+<p>Once configured, you should be able to use the <code class="docutils literal"><span class="pre">ctrl-shift-G</span></code> keyboard
+shortcut to jump directly to the definition of a symbol. You can also use
+<code class="docutils literal"><span class="pre">alt-shift-F</span></code> to find other usages of the same symbol elsewhere in your code.</p>
+</div>
+<div class="section" id="code-linting">
+<h3>Code Linting<a class="headerlink" href="#code-linting" title="Permalink to this headline">¶</a></h3>
+<p>Code linting shows you mistakes you’ve made in your source <em>before</em> you attempt
+to run the code. This saves time. Sublime Text has an available plugin for code
+linters called <a class="reference external" href="http://sublimelinter.readthedocs.org/en/latest/">SublimeLinter</a>.</p>
+<p>Python has a couple of great tools available for linting, the <a class="reference external" href="https://pypi.python.org/pypi/pep8">pep8</a> and
+<a class="reference external" href="https://pypi.python.org/pypi/pyflakes">pyflakes</a> packages. <code class="docutils literal"><span class="pre">Pep8</span></code> checks for style violations, lines too long,
+extra spaces and so on. <code class="docutils literal"><span class="pre">Pyflakes</span></code> checks for syntactic violations, like
+using a symbol that isn’t defined or importing a symbol you don’t use.</p>
+<p>Another Python linting package, <a class="reference external" href="https://pypi.python.org/pypi/flake8">flake8</a> combines these two, and adds in
+<a class="reference external" href="https://pypi.python.org/pypi/mccabe">mccabe</a>, a tool to check the <a class="reference external" href="http://en.wikipedia.org/wiki/Cyclomatic_complexity">cyclomatic complexity</a> of code you write. This
+can be of great help in discovering methods and functions that could be
+simplified and thus made easier to understand and more testable.</p>
+<p>There is a nice plugin for the SublimeLinter that <a class="reference external" href="https://sublime.wbond.net/packages/SublimeLinter-flake8">utilizes flake8</a>. For it to
+work, the plugin will need to have a Python executable that has the Python
+tools it needs installed.</p>
+<p>Make sure that the python packages you need are installed in your main
+python install, rather than a virtualenv.</p>
+<p>Use Python packaging tools to install the required packages:</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ pip install flake8
+Downloading/unpacking flake8
+[...]
+Downloading/unpacking pyflakes&gt;=0.7.3 (from flake8)
+[...]
+Downloading/unpacking pep8&gt;=1.4.6 (from flake8)
+[...]
+Downloading/unpacking mccabe&gt;=0.2.1 (from flake8)
+[...]
+Installing collected packages: flake8, pyflakes, pep8, mccabe
+[...]
+Successfully installed flake8 pyflakes pep8 mccabe
+Cleaning up...
+$
+</pre></div>
+</div>
+<p>Your Python install now has the required packages installed.</p>
+<p>try typeing these command to make sure:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ flake8
+Usage: flake8 [options] input ...
+
+flake8: error: input not specified
+</pre></div>
+</div>
+<p>Now install SublimeLinter and then SublimeLinter-flake8 using Package Control.</p>
+<p>Here are the settings you can add to <code class="docutils literal"><span class="pre">Preferences</span></code> -&gt; <code class="docutils literal"><span class="pre">Package</span> <span class="pre">Settings</span></code> -&gt;
+<code class="docutils literal"><span class="pre">SublimeLinter</span></code> -&gt; <code class="docutils literal"><span class="pre">Settings</span> <span class="pre">-</span> <span class="pre">User</span></code>:</p>
+<div class="highlight-json"><div class="highlight"><pre>{
+    //...
+    "linters": {
+        "flake8": {
+            "@disable": false,
+            "args": [],
+            "builtins": "",
+            "excludes": [],
+            "ignore": "",
+            "max-complexity": 10,
+            "max-line-length": null,
+            "select": ""
+        }
+    },
+    //...
+    "paths": {
+        "linux": [],
+        "osx": [
+            "/Users/cewing/virtualenvs/sublenv/bin"
+        ],
+        "windows": []
+    },
+    "python_paths": {
+        "linux": [],
+        "osx": [
+            "/Users/cewing/virtualenvs/sublenv/bin"
+        ],
+        "windows": []
+    },
+    //...
+}
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">paths</span></code> key points to the path that contains the <code class="docutils literal"><span class="pre">flake8</span></code> executable
+command.</p>
+<p>The <code class="docutils literal"><span class="pre">python_paths</span></code> key points to the location of the python executable to be
+used.</p>
+<p>The settings inside the <code class="docutils literal"><span class="pre">flake8</span></code> object control the performance of the
+linter. <a class="reference external" href="https://github.com/SublimeLinter/SublimeLinter-flake8#settings">Read more about them here</a>.</p>
+<a class="reference internal image-reference" href="http://uwpce-pythoncert.github.io/IntroToPython/_images/flake8_output.png"><img alt="Flake8 shows unused import and trailing whitespace issues." class="align-center" src="Turning%20Sublime%20Text%20Into%20a%20Lightweight%20Python%20IDE%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/flake8_output.png" style="width: 600px;"></a>
+</div>
+<div class="section" id="white-space-management">
+<h3>White Space Management<a class="headerlink" href="#white-space-management" title="Permalink to this headline">¶</a></h3>
+<p>One of the issues highlighted by <code class="docutils literal"><span class="pre">flake8</span></code> is trailing spaces.  Sublime text
+provides a setting that allows you to remove them every time you save a file:</p>
+<div class="highlight-json"><div class="highlight"><pre>source
+
+{
+    "trim_trailing_whitespace_on_save": true
+}
+</pre></div>
+</div>
+<p><strong>Do not use this setting</strong></p>
+<p>Removing trailing whitespace by default causes a <em>ton</em> of noise in commits.</p>
+<p>Keep commits for stylistic cleanup separate from those that make important
+changes to code.</p>
+<p>The <a class="reference external" href="https://github.com/SublimeText/TrailingSpaces">TrailingSpaces</a> SublimeText plugin can help with this.</p>
+<p>Here are the settings you can use:</p>
+<div class="highlight-json"><div class="highlight"><pre>{
+    //...
+    "trailing_spaces_modified_lines_only": true,
+    "trailing_spaces_trim_on_save": true,
+    // ...
+}
+</pre></div>
+</div>
+<p>This allows trimming whitespace on save, but <em>only on lines you have directly
+modified</em>. You can still trim <em>all</em> whitespace manually and keep changesets
+free of noise.</p>
+</div>
+<div class="section" id="follow-along">
+<h3>Follow-Along<a class="headerlink" href="#follow-along" title="Permalink to this headline">¶</a></h3>
+<p>The final requirement for a reasonable IDE experience is to be able to follow a
+debugging session in the file where the code exists.</p>
+<p>There is no plugin for SublimeText that supports this. But there is a Python
+package you can install into the virtualenv for each of your projects that does
+it.</p>
+<p>The package is called <a class="reference external" href="https://pypi.python.org/pypi/PdbSublimeTextSupport">PDBSublimeTextSupport</a> and its simple to install with <code class="docutils literal"><span class="pre">pip</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>projectenv<span class="o">)</span><span class="nv">$ </span>pip install PDBSublimeTextSupport
+</pre></div>
+</div>
+<p>With that package installed in the Python that is used for your project, any
+breakpoint you set will automatically pop to the surface in SublimeText.  And
+as you step through the code, you will see the current line in your Sublime
+Text file move along with you.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/shell.html" class="btn btn-neutral float-right" title="Shell Customizations for Python Development" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/virtualenv.html" class="btn btn-neutral" title="Working with Virtualenv" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+        © Copyright 2014, Christopher Barker, Cris Ewing, .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="Turning%20Sublime%20Text%20Into%20a%20Lightweight%20Python%20IDE%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/jquery.js"></script>
+      <script type="text/javascript" src="Turning%20Sublime%20Text%20Into%20a%20Lightweight%20Python%20IDE%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/underscore.js"></script>
+      <script type="text/javascript" src="Turning%20Sublime%20Text%20Into%20a%20Lightweight%20Python%20IDE%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/doctools.js"></script>
+      <script type="text/javascript" src="Turning%20Sublime%20Text%20Into%20a%20Lightweight%20Python%20IDE%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/MathJax.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="Turning%20Sublime%20Text%20Into%20a%20Lightweight%20Python%20IDE%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+
+</body></html>

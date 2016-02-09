@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html style="" class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Useful Python Learning Resources — Introduction To Python 1.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="Useful%20Python%20Learning%20Resources%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/theme.css" type="text/css">
+  
+
+  
+
+  
+    <link rel="top" title="Introduction To Python 1.3 documentation" href="http://uwpce-pythoncert.github.io/IntroToPython/index.html">
+        <link rel="up" title="Supplemental Materials" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/index.html">
+        <link rel="next" title="Setting up your Mac for Python" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/python_for_mac.html">
+        <link rel="prev" title="Supplemental Materials" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/index.html"> 
+
+  
+  <script src="Useful%20Python%20Learning%20Resources%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/modernizr.js"></script>
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+<body class="wy-body-for-nav" role="document"><div style="display: none;" id="MathJax_Message"></div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="http://uwpce-pythoncert.github.io/IntroToPython/index.html" class="icon icon-home"> Introduction To Python
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input name="q" placeholder="Search docs" type="text">
+    <input name="check_keywords" value="yes" type="hidden">
+    <input name="area" value="default" type="hidden">
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session01.html">Session One: Introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session02.html">Session Two: gitHub, Functions, Booleans and Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session03.html">Session Three: Sequences, Iteration and String Formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session04.html">Session Four: Dictionaries, Sets, and Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session05.html">Session Five: Exceptions, Testing, Comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session06.html">Session Six: Advanced Argument Passing, lambda, functions as objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session07.html">Object Oriented Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session08.html">Session Eight: More OO: Properties, Special methods.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session09.html">Session Nine: Iterators, Iterables, and Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/session10.html">Session Ten: Decorators and Context Managers – Wrap Up</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/exercises/index.html">Exercises</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/index.html"><span class="toctree-expand"></span>Supplemental Materials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href=""><span class="toctree-expand"></span>Useful Python Learning Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python-language-resources"><span class="toctree-expand"></span>Python Language Resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#for-the-beginner">For the beginner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evaluating-your-options">Evaluating Your Options</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ipython-interpreter-resources">iPython Interpreter Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/python_for_mac.html">Setting up your Mac for Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/python_for_windows.html">Setting up Windows for Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/python_for_linux.html">Setting Up Python For Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/virtualenv.html">Working with Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/sublime_as_ide.html">Turning Sublime Text Into a Lightweight Python IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/shell.html">Shell Customizations for Python Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/git_overview.html">git Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/install_nano_win.html">Installing Nano on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/unicode.html">Unicode in Python 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/packaging.html">Packages and Packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/packaging.html#distributing">Distributing</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="http://uwpce-pythoncert.github.io/IntroToPython/index.html">Introduction To Python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="http://uwpce-pythoncert.github.io/IntroToPython/index.html">Docs</a> »</li>
+      
+          <li><a href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/index.html">Supplemental Materials</a> »</li>
+      
+    <li>Useful Python Learning Resources</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="http://uwpce-pythoncert.github.io/IntroToPython/_sources/supplements/python_learning_resources.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="useful-python-learning-resources">
+<span id="python-learning-resources"></span><h1>Useful Python Learning Resources<a class="headerlink" href="#useful-python-learning-resources" title="Permalink to this headline">¶</a></h1>
+<p>In addition to the material we cover in class, there are numerous online
+resources to help a newcomer get to know Python. The following list represents
+the best-known and best-regarded of the breed. If you are itching for a bit
+more work on your Python chops, you should try these out.</p>
+<div class="section" id="python-language-resources">
+<h2>Python Language Resources<a class="headerlink" href="#python-language-resources" title="Permalink to this headline">¶</a></h2>
+<p>As a Python programmer, you’ll want to keep a bookmark pointed at the
+official Python documentation (<a class="reference external" href="https://docs.python.org/3/">https://docs.python.org/3/</a>), especially
+the documentation for the standard library
+(<a class="reference external" href="https://docs.python.org/3/library/index.html">https://docs.python.org/3/library/index.html</a>). However, there are a
+number of additional resources you can (and should) use to help build
+your Python chops.</p>
+<div class="section" id="for-the-beginner">
+<h3>For the beginner<a class="headerlink" href="#for-the-beginner" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>The Python Tutorial</strong>
+(<a class="reference external" href="https://docs.python.org/3/tutorial/">https://docs.python.org/3/tutorial/</a>): This is the
+official tutorial from the Python website. No more authoritative source is
+available.</li>
+<li><strong>Code Academy Python Track</strong>
+(<a class="reference external" href="http://www.codecademy.com/tracks/python">http://www.codecademy.com/tracks/python</a>): Often
+cited as a great resource, this site offers an entertaining and engaging
+approach and in-browser work.</li>
+<li><strong>Learn Python the Hard Way</strong>
+(<a class="reference external" href="http://learnpythonthehardway.org/book/">http://learnpythonthehardway.org/book/</a>): Solid
+and gradual. This course offers a great foundation for folks who have never
+programmed in any language before.</li>
+<li><strong>Dive Into Python 3</strong>
+(<a class="reference external" href="http://www.diveintopython3.net/">http://www.diveintopython3.net/</a>): The updated version
+of a classic. This book offers an introduction to Python aimed at the student
+who has experience programming in another language.</li>
+<li><strong>Python for You and Me</strong>
+(<a class="reference external" href="http://pymbook.readthedocs.org/en/latest/">http://pymbook.readthedocs.org/en/latest/</a>): Simple
+and clear. This is a great book for absolute newcomers, or to keep as a quick
+reference as you get used to the language.</li>
+<li><strong>Think Python</strong>
+(<a class="reference external" href="http://greenteapress.com/thinkpython/">http://greenteapress.com/thinkpython/</a>): Methodical and
+complete.  This book offers a very “computer science-style” introduction to
+Python. It is really an intro to Python <em>in the service of</em> Computer Science,
+though, so while helpful for the absolute newcomer, it isn’t quite as
+“pythonic” as it might be.</li>
+<li><strong>Core Python Programming</strong>
+(<a class="reference external" href="http://corepython.com/">http://corepython.com/</a>): Only available as a dead trees version, but
+if you like to have book to hold in your hands anyway, this
+is the best textbook style introduction out there. It starts from the
+beginning, but gets into the full language. Published in 2009, but still in
+print, with updated appendixes available for new language features.</li>
+<li><strong>Python 101</strong>
+(<a class="reference external" href="http://www.blog.pythonlibrary.org/2014/06/03/python-101-book-published-today/">http://www.blog.pythonlibrary.org/2014/06/03/python-101-book-published-today/</a>)
+Available as a reasonably priced ebook. This is a new one from a popular Blogger
+about Python. Lots of practical examples. Also avaiable as a Kindle book:
+<a class="reference external" href="http://www.amazon.com/Python-101-Michael-Driscoll-ebook/dp/B00KQTFHNK">http://www.amazon.com/Python-101-Michael-Driscoll-ebook/dp/B00KQTFHNK</a></li>
+</ul>
+</div>
+<div class="section" id="next-steps">
+<h3>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>New Coder</strong>
+(<a class="reference external" href="http://newcoder.io/">http://newcoder.io</a>): Advertised as “Five lifejackets to throw to
+the new coder”, this site offers five very interesting tutorials written in
+an engaging style. Not an introduction. More a second step.</li>
+<li><strong>OpenHatch</strong>
+(<a class="reference external" href="https://openhatch.org/wiki/Intermediate_Python_Workshop/Projects">https://openhatch.org/wiki/Intermediate_Python_Workshop/Projects</a>):
+The Open Hatch project offers a number of workshops with well-paced
+intermediate tutorials for Python programming. A great place to go once you
+have the basics down and are ready for more challenging work.</li>
+</ul>
+</div>
+<div class="section" id="evaluating-your-options">
+<h3>Evaluating Your Options<a class="headerlink" href="#evaluating-your-options" title="Permalink to this headline">¶</a></h3>
+<p>The blurbs above are short descriptions of the material in each resource. We’ve
+drawn them both from our own usage of the various tools, and from a wonderful
+set of online reviews:</p>
+<p>(<a class="reference external" href="http://planningadinner.blogspot.com/search/label/So%20you%20want%20to%20learn%20Python.%20What%27s%20next%3F">http://planningadinner.blogspot.com/search/label/So%20you%20want%20to%20learn%20Python.%20What%27s%20next%3F</a>)</p>
+<p>done by Marta Maria Casetti on her blog, “Planning a Dinner”
+(<a class="reference external" href="http://planningadinner.blogspot.com/">http://planningadinner.blogspot.com/</a>).</p>
+<p>The poster she presented at PyCon 2014
+(<a class="reference external" href="http://planningadinner.blogspot.com/2014/04/the-poster.html">http://planningadinner.blogspot.com/2014/04/the-poster.html</a>)
+as a result of that research offers some great hints about the aspects of
+Python programming best covered by each resource. I would urge any new student
+of Python to take the time to look over this poster to help determine the best
+path forward for themselves.</p>
+</div>
+</div>
+<div class="section" id="ipython-interpreter-resources">
+<h2>iPython Interpreter Resources<a class="headerlink" href="#ipython-interpreter-resources" title="Permalink to this headline">¶</a></h2>
+<p>iPython is an enhanced interpreter that makes interactive experimentation at the command line much more pleasant and powerful.</p>
+<ul>
+<li><dl class="first docutils">
+<dt><strong>The iPython tutorial</strong></dt>
+<dd><p class="first last">(<a class="reference external" href="https://ipython.org/ipython-doc/stable/interactive/tutorial.html">https://ipython.org/ipython-doc/stable/interactive/tutorial.html</a>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Using IPython for interactive work</strong></dt>
+<dd><p class="first last">(<a class="reference external" href="http://ipython.org/ipython-doc/stable/interactive/index.html">http://ipython.org/ipython-doc/stable/interactive/index.html</a>)
+Learn about the abilities iPython provides for interactive sessions.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>The iPython Documentation</strong></dt>
+<dd><p class="first last">(<a class="reference external" href="http://ipython.org/ipython-doc/stable/index.html">http://ipython.org/ipython-doc/stable/index.html</a>)
+Use this to learn more about iPython’s amazing capabilities.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/python_for_mac.html" class="btn btn-neutral float-right" title="Setting up your Mac for Python" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="http://uwpce-pythoncert.github.io/IntroToPython/supplements/index.html" class="btn btn-neutral" title="Supplemental Materials" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+        © Copyright 2014, Christopher Barker, Cris Ewing, .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="Useful%20Python%20Learning%20Resources%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/jquery.js"></script>
+      <script type="text/javascript" src="Useful%20Python%20Learning%20Resources%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/underscore.js"></script>
+      <script type="text/javascript" src="Useful%20Python%20Learning%20Resources%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/doctools.js"></script>
+      <script type="text/javascript" src="Useful%20Python%20Learning%20Resources%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/MathJax.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="Useful%20Python%20Learning%20Resources%20%E2%80%94%20Introduction%20To%20Python%201.3%20documentation_files/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+
+</body></html>

@@ -1,3 +1,5 @@
 {
+  "Project/test_Directory_Crawler.py::test_file_hash_values": true,
+  "Project/test_Directory_Crawler.py::test_hash_identifier": true,
   "test_Circle.py": true
 }
